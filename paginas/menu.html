@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Control Citas</title>
+
+    
+    <link rel="stylesheet" href="../estilos/panel_control.css">    
+
+    <script>
+        
+        function cerrar_sesion(){
+
+            Swal.fire({
+                title: '¿Realmente quieres salir?',
+                showCancelButton: true,
+                icon: 'question',
+                confirmButtonText: `Salir`,
+            }).then((result) => {
+
+                
+                if (result.isConfirmed) {
+                    close_s();
+                    window.location.href = '../index.html';
+                }
+            });
+            
+        }
+
+
+        function close_s(){
+  
+            try{
+                                
+                $.ajax({
+
+                    type: "POST",
+                    async: false,
+                    url: '../controladores/operaciones/login_controller.php',
+                    data: {"funcion" : "cerrar_session"},                    
+                    error: function(e){
+                        
+                        alert(e.responseText);                
+                    }
+                });        
+
+            }catch(ex){
+                alert("[close_s -> function]: " + ex);
+            }
+
+        }        
+
+    </script>
+
+</head>
+<body>
+
+    
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar_menu">
+        <div class="container-fluid">
+
+            <a href="#" style="text-decoration: none;">
+
+                <img src="../img/logotipo.jpg" style="height: 60px; border-radius: 8px;">
+                <span style="color: white; font-weight: bold; font-size: 18px;">Sistema Gestión de Citas</span>                                
+            </a>
+            
+
+                        
+            <form class="d-flex">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="boton_nav" id="nav_calendario" aria-current="page" href="panel_calendario.html"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;Calendario</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="boton_nav" id="nav_reportes" aria-current="page" href="panel_reportes.html"><i class="far fa-file-alt"></i>&nbsp;&nbsp;Reportes</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="boton_nav" id="nav_clientes" aria-current="page" href="panel_clientes.html"><i class="far fa-users"></i>&nbsp;&nbsp;Clientes</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="boton_nav" id="nav_servicios" aria-current="page" href="panel_servicios.html"><i class="far fa-suitcase"></i>&nbsp;&nbsp;Servicios</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="boton_nav" id="nav_usuarios" aria-current="page" href="panel_usuarios.html"><i class="far fa-user-tie"></i>&nbsp;&nbsp;Usuarios</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="boton_nav" id="nav_configuracion" aria-current="page" href="panel_configuracion.html"><i class="far fa-cogs"></i>&nbsp;&nbsp;Configuración</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="boton_nav" aria-current="page" href="#" onclick="return cerrar_sesion();"><i class="far fa-sign-out-alt"></i>&nbsp;&nbsp;Cerrar sesión</a>
+                        </li>
+
+                    </ul>            
+                    
+                </div>
+            </form>
+            
+        </div>
+    </nav>
+    
+</body>
+</html>

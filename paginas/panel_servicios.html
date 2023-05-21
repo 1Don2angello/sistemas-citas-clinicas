@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Control Citas</title>
+
+    <link rel="stylesheet" href="../plugins/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../plugins/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../plugins/vendor/components/jquery/jquery.min.js"></script>
+            
+    <link rel="stylesheet" href="../plugins/node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <script src="../plugins/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="../plugins/node_modules/fullcalendar/main.css">
+    <script src="../plugins/node_modules/fullcalendar/main.js"></script>    
+    <script src="../plugins/node_modules/fullcalendar/locales/es.js"></script>
+
+    <link rel="stylesheet" href="../estilos/panel_control.css">
+    <link rel="stylesheet" href="../estilos/panel_catalogos.css">
+    <script src="../javascript/panel_servicios.js"></script>
+</head>
+<body>
+    
+    <div id="menu"></div>
+    
+    
+    <section id="area_trabajo">
+        
+        
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="servicios-tab" data-bs-toggle="tab" data-bs-target="#servicios" type="button" role="tab" aria-controls="servicios" aria-selected="true" style="font-weight: bold; font-size: 23px;">Servicios</button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="categorias-tab" data-bs-toggle="tab" data-bs-target="#categorias" type="button" role="tab" aria-controls="categorias" aria-selected="false" style="font-weight: bold; font-size: 23px;">Categorias</button>
+            </li>            
+          </ul>
+
+
+
+
+
+
+
+
+
+          <div class="tab-content" id="myTabContent">
+          
+            <div class="tab-pane fade show active" id="servicios" role="tabpanel" aria-labelledby="servicios-tab">
+
+                <div class="panel">
+
+                    <div class="panel_titulo">
+                        <h5>Filtros de búsqueda</h5>
+                    </div>
+        
+                    <div class="panel_body">
+        
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label for="txt_nombre_servicio" style="font-weight: bold;">Nombre :</label>                        
+                                <input type="text" id="txt_nombre_servicio" class="form-control" style="width: 100%;">
+                            </div>
+        
+                            <div class="col-lg-3">
+                                <label for="select_categoria_servicio" style="font-weight: bold;">Categoria :</label>
+                                <select id="select_categoria_servicio" class="form-control" style="width: 100%;"></select>                                
+                            </div>
+                                                        
+                        </div>
+        
+                        <div class="row" style="margin-top: 30px;">
+                            <div class="col-lg-12" style="text-align: right;">
+                                                            
+                                <button class="btn btn-success" id="btn_buscar_servicio"><i class="fa fa-search"></i>&nbsp;&nbsp; Buscar</button>
+                                <button class="btn btn-secondary" id="btn_recargar_servicio" onClick="window.location.reload();" title="Recargar página"><i class="fa fa-sync-alt"></i></button>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+          
+        
+        
+                <br><br>
+                <div class="row">
+                    
+                    <div class="col-lg-4 panel_edit">
+                        <div class="btn-group">
+                            <button class="btn btn-primary" id="btn_agregar_servicio"><i class="fa fa-plus"></i>&nbsp;&nbsp;Agregar</button>
+                            <button class="btn btn-secondary" id="btn_editar_servicio"><i class="fa fa-edit"></i>&nbsp;&nbsp;Editar</button>
+                            <button class="btn btn-danger" id="btn_eliminar_servicio"><i class="fa fa-trash"></i>&nbsp;&nbsp;Eliminar</button>
+                            <button class="btn btn-success" id="btn_guardar_servicio" style="display: none;"><i class="fa fa-save"></i>&nbsp;&nbsp;Guardar</button>
+                            <button class="btn btn-secondary" id="btn_cancelar_servicio" style="display: none;"><i class="fa fa-ban"></i>&nbsp;&nbsp;Cancelar</button>
+                        </div>
+        
+
+
+                        <div class="panel_edit_inputs">
+
+                            <input type="hidden" id="hid_servicios_id">
+
+                            <div class="row" style="margin-top: 30px; margin-bottom: 10px;">
+                                
+                                <div class="col-lg-12">
+                                    <label for="txt_nombre_edit_servicio" style="font-weight: bold;">Nombre: </label>
+                                    <input type="text" id="txt_nombre_edit_servicio" class="form-control" style="width: 100%;">
+                                </div>                    
+                            </div>                            
+            
+                            <div class="row" style="margin-bottom: 10px;">
+                                
+                                <div class="col-lg-12">
+                                    <label for="select_categoria_edit_servicio" style="font-weight: bold;">Categoría: </label>
+                                    <select id="select_categoria_edit_servicio" class="form-control" style="width: 100%;"></select>                                
+                                </div>                    
+                            </div>              
+
+                            <div class="row" style="margin-bottom: 10px;">
+            
+                                <div class="col-lg-12">
+                                    <label for="txt_descripcion_edit_servicio" style="font-weight: bold;">Descripción: </label>
+                                    <textarea id="txt_descripcion_edit_servicio" rows="3" class="form-control" style="width: 100%;"></textarea>                                
+                                </div>                                
+                            </div>
+            
+                            <div class="row" style="margin-bottom: 10px;">
+            
+                                <div class="col-lg-12">
+                                    <label for="txt_duracion_edit_servicio" style="font-weight: bold;">Duración en minutos: </label>
+                                    <input type="number" id="txt_duracion_edit_servicio" class="form-control" style="width: 100%;">
+                                </div>
+                            </div>
+            
+                            <div class="row" style="margin-bottom: 10px;">
+                                
+                                <div class="col-lg-12">
+                                    <label for="txt_precio_edit_servicio" style="font-weight: bold;">Precio: ($)</label>                        
+                                    <input type="number" id="txt_precio_edit_servicio" class="form-control" style="width: 100%;">
+                                </div>                    
+                            </div>
+                        </div>
+                                
+                    </div>
+        
+                    
+                    <div class="col-lg-8">
+                        
+                        <div class="table-responsive">
+                            
+                            <table class="table table-striped" id="table_servicio">
+                                <thead style="background-color: #424d87; color:white;">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Categoria</th>
+                                        <th>Duración</th>
+                                        <th>Precio</th>
+                                    </tr>
+                                </thead>
+        
+                                <tbody id="datos_tabla_servicios">
+                                    
+
+                                </tbody>
+        
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="tab-pane fade" id="categorias" role="tabpanel" aria-labelledby="categorias-tab">
+
+                <div class="panel">
+
+                    <div class="panel_titulo">
+                        <h5>Filtros de búsqueda</h5>
+                    </div>
+        
+                    <div class="panel_body">
+        
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label for="txt_nombre_categoria" style="font-weight: bold;">Nombre :</label>                        
+                                <input type="text" id="txt_nombre_categoria" class="form-control" style="width: 100%;">
+                            </div>                                                                
+                        </div>
+        
+                        <div class="row" style="margin-top: 30px;">
+                            <div class="col-lg-12" style="text-align: right;">
+                                                            
+                                <button class="btn btn-success" id="btn_buscar_categoria"><i class="fa fa-search"></i>&nbsp;&nbsp; Buscar</button>
+                                <button class="btn btn-secondary" id="btn_recargar_categoria" onClick="window.location.reload();" title="Recargar página"><i class="fa fa-sync-alt"></i></button>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+          
+        
+        
+                <br><br>
+                <div class="row">
+                    
+                    <div class="col-lg-4 panel_edit">
+                        <div class="btn-group">
+                            <button class="btn btn-primary" id="btn_agregar_categoria"><i class="fa fa-plus"></i>&nbsp;&nbsp;Agregar</button>
+                            <button class="btn btn-secondary" id="btn_editar_categoria"><i class="fa fa-edit"></i>&nbsp;&nbsp;Editar</button>
+                            <button class="btn btn-danger" id="btn_eliminar_categoria"><i class="fa fa-trash"></i>&nbsp;&nbsp;Eliminar</button>
+                            <button class="btn btn-success" id="btn_guardar_categoria" style="display: none;"><i class="fa fa-save"></i>&nbsp;&nbsp;Guardar</button>
+                            <button class="btn btn-secondary" id="btn_cancelar_categoria" style="display: none;"><i class="fa fa-ban"></i>&nbsp;&nbsp;Cancelar</button>
+                        </div>
+        
+
+                        <div class="panel_edit_inputs">
+
+                            <input type="hidden" id="hid_categorias_id">
+                                
+                            <div class="row" style="margin-top: 30px; margin-bottom: 10px;">
+                                
+                                <div class="col-lg-12">
+                                    <label for="txt_nombre_edit_categoria" style="font-weight: bold;">Nombre: </label>
+                                    <input type="text" id="txt_nombre_edit_categoria" class="form-control" style="width: 100%;">
+                                </div>                    
+                            </div>                            
+                                                
+
+                            <div class="row" style="margin-bottom: 10px;">
+            
+                                <div class="col-lg-12">
+                                    <label for="txt_descripcion_edit_categoria" style="font-weight: bold;">Descripción: </label>
+                                    <textarea id="txt_descripcion_edit_categoria" rows="4" class="form-control" style="width: 100%;"></textarea>                                
+                                </div>                                
+                            </div>  
+                        </div>                          
+                                
+                    </div>
+        
+                    
+                    <div class="col-lg-8">
+                        
+                        <div class="table-responsive">
+                            
+                            <table class="table table-striped" id="table_categoria">
+                                <thead style="background-color: #424d87; color:white;">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>                                        
+                                    </tr>
+                                </thead>
+        
+                                <tbody id="datos_tabla_categorias">
+                                                                        
+                                </tbody>
+        
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+          </div>
+
+    </section>
+
+
+
+
+
+
+    <div id="footer_nav"></div>
+
+    <div class="loader"></div>
+
+</body>
+</html>

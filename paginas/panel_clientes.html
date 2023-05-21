@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Control Citas</title>
+
+    <link rel="stylesheet" href="../plugins/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../plugins/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../plugins/vendor/components/jquery/jquery.min.js"></script>
+            
+    <link rel="stylesheet" href="../plugins/node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <script src="../plugins/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="../plugins/node_modules/fullcalendar/main.css">
+    <script src="../plugins/node_modules/fullcalendar/main.js"></script>    
+    <script src="../plugins/node_modules/fullcalendar/locales/es.js"></script>
+
+    <link rel="stylesheet" href="../estilos/panel_control.css">
+    <link rel="stylesheet" href="../estilos/panel_catalogos.css">
+    <script src="../javascript/panel_clientes.js"></script>
+</head>
+<body>
+    
+    <div id="menu"></div>
+    
+    
+    <section id="area_trabajo">
+                
+        <h2 style="font-weight: bold;">Catálogo de Clientes</h2>
+        <hr><br>
+
+
+        <div class="panel">
+
+            <div class="panel_titulo">
+                <h5>Filtros de búsqueda</h5>
+            </div>
+
+            <div class="panel_body">
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label for="txt_nombre" style="font-weight: bold;">Nombre :</label>                        
+                        <input type="text" id="txt_nombre" class="form-control" style="width: 100%;">
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label for="txt_apellido_p" style="font-weight: bold;">Apellido Paterno :</label>
+                        <input type="text" id="txt_apellido_p" class="form-control" style="width: 100%;">
+                    </div>
+                    
+                    <div class="col-lg-3">
+                        <label for="txt_apellido_m" style="font-weight: bold;">Apellido Materno :</label>
+                        <input type="text" id="txt_apellido_m" class="form-control" style="width: 100%;">
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-12" style="text-align: right;">
+                                                    
+                        <button class="btn btn-success" id="btn_buscar"><i class="fa fa-search"></i>&nbsp;&nbsp; Buscar</button>
+                        <button class="btn btn-secondary" id="btn_recargar" onClick="window.location.reload();" title="Recargar página"><i class="fa fa-sync-alt"></i></button>                            
+                    </div>
+                </div>
+            </div>
+        </div>        
+  
+
+
+        <br><br>
+        <div class="row">
+            
+            <div class="col-lg-4 panel_edit">
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="btn_agregar"><i class="fa fa-plus"></i>&nbsp;&nbsp;Agregar</button>
+                    <button class="btn btn-secondary disabled" id="btn_editar"><i class="fa fa-edit"></i>&nbsp;&nbsp;Editar</button>
+                    <button class="btn btn-danger disabled" id="btn_eliminar"><i class="fa fa-trash"></i>&nbsp;&nbsp;Eliminar</button>
+                    <button class="btn btn-success" id="btn_guardar" style="display: none;"><i class="fa fa-save"></i>&nbsp;&nbsp;Guardar</button>
+                    <button class="btn btn-secondary" id="btn_cancelar" style="display: none;"><i class="fa fa-ban"></i>&nbsp;&nbsp;Cancelar</button>
+                </div>
+
+
+                
+                <div class="panel_edit_inputs">
+
+                    <input type="hidden" id="hid_clientes_id">
+
+                    <div class="row" style="margin-top: 30px; margin-bottom: 10px;">
+                        
+                        <div class="col-lg-12">
+                            <label for="txt_nombre_edit" style="font-weight: bold;">Nombre: </label>
+                            <input type="text" id="txt_nombre_edit" class="form-control" style="width: 100%;">
+                        </div>                    
+                    </div>                            
+
+                    <div class="row" style="margin-bottom: 10px;">
+
+                        <div class="col-lg-6">
+                            <label for="txt_apellido_p_edit" style="font-weight: bold;">Apellido Paterno: </label>
+                            <input type="text" id="txt_apellido_p_edit" class="form-control" style="width: 100%;">
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label for="txt_apellido_m_edit" style="font-weight: bold;">Apellido Materno: </label>
+                            <input type="text" id="txt_apellido_m_edit" class="form-control" style="width: 100%;">
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 10px;">
+
+                        <div class="col-lg-6">
+                            <label for="txt_telefono_edit" style="font-weight: bold;">Teléfono: </label>
+                            <input type="number" id="txt_telefono_edit" class="form-control" style="width: 100%;">
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label for="txt_correo_edit" style="font-weight: bold;">Correo: </label>
+                            <input type="email" id="txt_correo_edit" class="form-control" style="width: 100%;">
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 10px;">
+                        
+                        <div class="col-lg-12">
+                            <label for="txt_direccion_edit" style="font-weight: bold;">Dirección: </label>                        
+                            <input type="text" id="txt_direccion_edit" class="form-control" style="width: 100%;">
+                        </div>                    
+                    </div>
+
+                    <div class="row" style="margin-bottom: 10px;">
+
+                        <div class="col-lg-6">
+                            <label for="select_sexo_edit" style="font-weight: bold;">Sexo: </label>
+                            <select id="select_sexo_edit" class="form-control" style="width: 100%;">
+                                <option value="Hombre">Hombre</option>
+                                <option value="Mujer">Mujer</option>
+                            </select>                        
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label for="txt_edad_edit" style="font-weight: bold;">Edad: </label>
+                            <input type="number" id="txt_edad_edit" class="form-control" style="width: 100%;">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="col-lg-8">
+                
+                <div class="table-responsive">
+                    
+                    <table class="table table-striped" id="table_clientes">
+                        <thead style="background-color: #424d87; color:white;">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Dirección</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="datos_tabla_clientes">
+                            <tr id="cliene_1">
+                                <td>Juan Carlos</td>
+                                <td>correo@hotmail.com</td>
+                                <td>5540871525</td>
+                                <td>direccion</td>
+                            </tr>
+                            <tr id="cliente_2">
+                                <td>Juan Carlos</td>
+                                <td>correo@hotmail.com</td>
+                                <td>5540871525</td>
+                                <td>direccion</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+    <div id="footer_nav"></div>
+
+    <div class="loader"></div>
+
+</body>
+</html>

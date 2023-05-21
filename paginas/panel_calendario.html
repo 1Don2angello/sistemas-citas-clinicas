@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Control Citas</title>
+
+    <link rel="stylesheet" href="../plugins/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../plugins/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../plugins/vendor/components/jquery/jquery.min.js"></script>
+            
+    <link rel="stylesheet" href="../plugins/node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <script src="../plugins/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="../plugins/node_modules/fullcalendar/main.css">
+    <script src="../plugins/node_modules/fullcalendar/main.js"></script>    
+    <script src="../plugins/node_modules/fullcalendar/locales/es.js"></script>
+    
+    <link rel="stylesheet" href="../estilos/panel_control.css">
+    <script src="../javascript/panel_calendario.js"></script>
+</head>
+<body>
+    
+    <div id="menu"></div>
+    
+    
+    <section id="area_trabajo">
+                
+        <h2 style="font-weight: bold;">Calendario de Citas</h2>
+        <hr><br>
+
+        <div class="panel">
+
+            <div class="panel_titulo">
+                <h5>Operaciones Calendario</h5>
+            </div>
+
+            <div class="panel_body">
+
+                <div class="row">
+
+                    <div class="col-lg-3">
+                        <label for="select_servicio" style="font-weight: bold;">Servicio :</label>
+                        <select id="select_servicio" class="form-control" style="width: 100%;"></select>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label for="select_proveedor" style="font-weight: bold;">Proveedor :</label>
+                        <select id="select_proveedor" class="form-control" style="width: 100%;">
+                        
+                            <option value="-1">- Todos -</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label for="select_estatus" style="font-weight: bold;">Estatus :</label>
+                        <select id="select_estatus" class="form-control" style="width: 100%;">
+                            <option value="activo">activo</option>
+                            <option value="cancelado">cancelado</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label for="select_sala" style="font-weight: bold;">Sala :</label>
+                        <select id="select_sala" class="form-control" style="width: 100%;">
+                            <option value="">- Todas -</option>                            
+                            <option value="Sala uno">Sala uno</option>
+                            <option value="Sala dos">Sala dos</option>
+                            <option value="Sala tres">Sala tres</option>
+                            <option value="Sala Infantil">Sala Infantil</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row" style="margin-top: 30px;">
+                    
+                    <div class="col-lg-2" style="margin-bottom: 20px;">                        
+                        <input type="checkbox" id="chk_citas_pasadas" style="transform: scale(2);">
+                        <label for="chk_citas_pasadas" style="font-weight: bold;">&nbsp;&nbsp; Citas pasadas</label>
+                    </div>
+
+                    <div class="col-lg-1"></div>
+
+                    <div class="col-lg-2" style="text-align: left;">
+
+                        <button class="btn btn-primary" id="btn_agregar_cita"><i class="fa fa-plus"></i>&nbsp;&nbsp; Agregar Cita</button>                        
+                    </div>
+
+                    <div class="col-lg-1"></div>
+                   
+                    <div class="col-lg-6" style="text-align: right;">
+                                                
+                        <button class="btn btn-success" id="btn_buscar"><i class="fa fa-search"></i>&nbsp;&nbsp; Consultar</button>
+                        <button class="btn btn-secondary" onClick="window.location.reload();" title="Recargar página"><i class="fa fa-sync-alt"></i></button>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <br><br>
+        <div id='calendar'></div>        
+
+    </section>
+
+
+    
+    <div id="footer_nav"></div>
+
+    <div class="loader"></div>
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <input type="hidden" id="hid_cita_id">
+
+    <input type="hidden" id="hid_cambio_fecha_hora">
+    <input type="hidden" id="hid_cambio_estatus">
+    
+
+    <div class="modal fade" id="modal_cita" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Agregar Nueva Cita</h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 20px 40px; max-height: 540px; overflow-y: scroll;">
+              
+                <h5 style="font-weight: bold;">Detalles de la Cita</h5>
+                <hr>
+
+                <div class="row">
+                    
+                    <div class="col-lg-6">
+                        
+                        <label for="select_servicio_modal">Servicio :</label>
+                        <select id="select_servicio_modal" class="form-control" style="width: 100%;"></select>
+
+                        <br>
+
+                        <label for="select_proveedor_modal">Proveedor :</label>
+                        <select id="select_proveedor_modal" class="form-control" style="width: 100%;"></select>
+                        
+                        <br>
+                        <label for="txt_nota_modal">Notas de la cita :</label>
+                        <textarea id="txt_nota_modal" rows="3" class="form-control" style="width: 100%;" placeholder="Si considera necesario puede proporcionar detalles sobre su condición relevantes para la cita"></textarea>
+                    </div>
+
+
+
+                    <div class="col-lg-6">
+
+                        <label for="date_fecha_modal">Fecha :</label>
+                        <input type="date" id="date_fecha_modal" class="form-control" style="width: 100%;" disabled>
+
+                        <br>
+
+                        <label for="select_hora_modal">Hora :</label>
+                        <select id="select_hora_modal" class="form-control" style="width: 100%;"></select>
+                        
+
+                        <br>
+
+                        
+                        <label for="select_sala_modal">Sala :</label>
+                        <select id="select_sala_modal" class="form-control" style="width: 100%;">
+                            <option value="">- Seleccione -</option>                            
+                            <option value="Sala uno">Sala uno</option>
+                            <option value="Sala dos">Sala dos</option>
+                            <option value="Sala tres">Sala tres</option>
+                            <option value="Sala Infantil">Sala Infantil</option>
+                        </select>
+                        
+
+                        <br>
+
+                        <label for="select_estatus_modal">Estatus :</label>
+                        <select id="select_estatus_modal" class="form-control" style="width: 100%;">
+                        
+                            <option value="activo">activo</option>
+                            <option value="cancelado">cancelado</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                
+
+
+
+
+                <br><br><br>
+                <h5 style="font-weight: bold;">Detalles del Cliente</h5>
+                <hr>
+
+                <div class="row">
+                    
+                    <div class="col-lg-6">
+                        
+                        <label for="select_cliente_modal">Cliente :</label>
+                        <select id="select_cliente_modal" class="form-control" style="width: 100%;"></select>                                                
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <br>
+                        <button class="btn btn-success" id="btn_agregar_cliente"><i class="fa fa-plus"></i>&nbsp;&nbsp;Agregar nuevo cliente</button>
+                        <button class="btn btn-secondary" id="btn_cancelar" style="display: none;"><i class="fa fa-ban"></i>&nbsp;&nbsp;Cancelar</button>
+                    </div>
+                </div>
+
+
+                <br><br>
+                <div id="contenedor_nuevo_cliente" style="display: none;">
+
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-lg-4">
+                            <label for="txt_nombre_modal">Nombre :</label>
+                            <input type="text" id="txt_nombre_modal" class="form-control" style="width: 100%;">
+                        </div>                                                                            
+        
+                        <div class="col-lg-4">
+                            <label for="txt_apellido_p_modal">Apellido Paterno :</label>
+                            <input type="text" id="txt_apellido_p_modal" class="form-control" style="width: 100%;">
+                        </div>
+        
+                        <div class="col-lg-4">
+                            <label for="txt_apellido_m_modal">Apellido Materno :</label>
+                            <input type="text" id="txt_apellido_m_modal" class="form-control" style="width: 100%;">
+                        </div>
+                    </div>
+        
+        
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-lg-6">
+                            <label for="txt_telefono_modal">Teléfono :</label>
+                            <input type="number" id="txt_telefono_modal" class="form-control" style="width: 100%;">
+                        </div>                                                                            
+        
+                        <div class="col-lg-6">
+                            <label for="txt_domicilio_modal">Domicilio :</label>
+                            <input type="text" id="txt_domicilio_modal" class="form-control" style="width: 100%;">
+                        </div>
+                    </div>
+        
+        
+                    <div class="row" style="margin-bottom: 20px;">
+        
+                        <div class="col-lg-6">
+                            <label for="txt_correo_modal">Correo Electrónico :</label>
+                            <input type="text" id="txt_correo_modal" class="form-control" style="width: 100%;">
+                        </div>
+        
+                        <div class="col-lg-3">
+                            <label for="select_sexo_modal">Sexo :</label>
+                            <select id="select_sexo_modal" class="form-control" style="width: 100%;">
+                                <option value="Hombre">Hombre</option>
+                                <option value="Mujer">Mujer</option>
+                            </select>                    
+                        </div>                                                                            
+        
+                        <div class="col-lg-3">
+                            <label for="txt_edad_modal">Edad :</label>
+                            <input type="number" id="txt_edad_modal" class="form-control" style="width: 100%;">
+                        </div>
+                    </div>
+                </div>
+                <br><br><br>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" id="btn_guardar_modal">Guardar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+</body>
+</html>

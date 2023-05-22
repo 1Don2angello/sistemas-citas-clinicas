@@ -135,7 +135,7 @@ CREATE TABLE `cat_usuarios` (
 --
 
 INSERT INTO `cat_usuarios` (`usuarios_id`, `usuarios_nombre`, `usuarios_apellido_p`, `usuarios_apellido_m`, `usuarios_telefono`, `usuarios_correo`, `usuarios_direccion`, `usuarios_usuario`, `usuarios_clave`, `usuarios_rol`) VALUES
-(1, 'Juan Carlos', 'Gómez', 'Rangel', '5540871525', 'fex_9039@hotmail.com', 'Col. Constitucion de Apatzingan, calle Ignacio Lopez Rayon, #1016, Irapuato, Gto.', 'admin', 'admin', 'Administrador');
+(1, 'Admin', 'admin', 'angel', '9988776655', '9@hotmail.com', 'Mexico.', 'admin', 'admin', 'Administrador');
 
 -- --------------------------------------------------------
 

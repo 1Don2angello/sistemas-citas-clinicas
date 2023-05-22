@@ -1,0 +1,23 @@
+<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="90" fill="#ff0000"/>
+  <text x="50" y="130" font-size="80" fill="#ffffff">CC</text>
+</svg> -->
+<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect x="50" y="50" width="100" height="100" fill="#007bff"/>
+  <path d="M50 50 L150 150 M50 150 L150 50" stroke="#ffffff" stroke-width="10"/>
+</svg>
+//An SVG for medical appointments?
+ -->
+<!--  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="80" fill="#335ca8"/>
+  <path d="M60 100 L100 140 L140 100 L100 50 Z" fill="#00d9ff"/>
+</svg> -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="100">
+  <title>SVG SMIL Animate with Path</title>
+  <rect x="0" y="0" width="300" height="100" stroke="black" stroke-width="1" />
+  <circle cx="0" cy="50" r="15" fill="blue" stroke="black" stroke-width="1">
+    <animateMotion path="M 0 0 H 300 Z" dur="3s" repeatCount="indefinite" />
+  </circle>
+</svg>
+

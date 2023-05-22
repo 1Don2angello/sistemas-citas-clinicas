@@ -12,7 +12,7 @@
   <circle cx="100" cy="100" r="80" fill="#335ca8"/>
   <path d="M60 100 L100 140 L140 100 L100 50 Z" fill="#00d9ff"/>
 </svg> -->
-
+<!-- 
 <svg xmlns="http://www.w3.org/2000/svg" width="300" height="100">
   <title>SVG SMIL Animate with Path</title>
   <rect x="0" y="0" width="300" height="100" stroke="black" stroke-width="1" />
@@ -21,3 +21,18 @@
   </circle>
 </svg>
 
+ -->
+ <svg width="227" height="227" viewBox="0 0 227 227" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1_1137)">
+<path d="M56.75 37.8333H47.2917C42.2747 37.8333 37.4631 39.8263 33.9156 43.3739C30.368 46.9215 28.375 51.733 28.375 56.75V89.8542C28.375 103.651 33.8558 116.883 43.6115 126.638C53.3673 136.394 66.599 141.875 80.3958 141.875C94.1926 141.875 107.424 136.394 117.18 126.638C126.936 116.883 132.417 103.651 132.417 89.8542V56.75C132.417 51.733 130.424 46.9215 126.876 43.3739C123.329 39.8263 118.517 37.8333 113.5 37.8333H104.042" stroke="#c41e1e" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M75.6667 141.875C75.6667 149.328 77.1346 156.707 79.9865 163.592C82.8385 170.478 87.0187 176.734 92.2884 182.003C97.5581 187.273 103.814 191.453 110.699 194.305C117.585 197.157 124.964 198.625 132.417 198.625C139.869 198.625 147.249 197.157 154.134 194.305C161.019 191.453 167.275 187.273 172.545 182.003C177.815 176.734 181.995 170.478 184.847 163.592C187.699 156.707 189.167 149.328 189.167 141.875V113.5" stroke="#ce1c1c" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M104.042 28.375V47.2917" stroke="#b81414" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M56.75 28.375V47.2917" stroke="#b32929" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M189.167 113.5C199.614 113.5 208.083 105.031 208.083 94.5833C208.083 84.136 199.614 75.6667 189.167 75.6667C178.719 75.6667 170.25 84.136 170.25 94.5833C170.25 105.031 178.719 113.5 189.167 113.5Z" stroke="#aa1e1e" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_1_1137">
+<rect width="227" height="227" fill="#ad1919"/>
+</clipPath>
+</defs>
+</svg>

@@ -11,11 +11,11 @@
 		public $database = "gestion_citas";
 		public $charset = "utf8";
 
-		/*public $host = "127.0.0.1:3306";
-		public $user = "u594135835_admin";
-		public $password = "Live550e60.";
-		public $database = "u594135835_gestion_citas";
-		public $charset = "utf8";*/
+		/*public $host = " ";
+		public $user = " ";
+		public $password = " ";
+		public $database = " ";
+		public $charset = " ";*/
 		
 
 		function __construct(){

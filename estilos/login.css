@@ -65,7 +65,7 @@ body {
   }
 }
 .heart-svg {
-  animation: fillHeart 10s infinite alternate;
+  animation: fillHeart 0.1s infinite alternate;
 }
 /* estilo del titulos aca con estilo  */
 .form-header {
@@ -109,14 +109,10 @@ body {
   overflow: hidden;
   transition: background-color 0.3s ease;
 }
-
 .form:hover {
   background-color: #345b8c;
 }
-
 /* Agregar elementos decorativos o estilos adicionales según tus preferencias */
-
-
 /* Botón X para cerrar el formulario */
 .form-toggle {
   z-index: 10;
@@ -133,7 +129,6 @@ body {
   cursor: pointer;
   transition: all 0.95s ease;
 }
-
 .form-toggle:before,
 .form-toggle:after {
   content: "";
@@ -147,36 +142,25 @@ body {
   transform: translate(-50%, -50%);
   transition: all 0.3s ease;
 }
-
 .form-toggle:before {
   transform: translate(-50%, -50%) rotate(45deg);
 }
-
 .form-toggle:after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
-
 .form-toggle.visible {
   transform: rotate(360deg) scale(1);
   opacity: 1;
 }
-
 /* Efecto hover */
 .form-toggle:hover {
   background-color: #e93a3a;
 }
-
 /* Efecto de transición */
 .form-toggle:hover:before,
 .form-toggle:hover:after {
   background-color: #ffffff;
 }
-
-
-
-
-
-
 .form-group {
   display: flex;
   flex-wrap: wrap;
@@ -240,103 +224,3 @@ body {
   box-shadow: 0 0 100px rgb(0, 225, 237);
   cursor: default;
 }
-
-
-/* .overlay,
-.form-panel.one:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: none;
-  background: #27426b;
-  width: 100%;
-  height: 100%;
-} */
-
-/* .form-group:last-child {
-  margin: 0;
-} */
-/* .form-group label {
-  display: block;
-  margin: 0 0 10px;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-} */
-/* .two .form-group input:focus {
-  color: #ffffff;
-}
- */
-/* .form-group input:focus {
-  color: rgba(241, 0, 0, 0.8);
-} */
-/* .form-group .form-remember {
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
-} */
-/* .form-group .form-remember input[type="checkbox"] {
-  display: inline-block;
-  width: auto;
-  margin: 0 10px 0 0;
-} */
-/* .form-panel.one:before {
-  content: "";
-  display: block;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s ease;
-} */
-
-/* .form-panel.one.hidden:before {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-} */
-
-/* .form-group .form-recovery {
-  color: #f44289;
-  font-size: 12px;
-  text-decoration: none;
-} */
-/* .form-panel.two.active:before,
-.form-panel.two.active:after {
-  opacity: 0;
-} */
-
-/* .pen-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 600px;
-  margin: 20px auto 100px;
-}
-
-.pen-footer a .material-icons {
-  width: 12px;
-  margin: 0 5px;
-  vertical-align: middle;
-  font-size: 12px;
-} */
-
-/* .cp-fab {
-  background: #ffffff !important;
-  color: #4285f4 !important;
-} */
-
-/* @media screen and (max-width: 768px) {
-  .form {
-    width: 90%;
-    margin: 50px auto;
-  }
-
-  .form-panel {
-    padding: 30px 25px 30px 10px;
-    box-sizing: border-box;
-  }
-}
- */

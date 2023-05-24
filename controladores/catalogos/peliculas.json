@@ -1,0 +1,14 @@
+{
+    "peliculas":{
+        "305": {
+            "nombre": "avengers: endgame",
+            "fechalanzamiento":"2019/04/25"
+        },
+        "306": {
+            "nombre": "bohemian rapsody",
+            "fechalanzamiento":"2018/04/25"
+        
+        
+        }
+    }
+}

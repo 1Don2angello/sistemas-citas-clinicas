@@ -67,7 +67,7 @@
                         <div class="col-lg-11">
                             <label for="select_servicio" style="font-weight: bold;">Servicio:</label>
                             <select class="form-control" id="select_servicio" style="width: 100%; height: 40px;">
-                                                
+                                <option value="">- seleccionar -</option>        
                             </select>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
 
                         <p><span style="font-weight: bold;">Categoria: </span> <span id="txt_descripcion_categoria"></span></p>
                         <p><span style="font-weight: bold;">Servicio: </span> <span id="txt_descripcion_servicio"></span></p>
-                        <p><span style="font-weight: bold;">Costo: </span> <span id="txt_descripcion_costo"></span></p>
+                        <!-- <p><span style="font-weight: bold;">Costo: </span> <span id="txt_descripcion_costo"></span></p> -->
                         <p><span style="font-weight: bold;">Duración: </span> <span id="txt_descripcion_duracion"></span></p>
                     </div>
                 </div>
@@ -140,18 +140,23 @@
 
             <div class="row" style="margin-bottom: 20px;">
                 <div class="col-lg-4">
-                    <label for="txt_nombre" style="font-weight: bold;">Nombre :</label>
+                    <label for="txt_claveee" style="font-weight: bold;">Clave :</label>
                     <input type="text" id="txt_nombre" class="form-control" style="width: 100%;">
+                </div>   
+
+                <div class="col-lg-4">
+                    <label for="txt_nombre" style="font-weight: bold;">Nombre :</label>
+                    <input type="text" id="txt_nombre" class="form-control" style="width: 100%;" readonly><!-- agregar readonly -->
                 </div>                                                                            
 
                 <div class="col-lg-4">
                     <label for="txt_apellido_p" style="font-weight: bold;">Apellido Paterno :</label>
-                    <input type="text" id="txt_apellido_p" class="form-control" style="width: 100%;">
+                    <input type="text" id="txt_apellido_p" class="form-control" style="width: 100%;" readonly><!-- agregar readonly -->
                 </div>
 
                 <div class="col-lg-4">
                     <label for="txt_apellido_m" style="font-weight: bold;">Apellido Materno :</label>
-                    <input type="text" id="txt_apellido_m" class="form-control" style="width: 100%;">
+                    <input type="text" id="txt_apellido_m" class="form-control" style="width: 100%;" readonly><!-- agregar readonly -->
                 </div>
             </div>
 
@@ -159,12 +164,12 @@
             <div class="row" style="margin-bottom: 20px;">
                 <div class="col-lg-6">
                     <label for="txt_telefono" style="font-weight: bold;">Teléfono :</label>
-                    <input type="number" id="txt_telefono" class="form-control" style="width: 100%;">
+                    <input type="number" id="txt_telefono" class="form-control" style="width: 100%;" readonly><!-- agregar readonly -->
                 </div>                                                                            
 
                 <div class="col-lg-6">
                     <label for="txt_domicilio" style="font-weight: bold;">Domicilio :</label>
-                    <input type="text" id="txt_domicilio" class="form-control" style="width: 100%;">
+                    <input type="text" id="txt_domicilio" class="form-control" style="width: 100%;" readonly><!-- agregar readonly -->
                 </div>
             </div>
 
@@ -173,12 +178,12 @@
 
                 <div class="col-lg-6">
                     <label for="txt_correo" style="font-weight: bold;">Correo Electrónico :</label>
-                    <input type="text" id="txt_correo" class="form-control" style="width: 100%;">
+                    <input type="text" id="txt_correo" class="form-control" style="width: 100%;" readonly><!-- agregar readonly -->
                 </div>
 
                 <div class="col-lg-3">
                     <label for="select_sexo" style="font-weight: bold;">Sexo :</label>
-                    <select id="select_sexo" class="form-control" style="width: 100%;">
+                    <select id="select_sexo" class="form-control" style="width: 100%;"><!-- agregar readonly -->
                         <option value="Hombre">Hombre</option>
                         <option value="Mujer">Mujer</option>
                     </select>                    
@@ -186,7 +191,7 @@
 
                 <div class="col-lg-3">
                     <label for="txt_edad" style="font-weight: bold;">Edad :</label>
-                    <input type="number" id="txt_edad" class="form-control" style="width: 100%;">
+                    <input type="number" id="txt_edad" class="form-control" style="width: 100%;" readonly><!-- agregar readonly -->
                 </div>
             </div>
 
@@ -221,7 +226,7 @@
                     <p style="font-size: 18px;"><span style="font-weight:bold;">Hora: </span><span id="confirma_hora"></span></p>
                     <br>
                     <p style="font-size: 18px;"><span style="font-weight:bold;">Duración: </span><span id="confirma_duracion"></span></p>
-                    <p style="font-size: 18px;"><span style="font-weight:bold;">Precio: </span><span id="confirma_precio"></span></p>
+                    <!-- <p style="font-size: 18px;"><span style="font-weight:bold;">Precio: </span><span id="confirma_precio"></span></p> -->
 
                 </div>                                            
                 
@@ -243,20 +248,18 @@
 
 
 
-        <div style="width: 100%; padding: 40px 40px 20px 40px; background-color: white; border-radius: 0px 0px 5px 5px;">
-
-            <hr>
-
+        <div class="contenedor_inferior">
             <div class="row">
-                <div class="col-lg-6" style="text-align: left;">
-                    <button class="btn btn-secondary" id="btn_anterior" style="width: 100px;">Atras</button>
+                <div class="col-lg-6 col-md-6 col-sm-12" style="text-align: left;">
+                    <button class="botones" id="btn_anterior">Atras</button>
                 </div>
-
-                <div class="col-lg-6" style="text-align: right;">
-                    <button class="btn btn-primary" id="btn_siguiente" style="width: 100px;">Siguiente</button>
+        
+                <div class="col-lg-6 col-md-6 col-sm-12" style="text-align: right;">
+                    <button class="botones" id="btn_siguiente">Siguiente</button>
                 </div>
             </div>
         </div>
+        
 
 
     </div>        

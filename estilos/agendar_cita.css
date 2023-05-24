@@ -1,46 +1,95 @@
-body{
-    background-color:#f0f0f0;
+body {
+    background-image: linear-gradient(to right, #c1c1c1, #ffffff7e, #7e7e7e);
+    color: rgba(0, 0, 0, 0.81);
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    line-height: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.cont-principal{
+.cont-principal {
     margin-top: 40px;
-    margin-bottom: 80px; 
+    margin-bottom: 80px;
     width: 70%;
 }
 
-.barra_titulo{
-    background-color: #4088ed;
-    color:whitesmoke; 
-    padding: 10px 20px 10px 20px; 
-    border-radius: 5px 5px 0px 0px;
+.barra_titulo {
+    background-color: #448afd;
+    color: rgb(255, 255, 255);
+    padding: 10px 35px;
+    border-radius: 45px 45px 0px 0px;
+    border: 1px solid #4088ed;
+
 }
 
-.contenedor_paso{
+.contenedor_paso {
     display: none;
-    width: 100%; 
-    padding: 40px 40px 10px 40px; 
+    width: 100%;
+    padding:  10px 40px 10px 40px;
     background-color: white;
+    height: 100%;
+    overflow-y: auto;
+    /* Agrega una barra de desplazamiento solo si es necesario */
+}
+
+@media only screen and (max-width: 731px) {
+    .contenedor_paso {
+        overflow-y: hidden;
+        /* Oculta la barra de desplazamiento en dispositivos móviles */
+    }
 }
 
 
-#contenedor_horas{
+#contenedor_horas {
     max-height: 250px;
     overflow-y: scroll;
 }
 
-
-.contendedor_formulario{
-    padding: 40px 70px 10px 70px;
+.contenedor_formulario {
+    padding: 40px 70px;
 }
 
-
-@media only screen and (max-width:768px){
-    
-    .cont-principal{
+@media only screen and (max-width: 768px) {
+    .cont-principal {
         width: 95%;
     }
 
-    .contendedor_formulario{
-        padding: 40px 10px 10px 10px;
+    .contenedor_formulario {
+        padding: 40px 10px;
     }
+}
+
+
+.botones {
+    position: relative;
+    width: 100px;
+    padding: 10px ;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.botones::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    border-radius: 20px;
+}
+
+.botones:hover::before {
+    opacity: 1;
+}
+
+.contenedor_inferior {
+    width: 100%;
+    padding: 0px 40px 40px 40px;
+    background-color: white;
+    border-radius: 0px 0px 45px 45px;
 }

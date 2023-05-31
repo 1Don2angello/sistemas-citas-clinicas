@@ -59,25 +59,27 @@
 
     <div class="form-panel two">
       <div class="form-header">
-        <h1>Iniciar Sesión</h1>
+       <!--  <h1>Iniciar Sesión</h1> -->
       </div>
         <br><br>
-      <div class="form-content">
+       <div class="login-box">
+        <h2>Login</h2>
         <form>
-          <div class="form-group">
-            <label for="txt_usuario">Usuario</label>
-            <input id="txt_usuario" type="text"/>
+          <div class="user-box">
+            <input id="txt_usuario" type="text">
+            <label>Username</label>
           </div>
-          
-          <div class="form-group">
-            <label for="txt_clave">Contraseña</label>
-            <input id="txt_clave" type="password"/>
+          <div class="user-box">
+            <input id="txt_clave"  type="password" >
+            <label>Password</label>
           </div>
-          <br><br><br>
-          <div class="form-group">
-            <button id="btn_acceder" style="font-weight: bold;">Acceder</button>
-          </div>
-
+          <a id="btn_acceder">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+          </a>
         </form>
       </div>
     </div>

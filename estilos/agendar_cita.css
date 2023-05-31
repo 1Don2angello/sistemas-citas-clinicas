@@ -1,95 +1,136 @@
+html { width: 100%; height:100%; overflow:hidden; }
+
 body {
-    background-image: linear-gradient(to right, #c1c1c1, #a3a3a37e);
-    color: rgba(0, 0, 0, 0.81);
-    font-family: "Roboto", sans-serif;
-    font-size: 14px;
-    line-height: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  background: #092756;
+  background: -moz-radial-gradient(
+      0% 100%,
+      ellipse cover,
+      rgba(104, 128, 138, 0.4) 10%,
+      rgba(138, 114, 76, 0) 40%
+    ),
+    -moz-linear-gradient(top, rgba(57, 173, 219, 0.25) 0%, rgba(42, 60, 87, 0.4)
+          100%),
+    -moz-linear-gradient(-45deg, #670d10 0%, #092756 100%);
+  background: -webkit-radial-gradient(
+      0% 100%,
+      ellipse cover,
+      rgba(104, 128, 138, 0.4) 10%,
+      rgba(138, 114, 76, 0) 40%
+    ),
+    -webkit-linear-gradient(top, rgba(57, 173, 219, 0.25) 0%, rgba(
+            42,
+            60,
+            87,
+            0.4
+          )
+          100%),
+    -webkit-linear-gradient(-45deg, #670d10 0%, #092756 100%);
+  background: -o-radial-gradient(
+      0% 100%,
+      ellipse cover,
+      rgba(104, 128, 138, 0.4) 10%,
+      rgba(138, 114, 76, 0) 40%
+    ),
+    -o-linear-gradient(top, rgba(57, 173, 219, 0.25) 0%, rgba(42, 60, 87, 0.4)
+          100%),
+    -o-linear-gradient(-45deg, #670d10 0%, #092756 100%);
+  background: -ms-radial-gradient(
+      0% 100%,
+      ellipse cover,
+      rgba(104, 128, 138, 0.4) 10%,
+      rgba(138, 114, 76, 0) 40%
+    ),
+    -ms-linear-gradient(top, rgba(57, 173, 219, 0.25) 0%, rgba(42, 60, 87, 0.4)
+          100%),
+    -ms-linear-gradient(-45deg, #670d10 0%, #092756 100%);
+
+  color: rgba(0, 0, 0, 0.81);
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /*  */
 }
 
 .cont-principal {
-    margin-top: 40px;
-    margin-bottom: 80px;
-    width: 70%;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  width: 70%;
 }
 
 .barra_titulo {
-    background-color: #448afd;
-    color: rgb(255, 255, 255);
-    padding: 10px 35px;
-    border-radius: 45px 45px 0px 0px;
-    border: 1px solid #4088ed;
-
+  background: linear-gradient(-225deg, #5271c4 0%, #b19fff 48%, #eca1fe 100%);
+  color: rgb(255, 255, 255);
+  padding: 10px 35px;
+  border-radius: 45px 45px 0px 0px;
 }
 
 .contenedor_paso {
-    display: none;
-    width: 100%;
-    padding:  10px 40px 10px 40px;
-    background-color: white;
-    height: 100%;
-    overflow-y: auto;
-    /* Agrega una barra de desplazamiento solo si es necesario */
+  display: none;
+  width: 100%;
+  padding: 10px 40px 10px 40px;
+  background-color: white;
+  height: 100%;
+  overflow-y: auto;
+  /* Agrega una barra de desplazamiento solo si es necesario */
 }
 
 @media only screen and (max-width: 731px) {
-    .contenedor_paso {
-        overflow-y: hidden;
-        /* Oculta la barra de desplazamiento en dispositivos móviles */
-    }
+  .contenedor_paso {
+    overflow-y: hidden;
+    /* Oculta la barra de desplazamiento en dispositivos móviles */
+  }
 }
 
-
 #contenedor_horas {
-    max-height: 250px;
-    overflow-y: scroll;
+  max-height: 250px;
+  overflow-y: scroll;
 }
 
 .contenedor_formulario {
-    padding: 40px 70px;
+  padding: 40px 70px;
 }
 
 @media only screen and (max-width: 768px) {
-    .cont-principal {
-        width: 95%;
-    }
+  .cont-principal {
+    width: 95%;
+  }
 
-    .contenedor_formulario {
-        padding: 40px 10px;
-    }
+  .contenedor_formulario {
+    padding: 40px 10px;
+  }
 }
 
-
 .botones {
-    position: relative;
-    width: 100px;
-    padding: 10px ;
-    background-color: white;
-    border-radius: 20px;
+  position: relative;
+  width: 100px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 20px;
 }
 
 .botones::before {
-    content: "";
-    background-color: rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-    border-radius: 20px;
+  content: "";
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  border-radius: 20px;
 }
 
 .botones:hover::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 .contenedor_inferior {
-    width: 100%;
-    padding: 0px 40px 40px 40px;
-    background-color: white;
-    border-radius: 0px 0px 45px 45px;
+  width: 100%;
+  padding: 0px 40px 40px 40px;
+  background-color: white;
+  border-radius: 0px 0px 45px 45px;
 }

@@ -1,3 +1,11 @@
+body {
+    background-image: linear-gradient(
+      -225deg,
+      #ffffff 1%,
+      #f2f3f7 20%,
+      #f2f3f7 10%
+    );
+  }
 thead tr th { 
     position: sticky;
     top: 0;
@@ -20,7 +28,5 @@ tbody tr:hover{
 
 
 .tab-pane{
-    border:gray 1px solid;
     padding: 20px;
-    background-color: rgb(200, 200, 200);
 }

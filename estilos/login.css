@@ -1,7 +1,6 @@
 html {
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 
 body {
@@ -66,9 +65,11 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
 }
 .form-group button {
+  /* Estilos base del botón */
   outline: none;
   background: linear-gradient(to right, #ffd700, #ffa500);
   width: 100%;
+  height: 100%;
   border: 0;
   border-radius: 50px;
   padding: 12px 20px;
@@ -83,9 +84,11 @@ body {
   box-shadow: 0 2px 4px rgb(0, 0, 0);
   animation: pulse 1.2s infinite; /* Animación aplicada al botón */
 }
+
 .form-group button:hover {
   background: linear-gradient(to right, #21a4c1, #d5f7ff);
 }
+
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -130,7 +133,7 @@ body {
 }
 /* estilo del titulos aca con estilo  */
 .form-header {
-  margin: 0 0 40px;
+  margin: 0 0 30px;
 }
 .form-header h1 {
   padding: 4px 0;
@@ -169,19 +172,34 @@ body {
   overflow: hidden;
   transition: background-color 0.3s ease;
 }
-
-@media only screen and (max-width: 915px) {
+@media only screen and (max-width: 576px) {
   /* Estilos para pantallas con ancho máximo de 576px */
   .form {
-    width: 70%;
-    padding: 0%;
+    width: 90%;
+    padding: 10%;
   }
 
   .form-group input,
   .form-group button {
-    padding: 0px 1px;
-    font-size: 9px;
+    padding: 10px 1px;
+    font-size: 15px; /* Ajusta el tamaño de la fuente */
+    padding: 16px 24px; /* Ajusta el tamaño del padding */
   }
+}
+/* Estilos para tabletas */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .form {
+    width: 70%;
+    padding: 9%;
+  }
+
+  .form-group input,
+  .form-group button {
+    padding: 10px 1px;
+    font-size: 20px; /* Ajusta el tamaño de la fuente */
+    padding: 18px 28px; /* Ajusta el tamaño del padding */
+  }
+  
 }
 
 /* Agregar elementos decorativos o estilos adicionales según tus preferencias */
@@ -339,7 +357,7 @@ body {
 }
 .form-panel.two:before,
 .form-panel.two:hover {
-  left: 93%;
+  left: 97%;
   box-shadow: 0 0 100px rgb(0, 0, 0);
 }
 .form-panel.two:hover:before,
@@ -355,16 +373,29 @@ body {
 .login-box {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 35%;
   width: 400px;
-  padding: 40px;
+  padding: 30px;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
+  border-radius: 50px;
 }
 
+@media (max-width: 768px) {
+  /* Estilos para dispositivos móviles */
+  .login-box {
+    left: 47%;
+    width: 79%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .login-box {
+    left: 45%;
+    width: 79%;
+  }
+}
 .login-box h2 {
   margin: 0 0 30px;
   padding: 0;

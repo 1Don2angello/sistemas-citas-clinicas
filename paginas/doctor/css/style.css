@@ -1,0 +1,20 @@
+table, th, td {
+    width:80%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+/* td.clave{
+    
+} */
+/* input.sinborde {
+    border: 0;
+} */
+/* div{
+    border: 5px outset rgb(10, 10, 10);
+} */
+/* section{
+    border: 5px outset rgb(0, 0, 0);
+} */
+/* .separador{
+    border: 7px;
+} */

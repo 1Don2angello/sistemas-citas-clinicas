@@ -35,12 +35,12 @@ try {
     $mail->CharSet = 'UTF-8';
     $mail->SMTPDebug = 0;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
+    $mail->Host       = 'localhost';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = $correo_origen;                     //SMTP username
     $mail->Password   = $clave;                               //SMTP password
     //$mail->SMTPSecure = 'TLS';            //Enable implicit TLS encryption
-    $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $mail->Port       = 3306;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
     $mail->setFrom($correo_origen, 'Sistema getión de citas');

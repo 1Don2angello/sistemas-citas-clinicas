@@ -1,118 +1,165 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel Control Citas</title>
 
-    
-    <link rel="stylesheet" href="../estilos/panel_control.css">    
+    <link rel="stylesheet" href="../estilos/panel_control.css" />
 
     <script>
-        
-        function cerrar_sesion(){
+      function cerrar_sesion() {
+        Swal.fire({
+          title: "¿Realmente quieres salir?",
+          showCancelButton: true,
+          icon: "question",
+          confirmButtonText: `Salir`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            close_s();
+            window.location.href = "../index.html";
+          }
+        });
+      }
 
-            Swal.fire({
-                title: '¿Realmente quieres salir?',
-                showCancelButton: true,
-                icon: 'question',
-                confirmButtonText: `Salir`,
-            }).then((result) => {
-
-                
-                if (result.isConfirmed) {
-                    close_s();
-                    window.location.href = '../index.html';
-                }
-            });
-            
+      function close_s() {
+        try {
+          $.ajax({
+            type: "POST",
+            async: false,
+            url: "../controladores/operaciones/login_controller.php",
+            data: { funcion: "cerrar_session" },
+            error: function (e) {
+              alert(e.responseText);
+            },
+          });
+        } catch (ex) {
+          alert("[close_s -> function]: " + ex);
         }
-
-
-        function close_s(){
-  
-            try{
-                                
-                $.ajax({
-
-                    type: "POST",
-                    async: false,
-                    url: '../controladores/operaciones/login_controller.php',
-                    data: {"funcion" : "cerrar_session"},                    
-                    error: function(e){
-                        
-                        alert(e.responseText);                
-                    }
-                });        
-
-            }catch(ex){
-                alert("[close_s -> function]: " + ex);
-            }
-
-        }        
-
+      }
     </script>
-
-</head>
-<body>
-
-    
+  </head>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-light" id="navbar_menu">
-        <div class="container-fluid">
+      <div class="container-fluid">
+        <a href="#" style="text-decoration: none">
+          <img
+            src="../img/logotipo.jpg"
+            style="height: 60px; border-radius: 8px"
+          />
+          <span class="activo spani">Sistema Gestión de Citas</span>
+        </a>
 
-            <a href="#" style="text-decoration: none;">
+        <form class="d-flex">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-                <img src="../img/logotipo.jpg" style="height: 60px; border-radius: 8px;">
-                <span class="activo spani">Sistema Gestión de Citas</span>                                
-            </a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="boton_nav"
+                  id="nav_calendario"
+                  aria-current="page"
+                  href="panel_calendario.html"
+                  ><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;Calendario</a
+                >
+              </li>
+
+              <li class="nav-item">
+                <a
+                  class="boton_nav"
+                  id="nav_reportes"
+                  aria-current="page"
+                  href="panel_reportes.html"
+                  ><i class="far fa-file-alt"></i>&nbsp;&nbsp;Reportes</a
+                >
+              </li>
+
+              <li class="nav-item dropdown">
+                <a
+                  class="boton_nav dropdown-toggle"
+                  id="navbarDropdown1"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-users"></i>&nbsp;&nbsp;Menú
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <li>
+                    <a class="dropdown-item" href="panel_clientes.html"
+                      ><i class="far fa-users"></i>&nbsp;&nbsp;Clientes</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="panel_servicios.html"
+                      ><i class="far fa-suitcase"></i>&nbsp;&nbsp;Servicios</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="panel_usuarios.html"
+                      ><i class="far fa-user-tie"></i>&nbsp;&nbsp;Usuarios</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="boton_nav dropdown-toggle" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="far fa-user-md"></i>&nbsp;&nbsp;Documentación
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                   
+                    <li>
+                        <a class="dropdown-item" href="./doctor/consultas.php">
+                            <i class="fas fa-search"></i>&nbsp;&nbsp;Consultas
+                        </a>
+                    </li>
+                </ul>
+            </li>
             
-
-                        
-            <form class="d-flex">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                        <li class="nav-item">
-                            <a class="boton_nav" id="nav_calendario" aria-current="page" href="panel_calendario.html"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;Calendario</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="boton_nav" id="nav_reportes" aria-current="page" href="panel_reportes.html"><i class="far fa-file-alt"></i>&nbsp;&nbsp;Reportes</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="boton_nav" id="nav_clientes" aria-current="page" href="panel_clientes.html"><i class="far fa-users"></i>&nbsp;&nbsp;Clientes</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="boton_nav" id="nav_servicios" aria-current="page" href="panel_servicios.html"><i class="far fa-suitcase"></i>&nbsp;&nbsp;Servicios</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="boton_nav" id="nav_usuarios" aria-current="page" href="panel_usuarios.html"><i class="far fa-user-tie"></i>&nbsp;&nbsp;Usuarios</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="boton_nav" id="nav_configuracion" aria-current="page" href="panel_configuracion.html"><i class="far fa-cogs"></i>&nbsp;&nbsp;Configuración</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="boton_nav" aria-current="page" href="#" onclick="return cerrar_sesion();"><i class="far fa-sign-out-alt"></i>&nbsp;&nbsp;Cerrar sesión</a>
-                        </li>
-
-                    </ul>            
-                    
-                </div>
-            </form>
-            
-        </div>
+              
+              <li class="nav-item dropdown">
+                <a
+                  class="boton_nav dropdown-toggle"
+                  id="navbarDropdown2"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-cogs"></i>&nbsp;&nbsp;Configuración
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <li>
+                    <a class="dropdown-item" href="panel_configuracion.html"
+                      ><i class="far fa-cogs"></i>&nbsp;&nbsp;Configuración</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                      onclick="return cerrar_sesion();"
+                      ><i class="far fa-sign-out-alt"></i>&nbsp;&nbsp;Cerrar
+                      sesión</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </form>
+      </div>
     </nav>
-    
-</body>
+  </body>
 </html>

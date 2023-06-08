@@ -28,36 +28,39 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                //consulta a la db
-                include('conexion.php'); //Conexión a la db
-                $consulta2 = "SELECT * FROM pacientes";
-                
-                $resultado2 = mysqli_query($conn, $consulta2);
-                
-                if($resultado2 === false) {
-                    die( print_r( mysqli_connect_errno(), true));
-                }
-                while ($fila2 = mysqli_fetch_array($resultado2)) {
-                ?>
-                    <tr>
-                        <th scope="row"><?php echo $fila2["id"] ?></th>
-                        <td><?php echo $fila2["clave"] ?></td>
-                        <td><?php echo $fila2["hora"] ?></td>
-                        <td><?php echo $fila2["nombre"] ?></td>
-                        <td><?php echo $fila2["fecha"] ?></td>
-                        <td><?php echo $fila2["edad"] ?></td>
-                        <!--Acciones-->
-                        <td>
-                            <a class='btn' href='verConsulta.php?id=<?php echo $fila2["id"]; ?>'>Ver</a>
-                            <a class='btn' href='notificarConsulta.php?id=<?php echo $fila2["id"]; ?>'>Notificar</a>
-                            <a class='btn' href='edicionConsulta.php?id=<?php echo $fila2["id"]; ?>'>Editar</a>
-                            <a class='btn' href='eliminarConsulta.php?id=<?php echo $fila2["id"]; ?>'>Eliminar</a>
-                        </td>
-                    </tr>
-                    <?php  
-                } ?>
-            </tbody>
+    <?php
+    // Consulta a la base de datos
+    include('conexion.php'); // Conexión a la base de datos SQL Server
+
+    $consulta2 = "select * from gestion_citas.pacientes;";
+
+    $resultado2 = $conn->query($consulta2);
+
+    if ($resultado2 === false) {
+        die(print_r($conn->errorInfo(), true));
+    }
+
+    while ($fila2 = $resultado2->fetch(PDO::FETCH_ASSOC)) {
+    ?>
+        <tr>
+            <th scope="row"><?php echo $fila2["id"] ?></th>
+            <td><?php echo $fila2["clave"] ?></td>
+            <td><?php echo $fila2["hora"] ?></td>
+            <td><?php echo $fila2["nombre"] ?></td>
+            <td><?php echo $fila2["fecha"] ?></td>
+            <td><?php echo $fila2["edad"] ?></td>
+            <!-- Acciones -->
+            <td>
+                <a class='btn' href='verConsulta.php?id=<?php echo $fila2["id"]; ?>'>Ver</a>
+                <a class='btn' href='notificarConsulta.php?id=<?php echo $fila2["id"]; ?>'>Notificar</a>
+                <a class='btn' href='edicionConsulta.php?id=<?php echo $fila2["id"]; ?>'>Editar</a>
+                <a class='btn' href='eliminarConsulta.php?id=<?php echo $fila2["id"]; ?>'>Eliminar</a>
+            </td>
+        </tr>
+    <?php  
+    } ?>
+</tbody>
+
         </table>
     </body>
 </html> 

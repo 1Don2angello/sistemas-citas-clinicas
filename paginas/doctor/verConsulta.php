@@ -10,8 +10,7 @@
                 <th scope="col">clave</th>
                 <th scope="col">hora</th>
                 <th scope="col">nombre</th>
-                <th scope="col">Apellido Paterno</th>
-                <th scope="col">Apellido Materno</th>
+                
                 <th scope="col">Fecha</th>
                 <th scope="col">Edad</th>
                 <th scope="col">Peso</th>
@@ -62,26 +61,24 @@
             </tr>
         </thead>
         <tbody>
-            <?php
-            //consulta a la de
-            include('conexion.php'); //Conexión a la db
-            $id = $_GET['id'];
-            $consulta2 = "SELECT * FROM pacientes WHERE id = '$id' ";
-            
-            $resultado2 = mysqli_query($conn, $consulta2);
-            
-            if($resultado2 === false) {
-                die( print_r( mysqli_connect_errno(), true));
-            }
-            while ($fila2 = mysqli_fetch_array($resultado2)) {
-                ?>
+        <?php
+    // consulta a la db
+    include('conexion.php'); // Conexión a la db
+    $id = $_GET['id'];
+    $consulta2 = "SELECT * FROM gestion_citas.pacientes WHERE id = :id";
+    
+    $stmt = $conn->prepare($consulta2);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    
+    while ($fila2 = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        ?>
                     <tr>
                         <th scope="row"><?php echo $fila2["id"] ?></th>
                         <td><?php echo $fila2["clave"] ?></td>
                         <td><?php echo $fila2["hora"] ?></td>
                         <td><?php echo $fila2["nombre"] ?></td>
-                        <!-- <td><?php echo $fila2["paterno"] ?></td>
-                        <td><?php echo $fila2["materno"] ?></td> -->
+                       
                         <td><?php echo $fila2["fecha"] ?></td>
                         <td><?php echo $fila2["edad"] ?></td>
                         <td><?php echo $fila2["peso"] ?></td>

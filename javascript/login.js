@@ -102,7 +102,7 @@ function consultar_usuario(){
                 if(jsonData.mensaje=="correcto"){
 
                   crear_session();
-                  window.location.href = 'paginas/panel_calendario.html';
+                  window.location.href = 'paginas/dashboard.html';
 
                 }else{
 

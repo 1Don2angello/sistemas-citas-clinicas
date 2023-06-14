@@ -69,13 +69,21 @@
               <li class="nav-item">
                 <a
                   class="boton_nav"
+                  id="nav_dashboard"
+                  aria-current="page"
+                  href="dashboard.html"
+                  ><i class=" "></i>&nbsp;&nbsp;dashboard</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="boton_nav"
                   id="nav_calendario"
                   aria-current="page"
                   href="panel_calendario.html"
                   ><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;Calendario</a
                 >
               </li>
-
               <li class="nav-item">
                 <a
                   class="boton_nav"
@@ -89,14 +97,14 @@
               <li class="nav-item dropdown">
                 <a
                   class="boton_nav dropdown-toggle"
-                  id="navbarDropdown1"
+                  id="nav_clientes"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   <i class="far fa-users"></i>&nbsp;&nbsp;Menú
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <ul class="dropdown-menu" aria-labelledby="nav_clientes">
                   <li>
                     <a class="dropdown-item" href="panel_clientes.html"
                       ><i class="far fa-users"></i>&nbsp;&nbsp;Clientes</a
@@ -112,49 +120,33 @@
                       ><i class="far fa-user-tie"></i>&nbsp;&nbsp;Usuarios</a
                     >
                   </li>
+
+                  <li class="nav-item">
+                    <a
+                      class="boton_nav"
+                      href="./doctor/consultas.php"
+                      id="nav_consultas"
+                    >
+                      <i class="fas fa-search"></i>&nbsp;&nbsp;Consultas
+                    </a>
+                  </li>
                 </ul>
               </li>
-              <li class="nav-item dropdown">
-                <a class="boton_nav dropdown-toggle" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="far fa-user-md"></i>&nbsp;&nbsp;Documentación
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                   
-                    <li>
-                        <a class="dropdown-item" href="./doctor/consultas.php">
-                            <i class="fas fa-search"></i>&nbsp;&nbsp;Consultas
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            
-              
-              <li class="nav-item dropdown">
+
+              <li class="nav-item">
                 <a
-                  class="boton_nav dropdown-toggle"
-                  id="navbarDropdown2"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+                  class="boton_nav"
+                  href="panel_configuracion.html"
+                  id="nav_configuracion"
+                  ><i class="far fa-cogs"></i>&nbsp;&nbsp;Configuración</a
                 >
-                  <i class="far fa-cogs"></i>&nbsp;&nbsp;Configuración
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                  <li>
-                    <a class="dropdown-item" href="panel_configuracion.html"
-                      ><i class="far fa-cogs"></i>&nbsp;&nbsp;Configuración</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="#"
-                      onclick="return cerrar_sesion();"
-                      ><i class="far fa-sign-out-alt"></i>&nbsp;&nbsp;Cerrar
-                      sesión</a
-                    >
-                  </li>
-                </ul>
+              </li>
+
+              <li>
+                <a class="boton_nav" href="#" onclick="return cerrar_sesion();"
+                  ><i class="far fa-sign-out-alt"></i>&nbsp;&nbsp;Cerrar
+                  sesión</a
+                >
               </li>
             </ul>
           </div>

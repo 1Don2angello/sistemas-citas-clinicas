@@ -481,7 +481,7 @@ function validar_sesion(){
             $("#lbl_nombre_usuario").text(jsonData.nombre_usuario);
 
             if(jsonData.rol=="Proveedor"){
-
+                $("#nav_calendario").css("display","none");
                 $("#nav_clientes").css("display","none");
                 $("#nav_servicios").css("display","none");
                 $("#nav_usuarios").css("display","none");

@@ -1,3 +1,4 @@
+
 <?php
     include('conexion.php');
     try {
@@ -117,3 +118,4 @@
         header('location:consultas.php?respuesta=Error Editar '. $e->getMessage());
     }
 ?>
+

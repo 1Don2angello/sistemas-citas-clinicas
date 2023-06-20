@@ -203,7 +203,7 @@ function eventos(){
                 }
             }
 
-            enviar_correo();
+           /*  enviar_correo(); */
             registrar_cita();            
             
         }else{

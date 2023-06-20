@@ -57,7 +57,7 @@
               <select class="form-control" id="select_servicio" style="width: 100%; height: 40px">
                 <option value="">- seleccionar -</option>
               </select>
-              
+              <!-- <input type="text" id="select_servicio" class="form-control" style="width: 100%" readonly value="servicio medico" /> -->
             </div>
           </div>
 
@@ -65,8 +65,9 @@
             <div class="col-lg-11">
               <label for="select_proveedor" style="font-weight: bold">Especialista:</label>
               <select class="form-control" id="select_proveedor" style="width: 100%; height: 40px">
-                <option value="-1">- seleccionar -</option>
+                <option value="-1" readonly >- seleccionar -</option>
               </select>
+              <!-- <input type="text" id="select_proveedor" class="form-control" style="width: 100%" readonly value="ARQUIMIDES DOC TOR" /> -->
             </div>
           </div>
         </div>

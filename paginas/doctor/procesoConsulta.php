@@ -1,5 +1,5 @@
 <?php
-include("conexion.php");
+include("../../configDB.php");
 try {
     if (isset($_POST['procesoConsulta'])) {
         $clave = $_POST["clave"];
@@ -57,7 +57,7 @@ try {
        $query3 = "INSERT INTO gestion_citas.pacientes (clave, hora, nombre, fecha, edad, peso, sexo, talla, tensArt, edoCivil, frCard, frResp, imc, temp, ahf, apnp, app, pActual, eFisica, fechaN, puestoS, escolaridad, lugarOrigen, analisisCovid, indicaciones, visitarUFM, observaciones, cirugias, traumatismos, fracturas, luxaciones, alergias, agudezaVisual, licenciaLentes, riesgoSalub, envioOpto, lentGraduadios, perAbdominal, examLab, tipoSangre, glucosaCapilar, iras, porcentajeOxigeno, pruevaAplicada, FechaAplicacion, horaAplicacion, resultado, diagnostico, indicacionesFinales) 
        VALUES (:clave, :hora, :nombre, :fecha, :edad, :peso, :sexo, :talla, :tensArt, :edoCivil, :frCard, :frResp, :imc, :temp, :ahf, :apnp, :app, :pActual, :eFisica, :fechaN, :puestoS, :escolaridad, :lugarOrigen, :analisisCovid, :indicaciones, :visitarUFM, :observaciones, :cirugias, :traumatismos, :fracturas, :luxaciones, :alergias, :agudezaVisual, :licenciaLentes, :riesgoSalub, :envioOpto, :lentGraduadios, :perAbdominal, :examLab, :tipoSangre, :glucosaCapilar, :iras, :porcentajeOxigeno, :pruevaAplicada, :FechaAplicacion, :horaAplicacion, :resultado, :diagnostico, :indicacionesFinales)";
 
-$stmt = $conn->prepare($query3);
+$stmt = $conn2->prepare($query3);
 $stmt->bindParam(':clave', $clave);
 $stmt->bindParam(':hora', $hora);
 $stmt->bindParam(':nombre', $nombre);

@@ -1,6 +1,6 @@
 
 <?php
-    include('conexion.php');
+    include('../../configDBsqlserver.php');
     try {
         if (isset($_POST['editar'])) {
             /* inicio de la tabla */
@@ -57,7 +57,7 @@
             
                 $editarConsulta = "UPDATE gestion_citas.pacientes SET clave=?, hora=?, nombre=?, fecha=?, edad=?, peso=?, sexo=?, talla=?, tensArt=?, edoCivil=?, frCard=?, frResp=?, imc=?, temp=?, ahf=?, apnp=?, app=?, pActual=?, eFisica=?, fechaN=?, puestoS=?, escolaridad=?, lugarOrigen=?, analisisCovid=?, indicaciones=?, visitarUFM=?, observaciones=?, cirugias=?, traumatismos=?, fracturas=?, luxaciones=?, alergias=?, agudezaVisual=?, licenciaLentes=?, riesgoSalub=?, envioOpto=?, lentGraduadios=?, perAbdominal=?, examLab=?, tipoSangre=?, glucosaCapilar=?, iras=?, porcentajeOxigeno=?, pruevaAplicada=?, FechaAplicacion=?, horaAplicacion=?, resultado=?, diagnostico=?, indicacionesFinales=? WHERE id=?";
 
-                $stmt = $conn->prepare($editarConsulta);
+                $stmt = $conn2->prepare($editarConsulta);
                 $stmt->bindParam(1, $clave);
                 $stmt->bindParam(2, $hora);
                 $stmt->bindParam(3, $nombre);

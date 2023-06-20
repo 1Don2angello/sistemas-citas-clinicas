@@ -1,10 +1,10 @@
 <?php
-include('conexion.php');
+include('../../configDB.php');
 try {
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $eliminarConsulta = "DELETE FROM gestion_citas.pacientes WHERE id=:id";
-        $stmt = $conn->prepare($eliminarConsulta);
+        $stmt = $conn2->prepare($eliminarConsulta);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         if ($stmt->execute()) {
             header('location:consultas.php?respuesta=ELIMINADO CORRECTAMENTE');

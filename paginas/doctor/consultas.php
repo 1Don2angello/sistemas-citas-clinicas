@@ -14,11 +14,12 @@
     <script src="../../plugins/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="../../estilos/panel_control.css" />
-    <script src="../../javascript/panel_dashboard_doctor.js"></script>
+
 </head>
 
 <body>
-    <div id="menu"></div>
+    <div id="menu">
+    </div>
     <section id="area_trabajo">
 
         <h2 style="font-weight: bold">Dashboard</h2>
@@ -37,11 +38,7 @@
                 </button>
 
                 <a href="crearConsulta.php" class="btn btn-secondary"">Crear Consulta </a>
-    <?php
-    if (isset($_GET['respuesta'])) {
-        echo "<div class='card-panel red darken-1'>" . $_GET['respuesta'] . "</div>";
-    }
-    ?>
+  
     <table class=" table">
                     <thead>
                         <tr>
@@ -58,14 +55,14 @@
                     <tbody>
                         <?php
                         // Consulta a la base de datos
-                        include('conexion.php'); // Conexión a la base de datos SQL Server
+                        include('../../configDBsqlserver.php'); // Conexión a la base de datos SQL Server
 
                         $consulta2 = "select * from gestion_citas.pacientes;";
 
-                        $resultado2 = $conn->query($consulta2);
+                        $resultado2 = $conn2->query($consulta2);
 
                         if ($resultado2 === false) {
-                            die(print_r($conn->errorInfo(), true));
+                            die(print_r($conn2->errorInfo(), true));
                         }
 
                         while ($fila2 = $resultado2->fetch(PDO::FETCH_ASSOC)) {
@@ -96,6 +93,10 @@
         <br /><br />
     </section>
     <div id="footer_nav"></div>
+
+
+
+    <script src="../../javascript/panel_dashboard_dc.js"></script>
 </body>
 
 </html>

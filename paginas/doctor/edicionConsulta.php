@@ -1,5 +1,5 @@
 <?php
-include('conexion.php'); //Conexión a la base de datos
+include('../../configDBsqlserver.php'); //Conexión a la base de datos
 
 $id = $_GET['id']; //Variable enviada desde la página consultas.php
 // Asegúrate de que $id sea un número
@@ -9,7 +9,7 @@ $id = $_GET['id']; //Variable enviada desde la página consultas.php
 $consulta = "SELECT * FROM gestion_citas.pacientes WHERE id = :id";
 
 // Preparar la consulta
-$stmt = $conn->prepare($consulta);
+$stmt = $conn2->prepare($consulta);
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
 // Ejecutar la consulta

@@ -23,3 +23,6 @@ try {
   // Manejar errores de conexión o consulta
   echo "Error al realizar la consulta: " . $e->getMessage();
 }
+
+
+

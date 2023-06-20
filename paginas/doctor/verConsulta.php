@@ -19,7 +19,7 @@ if (isset($_GET['respuesta'])) {
     <script src="../../plugins/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="../../estilos/panel_control.css" />
-    <script src="../../javascript/panel_dashboard_doctor.js"></script>
+    
 </head>
 
 <body>
@@ -100,11 +100,11 @@ if (isset($_GET['respuesta'])) {
             <tbody>
                 <?php
                 // consulta a la db
-                include('conexion.php'); // Conexión a la db
+                include('../../configDBsqlserver.php'); // Conexión a la db
                 $id = $_GET['id'];
                 $consulta2 = "SELECT * FROM gestion_citas.pacientes WHERE id = :id";
 
-                $stmt = $conn->prepare($consulta2);
+                $stmt = $conn2->prepare($consulta2);
                 $stmt->bindParam(':id', $id);
                 $stmt->execute();
 
@@ -176,6 +176,8 @@ if (isset($_GET['respuesta'])) {
         </table>
     </section>
     <div id="footer_nav"></div>
+
+    <script src="../../javascript/panel_dashboard_dc.js"></script>
 </body>
 
 </html>

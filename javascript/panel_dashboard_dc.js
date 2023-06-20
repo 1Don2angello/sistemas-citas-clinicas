@@ -1,9 +1,9 @@
 
 $(document).ready(function(){
 
-    $("#menu").load("../paginas/menu",function(){
+    $("#menu").load("menu.html",function(){
 
-        $("#footer_nav").load("../paginas/footer",function(){
+        $("#footer_nav").load("footer.html",function(){
 
             validar_sesion();
             
@@ -15,4 +15,6 @@ $(document).ready(function(){
     });
     
 });
+
+
 

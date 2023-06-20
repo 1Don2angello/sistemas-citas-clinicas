@@ -1,6 +1,6 @@
 
 body {
-    padding: 20px;
+    padding: none;
 }
 
 .tabla-container {
@@ -58,8 +58,8 @@ body {
     background-color: #fff;
     color: #333;
     position: relative;
-    margin-top: -203px;
-    margin-left: 258px;
+    margin-top: 1px;
+    margin-left: 365px;
   }
 
   .pdf-header {

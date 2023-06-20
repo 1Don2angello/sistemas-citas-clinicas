@@ -5,11 +5,31 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="css/style.css">
+        
+        
+    <link rel="stylesheet" href="../../plugins/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="../../plugins/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../plugins/vendor/components/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../plugins/node_modules/sweetalert2/dist/sweetalert2.min.css" />
+    <script src="../../plugins/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../estilos/panel_control.css" />
+
     </head>
     <body>
-        <section>
-            <table class="table">
+    <div id="menu">
+    </div>
+
+        <section id="area_trabajo">
+        <h2 style="font-weight: bold">Dashboard</h2>
+        <hr />
+        <br />
+        <div class="panel">
+            <div class="panel_titulo">
+                <h5>Crear Consulta</h5>
+            </div>
+            <div class="panel_body">
+                <table class="table">
                 <form action="procesoConsulta.php" method="post">
                     <input type="hidden" name="id" value="">
                     <div>
@@ -208,9 +228,17 @@
                     </tr>
                     <button type="submit" name="procesoConsulta" class="btn">Crear Consulta</button>
                 </form>
-            </table>
+            </table> 
+            </div>
+        </div>
+           
         </section>
-    </body>
+    <div id="footer_nav"></div>
+
+
+
+    <script src="../../javascript/panel_dashboard_dc.js"></script>
+</body>
 </html>
 <!-- La tesis no va llevar diagranabdb UML -->
 <!--  -->

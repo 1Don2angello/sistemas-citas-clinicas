@@ -57,6 +57,7 @@
               <select class="form-control" id="select_servicio" style="width: 100%; height: 40px">
                 <option value="">- seleccionar -</option>
               </select>
+              
             </div>
           </div>
 

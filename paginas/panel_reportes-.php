@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultas</title>
 
-    <link rel="stylesheet" href="../../plugins/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
-    <script src="../../plugins/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../../plugins/vendor/components/jquery/jquery.min.js"></script>
-    <link rel="stylesheet" href="../../plugins/node_modules/sweetalert2/dist/sweetalert2.min.css" />
-    <script src="../../plugins/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../plugins/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="../plugins/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../plugins/vendor/components/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="../plugins/node_modules/sweetalert2/dist/sweetalert2.min.css" />
+    <script src="../plugins/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../estilos/panel_control.css" />
+    <link rel="stylesheet" href="../estilos/panel_control.css" />
 
 </head>
 
@@ -22,13 +22,23 @@
     </div>
     <section id="area_trabajo">
 
-        <h2 style="font-weight: bold">Dashboard</h2>
+        <h2 style="font-weight: bold">Pacientes</h2>
         <hr />
         <br />
 
         <div class="panel">
             <div class="panel_titulo">
-                <h5>Consultorio</h5>
+                <h5><?php
+                    // Consulta a la base de datos
+                    include('../configDBsqlserver.php'); // Conexión a la base de datos SQL Server
+
+                    $consulta2 = "SELECT * FROM gestion_citas.pacientes WHERE aptos = 'si'";
+
+                    $resultado2 = $conn2->query($consulta2);
+
+                    if ($resultado2 === false) {
+                        die(print_r($conn2->errorInfo(), true));
+                    } ?></h5>
             </div>
 
             <div class="panel_body">
@@ -37,15 +47,9 @@
                     <i class="fa fa-sync-alt"></i>
                 </button>
 
-                <a href="crearConsulta.php" class="btn btn-primary">Crear Consulta </a>
-                    <h1><?php
-                        // Consulta a la base de datos
-                        include('../../configDBsqlserver.php'); // Conexión a la base de datos SQL Server
 
-                        $consulta2 = "select * from gestion_citas.pacientes;";
 
-                        $resultado2 = $conn2->query($consulta2); ?></h1>
-    <table class=" table">
+                <table class=" table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -55,16 +59,11 @@
                             <th scope="col">Fecha</th>
                             <th scope="col">Edad</th>
                             <!-- Acciones -->
-                            <th scope="col">Acciones</th>
+                            <th scope="col">Apto</th>
                         </tr>
                     </thead>
                     <tbody>
-                         <?php
-
-                        if ($resultado2 === false) {
-                            die(print_r($conn2->errorInfo(), true));
-                        }
-
+                        <?php
                         while ($fila2 = $resultado2->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                             <tr>
@@ -74,19 +73,12 @@
                                 <td><?php echo $fila2["nombre"] ?></td>
                                 <td><?php echo $fila2["fecha"] ?></td>
                                 <td><?php echo $fila2["edad"] ?></td>
-                                <!-- Acciones -->
-                                <td>
-                                    <a class='btn btn-primary' href='verConsulta.php?id=<?php echo $fila2["id"]; ?>'>Ver</a>
-                                    <a class='btn btn-primary' href='altas.php?id=<?php echo $fila2["id"]; ?>'>Imprimir</a>
-                                    <a class='btn btn-success' href='edicionConsulta.php?id=<?php echo $fila2["id"]; ?>'>Editar</a>
-                                    <a class='btn btn-danger' href='eliminarConsulta.php?id=<?php echo $fila2["id"]; ?>'>Eliminar</a>
-
-                                </td>
+                                <td><?php echo $fila2["aptos"] ?> </td>
                             </tr>
                         <?php
                         } ?>
                     </tbody>
-                    </table>
+                </table>
             </div>
         </div>
         </div>
@@ -96,7 +88,7 @@
 
 
 
-    <script src="../../javascript/panel_dashboard_dc.js"></script>
+    <script src="../javascript/panel_dashboard.js"></script>
 </body>
 
 </html>

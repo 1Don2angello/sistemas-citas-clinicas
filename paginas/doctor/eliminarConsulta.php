@@ -1,5 +1,5 @@
 <?php
-include('../../configDB.php');
+include('../../configDBsqlserver.php');
 try {
     if (isset($_GET['id'])) {
         $id = $_GET['id'];

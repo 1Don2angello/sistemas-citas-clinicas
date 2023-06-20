@@ -54,8 +54,8 @@
                 $resultado = $_POST["resultado"];
                 $diagnostico = $_POST["diagnostico"];
                 $indicacionesFinales = $_POST["indicacionesFinales"];
-            
-                $editarConsulta = "UPDATE gestion_citas.pacientes SET clave=?, hora=?, nombre=?, fecha=?, edad=?, peso=?, sexo=?, talla=?, tensArt=?, edoCivil=?, frCard=?, frResp=?, imc=?, temp=?, ahf=?, apnp=?, app=?, pActual=?, eFisica=?, fechaN=?, puestoS=?, escolaridad=?, lugarOrigen=?, analisisCovid=?, indicaciones=?, visitarUFM=?, observaciones=?, cirugias=?, traumatismos=?, fracturas=?, luxaciones=?, alergias=?, agudezaVisual=?, licenciaLentes=?, riesgoSalub=?, envioOpto=?, lentGraduadios=?, perAbdominal=?, examLab=?, tipoSangre=?, glucosaCapilar=?, iras=?, porcentajeOxigeno=?, pruevaAplicada=?, FechaAplicacion=?, horaAplicacion=?, resultado=?, diagnostico=?, indicacionesFinales=? WHERE id=?";
+                $aptos = $_POST["aptos"] ;
+                $editarConsulta = "UPDATE gestion_citas.pacientes SET clave=?, hora=?, nombre=?, fecha=?, edad=?, peso=?, sexo=?, talla=?, tensArt=?, edoCivil=?, frCard=?, frResp=?, imc=?, temp=?, ahf=?, apnp=?, app=?, pActual=?, eFisica=?, fechaN=?, puestoS=?, escolaridad=?, lugarOrigen=?, analisisCovid=?, indicaciones=?, visitarUFM=?, observaciones=?, cirugias=?, traumatismos=?, fracturas=?, luxaciones=?, alergias=?, agudezaVisual=?, licenciaLentes=?, riesgoSalub=?, envioOpto=?, lentGraduadios=?, perAbdominal=?, examLab=?, tipoSangre=?, glucosaCapilar=?, iras=?, porcentajeOxigeno=?, pruevaAplicada=?, FechaAplicacion=?, horaAplicacion=?, resultado=?, diagnostico=?, indicacionesFinales=?, aptos=? WHERE id=?";
 
                 $stmt = $conn2->prepare($editarConsulta);
                 $stmt->bindParam(1, $clave);
@@ -107,8 +107,8 @@
                 $stmt->bindParam(47, $resultado);
                 $stmt->bindParam(48, $diagnostico);
                 $stmt->bindParam(49, $indicacionesFinales);
-                $stmt->bindParam(50, $id);
-                
+                $stmt->bindParam(50, $aptos);
+                $stmt->bindParam(51, $id);
                 if ($stmt->execute()) {
                     header('location:consultas.php?respuesta=EDICION CORRECTA');
                 }

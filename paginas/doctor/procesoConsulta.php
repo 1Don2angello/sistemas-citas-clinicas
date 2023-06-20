@@ -1,5 +1,5 @@
 <?php
-include("../../configDB.php");
+include("../../configDBsqlserver.php");
 try {
     if (isset($_POST['procesoConsulta'])) {
         $clave = $_POST["clave"];
@@ -53,9 +53,9 @@ try {
         $indicacionesFinales = $_POST["indicacionesFinales"];
 
        // Resto de las variables...
-            
-       $query3 = "INSERT INTO gestion_citas.pacientes (clave, hora, nombre, fecha, edad, peso, sexo, talla, tensArt, edoCivil, frCard, frResp, imc, temp, ahf, apnp, app, pActual, eFisica, fechaN, puestoS, escolaridad, lugarOrigen, analisisCovid, indicaciones, visitarUFM, observaciones, cirugias, traumatismos, fracturas, luxaciones, alergias, agudezaVisual, licenciaLentes, riesgoSalub, envioOpto, lentGraduadios, perAbdominal, examLab, tipoSangre, glucosaCapilar, iras, porcentajeOxigeno, pruevaAplicada, FechaAplicacion, horaAplicacion, resultado, diagnostico, indicacionesFinales) 
-       VALUES (:clave, :hora, :nombre, :fecha, :edad, :peso, :sexo, :talla, :tensArt, :edoCivil, :frCard, :frResp, :imc, :temp, :ahf, :apnp, :app, :pActual, :eFisica, :fechaN, :puestoS, :escolaridad, :lugarOrigen, :analisisCovid, :indicaciones, :visitarUFM, :observaciones, :cirugias, :traumatismos, :fracturas, :luxaciones, :alergias, :agudezaVisual, :licenciaLentes, :riesgoSalub, :envioOpto, :lentGraduadios, :perAbdominal, :examLab, :tipoSangre, :glucosaCapilar, :iras, :porcentajeOxigeno, :pruevaAplicada, :FechaAplicacion, :horaAplicacion, :resultado, :diagnostico, :indicacionesFinales)";
+        $aptos = $_POST["aptos"] ;
+       $query3 = "INSERT INTO gestion_citas.pacientes (clave, hora, nombre, fecha, edad, peso, sexo, talla, tensArt, edoCivil, frCard, frResp, imc, temp, ahf, apnp, app, pActual, eFisica, fechaN, puestoS, escolaridad, lugarOrigen, analisisCovid, indicaciones, visitarUFM, observaciones, cirugias, traumatismos, fracturas, luxaciones, alergias, agudezaVisual, licenciaLentes, riesgoSalub, envioOpto, lentGraduadios, perAbdominal, examLab, tipoSangre, glucosaCapilar, iras, porcentajeOxigeno, pruevaAplicada, FechaAplicacion, horaAplicacion, resultado, diagnostico, indicacionesFinales, aptos) 
+       VALUES (:clave, :hora, :nombre, :fecha, :edad, :peso, :sexo, :talla, :tensArt, :edoCivil, :frCard, :frResp, :imc, :temp, :ahf, :apnp, :app, :pActual, :eFisica, :fechaN, :puestoS, :escolaridad, :lugarOrigen, :analisisCovid, :indicaciones, :visitarUFM, :observaciones, :cirugias, :traumatismos, :fracturas, :luxaciones, :alergias, :agudezaVisual, :licenciaLentes, :riesgoSalub, :envioOpto, :lentGraduadios, :perAbdominal, :examLab, :tipoSangre, :glucosaCapilar, :iras, :porcentajeOxigeno, :pruevaAplicada, :FechaAplicacion, :horaAplicacion, :resultado, :diagnostico, :indicacionesFinales, :aptos )";
 
 $stmt = $conn2->prepare($query3);
 $stmt->bindParam(':clave', $clave);
@@ -108,7 +108,7 @@ $stmt->bindParam(':resultado', $resultado);
 $stmt->bindParam(':diagnostico', $diagnostico);
 $stmt->bindParam(':indicacionesFinales', $indicacionesFinales);
 //varios datos 
-
+$stmt->bindParam(':aptos', $aptos);
 if ($stmt->execute()) {
    header('location:consultas.php?respuesta=La consulta fue AGREGADA correctamente');
 }
@@ -116,17 +116,3 @@ if ($stmt->execute()) {
 } catch (Exception $e) {
 header('location:consultas.php?respuesta=Error'. $e->getMessage());
 }
-
-?>
-<!-- phpMySql vercion Maria bd 8.2.4 -->
-<!-- Auto car pruevas de encivod y formulario  --><!--   $query3 = "INSERT INTO pacientes (clave, hora, nombre, fecha, edad, peso, sexo, talla, tensArt, edoCivil, frCard, frResp, imc, temp, ahf, apnp, app, pActual, eFisica, fechaN, puestoS, escolaridad, lugarOrigen, analisisCovid, indicaciones, visitarUFM, observaciones, cirugias, traumatismos, fracturas, luxaciones, alergias, agudezaVisual, licenciaLentes, riesgoSalub, envioOpto, lentGraduadios, perAbdominal, examLab, tipoSangre, glucosaCapilar, iras, porcentajeOxigeno, pruevaAplicada, FechaAplicacion, horaAplicacion, resultado, diagnostico, indicacionesFinales) 
-                    VALUES ('$clave','$hora','$nombre','$fecha','$edad','$peso','$sexo','$talla','$tensArt','$edoCivil','$frCard','$frResp','$imc','$temp','$ahf','$apnp','$app','$pActual','$eFisica','$fechaN','$puestoS','$escolaridad','$lugarOrigen','$analisisCovid','$indicaciones','$visitarUFM','$observaciones','$cirugias','$traumatismos','$fracturas','$luxaciones','$alergias','$agudezaVisual','$licenciaLentes','$riesgoSalub','$envioOpto','$lentGraduadios','$perAbdominal','$examLab','$tipoSangre','$glucosaCapilar','$iras','$porcentajeOxigeno','$pruevaAplicada','$FechaAplicacion','$horaAplicacion','$resultado','$diagnostico','$indicacionesFinales')";
-        $resultado3 = mysqli_prepare($conn, $query3);
-
-        if (mysqli_stmt_execute($resultado3)) {
-            header('location:consultas.php?respuesta=La consulta fue AGREGADA correctamente'); //echo " Datos Insertados";
-        }
-    }
-} catch (Exception $e) {
-    header('location:consultas.php?respuesta=Error' . $e->getMessage());
-} -->

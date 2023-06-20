@@ -13,11 +13,7 @@ body {
     border-collapse: collapse;
 }
 
-.tabla th,
-.tabla td {
-    border: 1px solid black;
-    padding: 5px;
-}
+
 
 .tabla th {
     background-color: lightgray;

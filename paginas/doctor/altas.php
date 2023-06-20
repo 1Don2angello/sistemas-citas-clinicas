@@ -9,7 +9,6 @@
     <script src="https://kendo.cdn.telerik.com/2017.1.223/js/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2017.1.223/js/jszip.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.all.min.js"></script>
-    <script src="../../javascript/panel_dashboard.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="../../plugins/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
     <script src="../../plugins/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -37,7 +36,7 @@
                     </div>
                     <div class="box-col">
                         <h4>Get PDF</h4>
-                        <button class="export-pdf k-button" onclick="getPDF('.pdf-page')">Export</button>
+                        <button class="export-pdf k-button btn btn-danger" onclick="getPDF('.pdf-page')">Export</button>
                     </div>
                 </div>
                 <div class="pdf-page size-a4">

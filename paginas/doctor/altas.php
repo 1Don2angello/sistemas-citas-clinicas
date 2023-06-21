@@ -72,7 +72,7 @@
 
                     
                      <div class="pdf-body">
-                             <table class="tabla " style="width:90%" >
+                             <table class="tabla table-bordered" style="width:90%" >
                                  <tbody>
                                      <?php
                                         while ($fila2 = $stmt->fetch(PDO::FETCH_ASSOC)) {

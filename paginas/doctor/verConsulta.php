@@ -136,12 +136,10 @@ if (isset($_GET['respuesta'])) {
                                 <tr>
                                     <th colspan="1" scope="col">Puesto Solicitado</th>
                                     <td style="width: auto;"><?php echo $fila2["puestoS"] ?></td>
-
                                     <th colspan="1" scope="col">lugar de Origen</th>
                                     <td style="width: auto;"><?php echo $fila2["lugarOrigen"] ?></td>
                                 </tr>
                                 <!-- Resto de las columnas -->
-
                                 <!-- Salto de línea -->
                                 <tr>
                                     <th colspan="1" scope="col">Analisis Covid</th>

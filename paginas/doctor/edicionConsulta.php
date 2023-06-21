@@ -47,7 +47,7 @@
                         // Obtener el registro
                         $fila5 = $stmt->fetch(PDO::FETCH_ASSOC);
                         ?></h1>
-                <table class="table">
+                <table class="tabla table-bordered">
                     <form action="editarConsulta.php" method="POST">
                         <input type="hidden" name="id" value="<?php echo $fila5["id"] ?>" />
                         <div>
@@ -59,9 +59,176 @@
                                 <th colspan="1">
                                     <button id="buscar-btn" type="button">Buscar</button>
                                 </th>
-                                <th colspan="1" class="nombre">Nombre<br>
-                                    <input type="text" readonly name="nombre" id="nombre_completo" value="<?php echo $fila5['nombre']; ?>" style="width: 500px;">
-                                </th>
+
+                            </tr>
+                            <tr>
+                                <th colspan="1" class="nombre">Nombre</th>
+                                <td><input type="text" readonly name="nombre" id="nombre_completo" value="<?php echo $fila5['nombre']; ?>" style="width: 500px;"></td>
+                                <th class="fecha">Fecha</th>
+                                <td> <input type="date" class="fecha" name="fecha" value="<?php echo $fila5["fecha"] ?>"></td>
+                            </tr>
+
+                            <tr>
+                                <th class="edad">Edad</th>
+                                <td><input type="text" class="edad" name="edad" value="<?php echo $fila5["edad"] ?>"></td>
+                                <th class="sexo">Sexo</th>
+                                <td>
+                                    <select name="sexo" id="sexo">
+                                        <option value="Masculino" <?php if ($fila5["sexo"] == "Masculino") echo "selected"; ?>>Masculino</option>
+                                        <option value="Femenino" <?php if ($fila5["sexo"] == "Femenino") echo "selected"; ?>>Femenino</option>
+                                    </select>
+                                </td>
+                                <th class="tensArt">Tens.Art.</th>
+                                <td><input type="text" class="tensArt" name="tensArt" value="<?php echo $fila5["tensArt"] ?>"></td>
+                                <th class="frCard">Fr.Card</th>
+                                <td><input type="text" class="frCard" name="frCard" value="<?php echo $fila5["frCard"] ?>"></td>
+                                <th class="imc">I.M.C</th>
+                                <td><input type="text" class="imc" name="imc" value="<?php echo $fila5["imc"] ?>"></td>
+                                <th class="hora">HORA <input class="sinborde" type="time" name="hora" value="<?php echo $fila5["hora"] ?>"></th>
+                            </tr>
+
+                            <tr>
+                                <th class="peso">Peso</th>
+                                <td><input type="text" class="peso" name="peso" value="<?php echo $fila5["peso"] ?>"></td>
+                                <th class="talla">Talla</th>
+                                <td><input type="text" class="talla" name="talla" value="<?php echo $fila5["talla"] ?>"></td>
+                                 <th class="edoCivil">Edo.Civil</th>
+                                <td><input type="text" class="edoCivil" name="edoCivil" value="<?php echo $fila5["edoCivil"] ?>"></td>
+                                 <th class="frResp">Fr.Resp</th>
+                                <td><input type="text" class="frResp" name="frResp" value="" <?php echo $fila5["frResp"] ?>"></td>
+                                 <th class="temp">Temp.</th>
+                                <td><input type="text" class="temp" name="temp" value="<?php echo $fila5["temp"] ?>"></td>
+                            </tr>
+                            <tr>
+                               
+                               
+                            </tr>
+                            <tr>
+                               
+                                <th colspan="1" class="ahf">A.H.F.</th>
+                                <td colspan="10"><input type="text" class="ahf" name="ahf" value="<?php echo $fila5["ahf"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="1" class="apnp">A.P.N.P</th>
+                                <td colspan="1"><input type="text" class="apnp" name="apnp" value="<?php echo $fila5["apnp"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="1" class="app">A.P.P</th>
+                                <td colspan="1"><input type="text" class="app" name="app" value="<?php echo $fila5["app"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="1" class="pActual">P.Actual</th>
+                                <td colspan="1"><input type="text" class="pActual" name="pActual" value="<?php echo $fila5["pActual"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="1" class="eFisica">eFisica</th>
+                                <td colspan="1"><input type="text" class="eFisica" name="eFisica" value="<?php echo $fila5["eFisica"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="1" class="fechaN">Fecha de Nacimiento</th>
+                                <td colspan="1"><input type="date" class="fechaN" name="fechaN" value="<?php echo $fila5["fechaN"] ?>"></td>
+                                <th colspan="1" class="escolaridad">Escolaridad</th>
+                                <td colspan="1"><input type="text" class="escolaridad" name="escolaridad" value="<?php echo $fila5["escolaridad"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="1" class="puestoS">Puesto Solicitado</th>
+                                <td colspan="1"><input type="text" class="puestoS" name="puestoS" value="<?php echo $fila5["puestoS"] ?>"></td>
+                                <th colspan="1" class="lugarOrigen">Lugar de Origen</th>
+                                <td colspan="1"><input type="text" class="lugarOrigen" name="lugarOrigen" value="<?php echo $fila5["lugarOrigen"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="1" class="analisisCovid">Analisis Covid</th>
+                                <td colspan="1"><input type="text" class="analisisCovid" name="analisisCovid" value="<?php echo $fila5["analisisCovid"] ?>"></td>
+                                <th colspan="1" class="indicaciones">Indicaciones</th>
+                                <td colspan="1"><input type="text" class="indicaciones" name="indicaciones" value="<?php echo $fila5["indicaciones"] ?>"></td>
+                                 <th class="visitarUFM">Visitar UFM</th>
+                                <td><input type="text" class="visitarUFM" name="visitarUFM" value="<?php echo $fila5["visitarUFM"] ?>"></td>
+                                <th colspan="1" class="observaciones">Observaciones</th>
+                                <td colspan="1"><input type="text" class="observaciones" name="observaciones" value="<?php echo $fila5["observaciones"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th class="cirugias">Cirugias</th>
+                                <td colspan="1"><input type="text" class="cirugias" name="cirugias" value="<?php echo $fila5["cirugias"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th class="traumatismos">Traumatismos</th>
+                                <td colspan="1"><input type="text" class="traumatismos" name="traumatismos" value="<?php echo $fila5["traumatismos"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th class="fracturas">Fracturas</th>
+                                <td colspan="1"><input type="text" class="fracturas" name="fracturas" value="<?php echo $fila5["fracturas"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th class="luxaciones">Luxaciones</th>
+                                <td colspan="1"><input type="text" class="luxaciones" name="luxaciones" value="<?php echo $fila5["luxaciones"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th class="alergias">Alergias</th>
+                                <td colspan="1"><input type="text" class="alergias" name="alergias" value="<?php echo $fila5["alergias"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="1" class="agudezaVisual">Agudeza Visual</th>
+                                <td colspan="1"><input type="text" class="agudezaVisual" name="agudezaVisual" value="<?php echo $fila5["agudezaVisual"] ?>"></td>
+                                <th colspan="1" class="envioOpto">¿Envio al Optometrista?</th>
+                                <td colspan="1"><input type="text" class="envioOpto" name="envioOpto" value="<?php echo $fila5["envioOpto"] ?>"></td>
+                                 <th colspan="1" class="examLab">Examenes de Laboratorio</th>
+                                <td colspan="1"><input type="text" class="examLab" name="examLab" value="<?php echo $fila5["examLab"] ?>"></td>
+                            </tr>
+                            <tr>
+                               
+                            </tr>
+                            <tr>
+                                <th colspan="1" class="licenciaLentes">Licencia Indica Uso de Lentes</th>
+                                <td colspan="1"><input type="text" class="licenciaLentes" name="licenciaLentes" value="<?php echo $fila5["licenciaLentes"] ?>"></td>
+                                <th colspan="1" class="lentGraduadios">¿Usa Lentes Graduadios?</th>
+                                <td colspan="1"><input type="text" class="lentGraduadios" name="lentGraduadios" value="<?php echo $fila5["lentGraduadios"] ?>"></td>
+                                <th colspan="1" class="lentGraduadios">Tipo de Sangre</th>
+                                <td colspan="1"><input type="text" class="lentGraduadios" name="tipoSangre" value="<?php echo $fila5["tipoSangre"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="1" class="riesgoSalub">Riesgo para la Salub</th>
+                                <td colspan="1"><input type="text" class="riesgoSalub" name="riesgoSalub" value="<?php echo $fila5["riesgoSalub"] ?>"></td>
+                                <th colspan="1" class="perAbdominal">Perimetro Abdominal</th>
+                                <td colspan="1"><input type="text" class="perAbdominal" name="perAbdominal" value="<?php echo $fila5["perAbdominal"] ?>"></td>
+                                <th colspan="1" class="glucosaCapilar">Glucosa Capilar</th>
+                                <td colspan="1"><input type="text" class="glucosaCapilar" name="glucosaCapilar" value="<?php echo $fila5["glucosaCapilar"] ?>"></td>
+                            </tr>
+                            <tr>
+                                
+                                <th colspan="1" class="iras">I.R.A.S</th>
+                                <td colspan="1"><input type="text" class="iras" name="iras" value="<?php echo $fila5["iras"] ?>"></td>
+                                <th colspan="1" class="porcentajeOxigeno">Porcentaje de Oxigeno</th>
+                                <td colspan="1"><input type="text" class="porcentajeOxigeno" name="porcentajeOxigeno" value="<?php echo $fila5["porcentajeOxigeno"] ?>"></td>
+                                <th class="pruevaAplicada">Prueva Aplicada</th>
+                                <td><input type="text" class="pruevaAplicada" name="pruevaAplicada" value="<?php echo $fila5["pruevaAplicada"] ?>"></td>
+                            </tr>
+                            <tr>
+                                
+                            </tr>
+                            <tr>
+                                <th class="FechaAplicacion">Fecha Aplicacion</th>
+                                <td><input type="date" class="FechaAplicacion" name="FechaAplicacion" value="<?php echo $fila5["FechaAplicacion"] ?>"></td>
+                                <th class="horaAplicacion">Hora Aplicacion</th>
+                                <td><input type="time" class="horaAplicacion" name="horaAplicacion" value="<?php echo $fila5["horaAplicacion"] ?>"></td> 
+                                <th class="resultado">Resultado</th>
+                                <td><input type="text" class="resultado" name="resultado" value="<?php echo $fila5["resultado"] ?>"></td>
+                            </tr>
+                            <tr>
+                               
+                                <th class="diagnostico">Diagnostico</th>
+                                <td><input type="text" class="diagnostico" name="diagnostico" value="<?php echo $fila5["diagnostico"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th class="indicacionesFinales">Indicaciones Finales</th>
+                                <td><input type="text" name="indicacionesFinales" value="<?php echo $fila5["indicacionesFinales"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th class="">¿Es apto?</th>
+                                <td><select name="aptos" id="aptos">
+                                        <option value="si" <?php if ($fila5["aptos"] == "si") echo "selected"; ?>>Si</option>
+                                        <option value="no" <?php if ($fila5["aptos"] == "no") echo "selected"; ?>>No</option>
+                                    </select><button type="submit" name="editar" class="btn btn-primary">Guardar</button>
+                                </td>
                             </tr>
 
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -145,169 +312,6 @@
                                 });
                             </script>
 
-                            <tr>
-                                <td class="edad">Edad</td>
-                                <td><input type="text" class="edad" name="edad" value="<?php echo $fila5["edad"] ?>"></td>
-                                <td class="sexo">Sexo</td>
-                                <td>
-                                    <select name="sexo" id="sexo">
-                                        <option value="Masculino" <?php if ($fila5["sexo"] == "Masculino") echo "selected"; ?>>Masculino</option>
-                                        <option value="Femenino" <?php if ($fila5["sexo"] == "Femenino") echo "selected"; ?>>Femenino</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tensArt">Tens.Art.</td>
-                                <td><input type="text" class="tensArt" name="tensArt" value="<?php echo $fila5["tensArt"] ?>"></td>
-                                <td class="frCard">Fr.Card</td>
-                                <td><input type="text" class="frCard" name="frCard" value="<?php echo $fila5["frCard"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="imc">I.M.C</td>
-                                <td><input type="text" class="imc" name="imc" value="<?php echo $fila5["imc"] ?>"></td>
-                                <td class="hora">HORA <input class="sinborde" type="time" name="hora" value="<?php echo $fila5["hora"] ?>"></td>
-                                <th class="fecha">Fecha <input type="date" class="fecha" name="fecha" value="<?php echo $fila5["fecha"] ?>"></th>
-                            </tr>
-                            <tr>
-                                <td class="peso">Peso</td>
-                                <td><input type="text" class="peso" name="peso" value="<?php echo $fila5["peso"] ?>"></td>
-                                <td class="talla">Talla</td>
-                                <td><input type="text" class="talla" name="talla" value="<?php echo $fila5["talla"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="edoCivil">Edo.Civil</td>
-                                <td><input type="text" class="edoCivil" name="edoCivil" value="<?php echo $fila5["edoCivil"] ?>"></td>
-                                <td class="frResp">Frecuencia Respiratoria</td>
-                                <td><input type="text" class="frResp" name="frResp" value="" <?php echo $fila5["frResp"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="temp">Temp.</td>
-                                <td><input type="text" class="temp" name="temp" value="<?php echo $fila5["temp"] ?>"></td>
-                                <td colspan="1" class="ahf">A.H.F.</td>
-                                <td colspan="10"><input type="text" class="ahf" name="ahf" value="<?php echo $fila5["ahf"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="apnp">A.P.N.P</td>
-                                <td colspan="1"><input type="text" class="apnp" name="apnp" value="<?php echo $fila5["apnp"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="app">A.P.P</td>
-                                <td colspan="1"><input type="text" class="app" name="app" value="<?php echo $fila5["app"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="pActual">P.Actual</td>
-                                <td colspan="1"><input type="text" class="pActual" name="pActual" value="<?php echo $fila5["pActual"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="eFisica">eFisica</td>
-                                <td colspan="1"><input type="text" class="eFisica" name="eFisica" value="<?php echo $fila5["eFisica"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="fechaN">Fecha de Nacimiento</td>
-                                <td colspan="1"><input type="date" class="fechaN" name="fechaN" value="<?php echo $fila5["fechaN"] ?>"></td>
-                                <td colspan="1" class="escolaridad">Escolaridad</td>
-                                <td colspan="1"><input type="text" class="escolaridad" name="escolaridad" value="<?php echo $fila5["escolaridad"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="puestoS">Puesto Solicitado</td>
-                                <td colspan="1"><input type="text" class="puestoS" name="puestoS" value="<?php echo $fila5["puestoS"] ?>"></td>
-                                <td colspan="1" class="lugarOrigen">Lugar de Origen</td>
-                                <td colspan="1"><input type="text" class="lugarOrigen" name="lugarOrigen" value="<?php echo $fila5["lugarOrigen"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="analisisCovid">Analisis Covid</td>
-                                <td colspan="1"><input type="text" class="analisisCovid" name="analisisCovid" value="<?php echo $fila5["analisisCovid"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="indicaciones">Indicaciones</td>
-                                <td colspan="1"><input type="text" class="indicaciones" name="indicaciones" value="<?php echo $fila5["indicaciones"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="visitarUFM">Visitar UFM</td>
-                                <td><input type="text" class="visitarUFM" name="visitarUFM" value="<?php echo $fila5["visitarUFM"] ?>"></td>
-                                <td colspan="1" class="observaciones">Observaciones</td>
-                                <td colspan="1"><input type="text" class="observaciones" name="observaciones" value="<?php echo $fila5["observaciones"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="cirugias">Cirugias</td>
-                                <td colspan="1"><input type="text" class="cirugias" name="cirugias" value="<?php echo $fila5["cirugias"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="traumatismos">Traumatismos</td>
-                                <td colspan="1"><input type="text" class="traumatismos" name="traumatismos" value="<?php echo $fila5["traumatismos"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="fracturas">Fracturas</td>
-                                <td colspan="1"><input type="text" class="fracturas" name="fracturas" value="<?php echo $fila5["fracturas"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="luxaciones">Luxaciones</td>
-                                <td colspan="1"><input type="text" class="luxaciones" name="luxaciones" value="<?php echo $fila5["luxaciones"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="alergias">Alergias</td>
-                                <td colspan="1"><input type="text" class="alergias" name="alergias" value="<?php echo $fila5["alergias"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="agudezaVisual">Agudeza Visual</td>
-                                <td colspan="1"><input type="text" class="agudezaVisual" name="agudezaVisual" value="<?php echo $fila5["agudezaVisual"] ?>"></td>
-                                <td colspan="1" class="envioOpto">¿Envio al Optometrista?</td>
-                                <td colspan="1"><input type="text" class="envioOpto" name="envioOpto" value="<?php echo $fila5["envioOpto"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="examLab">Examenes de Laboratorio</td>
-                                <td colspan="1"><input type="text" class="examLab" name="examLab" value="<?php echo $fila5["examLab"] ?>"></td>
-                                <td colspan="1" class="licenciaLentes">Licencia Indica Uso de Lentes</td>
-                                <td colspan="1"><input type="text" class="licenciaLentes" name="licenciaLentes" value="<?php echo $fila5["licenciaLentes"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="lentGraduadios">¿Usa Lentes Graduadios?</td>
-                                <td colspan="1"><input type="text" class="lentGraduadios" name="lentGraduadios" value="<?php echo $fila5["lentGraduadios"] ?>"></td>
-                                <td colspan="1" class="lentGraduadios">Tipo de Sangre</td>
-                                <td colspan="1"><input type="text" class="lentGraduadios" name="tipoSangre" value="<?php echo $fila5["tipoSangre"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="riesgoSalub">Riesgo para la Salub</td>
-                                <td colspan="1"><input type="text" class="riesgoSalub" name="riesgoSalub" value="<?php echo $fila5["riesgoSalub"] ?>"></td>
-                                <td colspan="1" class="perAbdominal">Perimetro Abdominal</td>
-                                <td colspan="1"><input type="text" class="perAbdominal" name="perAbdominal" value="<?php echo $fila5["perAbdominal"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="glucosaCapilar">Glucosa Capilar</td>
-                                <td colspan="1"><input type="text" class="glucosaCapilar" name="glucosaCapilar" value="<?php echo $fila5["glucosaCapilar"] ?>"></td>
-                                <td colspan="1" class="iras">I.R.A.S</td>
-                                <td colspan="1"><input type="text" class="iras" name="iras" value="<?php echo $fila5["iras"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" class="porcentajeOxigeno">Porcentaje de Oxigeno</td>
-                                <td colspan="1"><input type="text" class="porcentajeOxigeno" name="porcentajeOxigeno" value="<?php echo $fila5["porcentajeOxigeno"] ?>"></td>
-                                <td class="pruevaAplicada">Prueva Aplicada</td>
-                                <td><input type="text" class="pruevaAplicada" name="pruevaAplicada" value="<?php echo $fila5["pruevaAplicada"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="FechaAplicacion">Fecha Aplicacion</td>
-                                <td><input type="date" class="FechaAplicacion" name="FechaAplicacion" value="<?php echo $fila5["FechaAplicacion"] ?>"></td>
-                                <td class="horaAplicacion">Hora Aplicacion</td>
-                                <td><input type="time" class="horaAplicacion" name="horaAplicacion" value="<?php echo $fila5["horaAplicacion"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="resultado">Resultado</td>
-                                <td><input type="text" class="resultado" name="resultado" value="<?php echo $fila5["resultado"] ?>"></td>
-                                <td class="diagnostico">Diagnostico</td>
-                                <td><input type="text" class="diagnostico" name="diagnostico" value="<?php echo $fila5["diagnostico"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="indicacionesFinales">Indicaciones Finales</td>
-                                <td><input type="text" name="indicacionesFinales" value="<?php echo $fila5["indicacionesFinales"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <td class="">¿Es apto?</td>
-                                <td><select name="aptos" id="aptos">
-                                        <option value="si" <?php if ($fila5["aptos"] == "si") echo "selected"; ?>>Si</option>
-                                        <option value="no" <?php if ($fila5["aptos"] == "no") echo "selected"; ?>>No</option>
-                                    </select><button type="submit" name="editar" class="btn btn-primary">Guardar</button>
-                                </td>
-                            </tr>
                         </div>
                     </form>
                 </table>

@@ -1,7 +1,4 @@
 
-body {
-    padding: none;
-}
 
 .tabla-container {
     width: 100%;
@@ -26,22 +23,27 @@ body {
     width: 100%;
     box-sizing: border-box;
     padding: 3px;
+
+
+  
 }
+.tabla th:nth-child(3n+1) {
+    clear: both;
+  }
 
 .btn-container {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .btn {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
 }
-
 
 /* esto es para la hoja */
 .pdf-page {
@@ -49,69 +51,69 @@ body {
 }
 
 .pdf-page {
-    box-sizing: border-box;
-    box-shadow: 0 15px 110px 10px;
-    background-color: #fff;
-    color: #333;
-    position: relative;
-    margin-top: 1px;
-    margin-left: 365px;
-  }
+  box-sizing: border-box;
+  box-shadow: 0 15px 110px 10px;
+  background-color: #fff;
+  color: #333;
+  position: relative;
+  margin-top: 1px;
+  margin-left: 365px;
+}
 
-  .pdf-header {
-    position: absolute;
-    top: 1cm;
+.pdf-header {
+  position: absolute;
+  top: 1cm;
 
-    left: 1.3cm;
-    right: 8cm;
-    border-bottom: 1px;
-  }
+  left: 1.3cm;
+  right: 8cm;
+  border-bottom: 1px;
+}
 
-  .pdf-footer {
-    bottom: 0.5cm;
-    height: 3cm;
-    left: 1cm;
-    right: 1cm;
-    position: absolute;
-  }
+.pdf-footer {
+  bottom: 0.5cm;
+  height: 3cm;
+  left: 1cm;
+  right: 1cm;
+  position: absolute;
+}
 
-  .header {
-    height: 105px;
-  }
+.header {
+  height: 105px;
+}
 
-  .footer {
-    height: 120px;
-  }
+.footer {
+  height: 120px;
+}
 
-  .pdf-body {
-    position: absolute;
-    top: 3.7in;
-    bottom: 1.2in;
-    left: 0.5in;
-    right: 0.5in;
-  }
+.pdf-body {
+  position: absolute;
+  top: 3.7in;
+  bottom: 1.2in;
+  left: 0.5in;
+  right: 0.5in;
+}
 
-  .size-a4 {
-    width: 8.3in;
-    height: 11.7in;
-  }
+.size-a4 {
+  width: 8.3in;
+  height: 11.7in;
+}
 
-  .size-letter {
-    width: 8.5in;
-    height: 11in;
-  }
+.size-letter {
+  width: 8.5in;
+  height: 11in;
+}
 
-  .size-executive {
-    width: 7.25in;
-    height: 10.5in;
-  }
+.size-executive {
+  width: 7.25in;
+  height: 10.5in;
+}
 
-  .company-logo {
-    font-size: 30px;
-    font-weight: bold;
-    color: #3aabf0;
-  }
+.company-logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: #3aabf0;
+}
 
-  .signature {
-    padding-top: 0.5in;
-  }
+.signature {
+  padding-top: 0.5in;
+}

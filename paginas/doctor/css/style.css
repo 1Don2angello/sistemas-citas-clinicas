@@ -1,12 +1,6 @@
 
-
-.tabla-container {
-    width: 100%;
-    overflow-x: auto;
-}
-
 .tabla {
-    width: max-content;
+    width:min-content;
     border-collapse: collapse;
 }
 
@@ -16,20 +10,11 @@
     background-color: lightgray;
 }
 
-.tabla input[type="text"],
-.tabla input[type="date"],
-.tabla input[type="time"],
 .tabla select {
     width: 100%;
     box-sizing: border-box;
     padding: 3px;
-
-
-  
 }
-.tabla th:nth-child(3n+1) {
-    clear: both;
-  }
 
 .btn-container {
   text-align: center;
@@ -86,11 +71,12 @@
 }
 
 .pdf-body {
-  position: absolute;
-  top: 3.7in;
-  bottom: 1.2in;
-  left: 0.5in;
-  right: 0.5in;
+ 
+    position: absolute;
+    top: 1.7in;
+    bottom: 1cm;
+    left: 0.5in;
+    right: 2.5in;
 }
 
 .size-a4 {

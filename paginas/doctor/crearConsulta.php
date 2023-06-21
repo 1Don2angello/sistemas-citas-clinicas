@@ -39,11 +39,97 @@
                             <div>
                                 <tr>
                                     <th colspan="1" for="" class="clave">Clave</th>
-                                    <th><input class="sinborde" type="text" name="clave" value=""></th>
-                                    <th colspan="1" class="nombre">Nombre</th>
-                                    <th colspan="1"><input type="text" class="sinborde" name="nombre" value="" style="width: 500px;"></th>
+                                    <th>
+                                        <input class="sinborde" type="text" name="clave" id="clave" value="">
+                                    </th>
+                                    <th colspan="1">
+                                        <button id="buscar-btn" type="button">Buscar</button>
+                                    </th>
+                                    <th colspan="" class="nombre">Nombre<br>
+                                        <input type="text" readonly name="nombre" id="nombre_completo" value="" style="width: 600px;">
+                                    </th>
                                 </tr>
 
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script>
+                                    $(document).ready(function() {
+                                        // Manejar el evento de clic del botón "Buscar"
+                                        $('#buscar-btn').click(function() {
+                                            buscar();
+                                        });
+
+                                        // Manejar el evento de presionar la tecla Enter en el campo de texto "Clave"
+                                        $('#clave').keydown(function(event) {
+                                            if (event.which === 13) {
+                                                event.preventDefault();
+                                                buscar(); // Llamar a la función buscar
+                                                $('#nombre_completo').focus();
+                                            }
+                                        });
+                                        $('#nombre_completo').keydown(function(event) {
+                                            if (event.which === 13) {
+                                                event.preventDefault();
+                                                // Aquí puedes realizar la acción de guardar o desplazarte al siguiente campo
+                                            }
+                                        });
+
+                                        // Manejar el evento de presionar la tecla Enter en los campos de texto
+                                        $('input').keydown(function(event) {
+                                            if (event.which === 13) {
+                                                event.preventDefault();
+                                                var inputs = $('input'); // Obtener todos los campos de texto
+                                                var currentIndex = inputs.index(this); // Obtener el índice del campo actual
+                                                var nextIndex = currentIndex + 1; // Calcular el índice del siguiente campo
+
+                                                // Mover el foco al siguiente campo de texto o al primer campo si es el último
+                                                if (nextIndex < inputs.length) {
+                                                    inputs[nextIndex].focus();
+                                                } else {
+                                                    inputs[0].focus();
+                                                }
+                                            }
+                                        });
+
+                                        // Manejar el evento de presionar la tecla Tab en los campos de texto
+                                        $('input').keydown(function(event) {
+                                            if (event.which === 9) {
+                                                var inputs = $('input'); // Obtener todos los campos de texto
+                                                var currentIndex = inputs.index(this); // Obtener el índice del campo actual
+                                                var nextIndex = currentIndex + 1; // Calcular el índice del siguiente campo
+
+                                                // Mover el foco al siguiente campo de texto o al primer campo si es el último
+                                                if (nextIndex < inputs.length) {
+                                                    inputs[nextIndex].focus();
+                                                } else {
+                                                    inputs[0].focus();
+                                                }
+
+                                                event.preventDefault(); // Evitar el comportamiento predeterminado de la tecla Tab
+                                            }
+                                        });
+                                        // Función para realizar la búsqueda
+                                        function buscar() {
+                                            var clave = $('#clave').val();
+                                            // Realizar la solicitud AJAX
+                                            $.ajax({
+                                                url: '../../paginas/consulta.php',
+                                                method: 'GET',
+                                                data: {
+                                                    clave: clave
+                                                },
+                                                success: function(data) {
+                                                    // Actualizar el campo de nombre completo con los datos devueltos
+                                                    var resultado = JSON.parse(data);
+                                                    var nombreCompleto = resultado.Nombre + ' ' + resultado.Paterno + ' ' + resultado.Materno;
+                                                    $('#nombre_completo').val(nombreCompleto);
+                                                },
+                                                error: function() {
+                                                    alert('Error al realizar la consulta.');
+                                                }
+                                            });
+                                        }
+                                    });
+                                </script>
                                 <tr>
                                     <td class="edad">Edad</td>
                                     <td><input type="text" class="edad" name="edad" value=""></td>
@@ -221,13 +307,13 @@
                             </div>
                             <div>
                                 <tr>
-                                  
+
                                     <td class="">¿Es apto?</td>
-                                    <td> <select name="aptos" id="aptos" >
-                                        <option value="si">Si</option>
-                                        <option value="no">No</option>
-                                    </select></td>
-                                    
+                                    <td> <select name="aptos" id="aptos">
+                                            <option value="si">Si</option>
+                                            <option value="no">No</option>
+                                        </select></td>
+
                                     <td>
                                         <button type="submit" name="procesoConsulta" class="btn btn-primary">Guardar</button>
                                     </td>

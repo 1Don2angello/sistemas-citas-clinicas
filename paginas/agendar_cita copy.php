@@ -65,9 +65,9 @@
             <div class="col-lg-11">
               <label for="select_proveedor" style="font-weight: bold">Especialista:</label>
               <select class="form-control" id="select_proveedor" style="width: 100%; height: 40px">
-                <option value="-1"  >- seleccionar -</option>
+                <option value="-1">- seleccionar -</option>
               </select>
-              <input class="form-control" id="select_proveedor"  style="width: 100%" readonly  type="text" value="" />
+              <!--  <input class="form-control" id="select_proveedor"  style="width: 100%" readonly  type="text" value="" /> -->
             </div>
           </div>
         </div>
@@ -181,10 +181,39 @@
 
       <script>
         $(document).ready(function() {
+          // Manejar el evento de presionar una tecla en el campo "clave"
+          $('#clave').keypress(function(event) {
+            // Verificar si la tecla presionada es "Enter"
+            if (event.which === 13) {
+              event.preventDefault(); // Evitar el envío del formulario
+              realizarBusqueda();
+              $('#txt_nombre').focus(); // Mover el foco al campo "txt_nombre"
+            }
+          });
+          // Manejar el evento de presionar una tecla en los campos "txt_nombre", "txt_apellido_p" y "txt_domicilio"
+          $('#txt_nombre, #txt_apellido_p, #txt_domicilio').keypress(function(event) {
+            // Verificar si la tecla presionada es "Enter"
+            if (event.which === 13) {
+              event.preventDefault(); // Evitar el envío del formulario
+              $('#txt_apellido_m').focus(); // Mover el foco al campo "txt_apellido_m"
+            }
+          });
+          // Manejar el evento de presionar una tecla en el campo "txt_apellido_m"
+          $('#txt_apellido_m').keypress(function(event) {
+            // Verificar si la tecla presionada es "Enter"
+            if (event.which === 13) {
+              event.preventDefault(); // Evitar el envío del formulario
+              // Puedes realizar alguna acción adicional aquí si es necesario
+            }
+          });
           // Manejar el evento de clic del botón "Buscar"
           $('#buscar-btn').click(function() {
+            realizarBusqueda();
+            $('#txt_nombre').focus(); // Mover el foco al campo "txt_nombre"
+          });
+          // Función para realizar la búsqueda y actualizar los campos
+          function realizarBusqueda() {
             var clave = $('#clave').val();
-
             // Realizar la solicitud AJAX
             $.ajax({
               url: 'consulta.php',
@@ -204,7 +233,7 @@
                 alert('Error al realizar la consulta.');
               }
             });
-          });
+          }
         });
       </script>
     </div>
@@ -276,4 +305,5 @@
   </div>
   <div class="loader"></div>
 </body>
+
 </html>

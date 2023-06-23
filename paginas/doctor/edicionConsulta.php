@@ -1,3 +1,8 @@
+<?php
+if (isset($_GET['respuesta'])) {
+    echo "<div class='card-panel red darken-1'>" . $_GET['respuesta'] . "</div>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +11,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Consulta</title>
-    <link rel="stylesheet" href="css/style.css">
 
     <link rel="stylesheet" href="../../plugins/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
     <script src="../../plugins/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -14,6 +18,7 @@
     <link rel="stylesheet" href="../../plugins/node_modules/sweetalert2/dist/sweetalert2.min.css" />
     <script src="../../plugins/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/style.css">
 
 </head>
 
@@ -47,280 +52,294 @@
                         // Obtener el registro
                         $fila5 = $stmt->fetch(PDO::FETCH_ASSOC);
                         ?></h1>
-                <table class="tabla table-bordered">
-                    <form action="editarConsulta.php" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $fila5["id"] ?>" />
-                        <div>
-                            <tr>
-                                <th colspan="1" for="" class="clave">Clave</th>
-                                <th>
-                                    <input class="sinborde" type="text" name="clave" id="clave" value="<?php echo $fila5['clave']; ?>">
-                                </th>
-                                <th colspan="1">
-                                    <button id="buscar-btn" type="button">Buscar</button>
-                                </th>
+                <br>
+                <hr>
+                <table class="table table-bordered " style="width: 90%">
+                    <tbody>
+                        <form action="editarConsulta.php" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $fila5["id"] ?>" />
+                            <div>
 
-                            </tr>
-                            <tr>
-                                <th colspan="1" class="nombre">Nombre</th>
-                                <td><input type="text" readonly name="nombre" id="nombre_completo" value="<?php echo $fila5['nombre']; ?>" style="width: 500px;"></td>
-                                <th class="fecha">Fecha</th>
-                                <td> <input type="date" class="fecha" name="fecha" value="<?php echo $fila5["fecha"] ?>"></td>
-                            </tr>
+                                <button id="buscar-btn" type="button" class="btn btn-primary">Buscar</button>
+                                <button type="submit" name="editar" class="btn btn-primary">Guardar</button>
 
-                            <tr>
-                                <th class="edad">Edad</th>
-                                <td><input type="text" class="edad" name="edad" value="<?php echo $fila5["edad"] ?>"></td>
-                                <th class="sexo">Sexo</th>
-                                <td>
-                                    <select name="sexo" id="sexo">
-                                        <option value="Masculino" <?php if ($fila5["sexo"] == "Masculino") echo "selected"; ?>>Masculino</option>
-                                        <option value="Femenino" <?php if ($fila5["sexo"] == "Femenino") echo "selected"; ?>>Femenino</option>
-                                    </select>
-                                </td>
-                                <th class="tensArt">Tens.Art.</th>
-                                <td><input type="text" class="tensArt" name="tensArt" value="<?php echo $fila5["tensArt"] ?>"></td>
-                                <th class="frCard">Fr.Card</th>
-                                <td><input type="text" class="frCard" name="frCard" value="<?php echo $fila5["frCard"] ?>"></td>
-                                <th class="imc">I.M.C</th>
-                                <td><input type="text" class="imc" name="imc" value="<?php echo $fila5["imc"] ?>"></td>
-                                <th class="hora">HORA <input class="sinborde" type="time" name="hora" value="<?php echo $fila5["hora"] ?>"></th>
-                            </tr>
+                            </div>
+                            <thead>
+                                <tr>
+                                    <th colspan="1" scope="col">Clave</th>
+                                    <td style="width: auto;">
+                                        <input type="text" name="clave" id="clave" value="<?php echo $fila5['clave']; ?>">
 
-                            <tr>
-                                <th class="peso">Peso</th>
-                                <td><input type="text" class="peso" name="peso" value="<?php echo $fila5["peso"] ?>"></td>
-                                <th class="talla">Talla</th>
-                                <td><input type="text" class="talla" name="talla" value="<?php echo $fila5["talla"] ?>"></td>
-                                 <th class="edoCivil">Edo.Civil</th>
-                                <td><input type="text" class="edoCivil" name="edoCivil" value="<?php echo $fila5["edoCivil"] ?>"></td>
-                                 <th class="frResp">Fr.Resp</th>
-                                <td><input type="text" class="frResp" name="frResp" value="" <?php echo $fila5["frResp"] ?>"></td>
-                                 <th class="temp">Temp.</th>
-                                <td><input type="text" class="temp" name="temp" value="<?php echo $fila5["temp"] ?>"></td>
-                            </tr>
-                            <tr>
-                               
-                               
-                            </tr>
-                            <tr>
-                               
-                                <th colspan="1" class="ahf">A.H.F.</th>
-                                <td colspan="10"><input type="text" class="ahf" name="ahf" value="<?php echo $fila5["ahf"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th colspan="1" class="apnp">A.P.N.P</th>
-                                <td colspan="1"><input type="text" class="apnp" name="apnp" value="<?php echo $fila5["apnp"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th colspan="1" class="app">A.P.P</th>
-                                <td colspan="1"><input type="text" class="app" name="app" value="<?php echo $fila5["app"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th colspan="1" class="pActual">P.Actual</th>
-                                <td colspan="1"><input type="text" class="pActual" name="pActual" value="<?php echo $fila5["pActual"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th colspan="1" class="eFisica">eFisica</th>
-                                <td colspan="1"><input type="text" class="eFisica" name="eFisica" value="<?php echo $fila5["eFisica"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th colspan="1" class="fechaN">Fecha de Nacimiento</th>
-                                <td colspan="1"><input type="date" class="fechaN" name="fechaN" value="<?php echo $fila5["fechaN"] ?>"></td>
-                                <th colspan="1" class="escolaridad">Escolaridad</th>
-                                <td colspan="1"><input type="text" class="escolaridad" name="escolaridad" value="<?php echo $fila5["escolaridad"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th colspan="1" class="puestoS">Puesto Solicitado</th>
-                                <td colspan="1"><input type="text" class="puestoS" name="puestoS" value="<?php echo $fila5["puestoS"] ?>"></td>
-                                <th colspan="1" class="lugarOrigen">Lugar de Origen</th>
-                                <td colspan="1"><input type="text" class="lugarOrigen" name="lugarOrigen" value="<?php echo $fila5["lugarOrigen"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th colspan="1" class="analisisCovid">Analisis Covid</th>
-                                <td colspan="1"><input type="text" class="analisisCovid" name="analisisCovid" value="<?php echo $fila5["analisisCovid"] ?>"></td>
-                                <th colspan="1" class="indicaciones">Indicaciones</th>
-                                <td colspan="1"><input type="text" class="indicaciones" name="indicaciones" value="<?php echo $fila5["indicaciones"] ?>"></td>
-                                 <th class="visitarUFM">Visitar UFM</th>
-                                <td><input type="text" class="visitarUFM" name="visitarUFM" value="<?php echo $fila5["visitarUFM"] ?>"></td>
-                                <th colspan="1" class="observaciones">Observaciones</th>
-                                <td colspan="1"><input type="text" class="observaciones" name="observaciones" value="<?php echo $fila5["observaciones"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th class="cirugias">Cirugias</th>
-                                <td colspan="1"><input type="text" class="cirugias" name="cirugias" value="<?php echo $fila5["cirugias"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th class="traumatismos">Traumatismos</th>
-                                <td colspan="1"><input type="text" class="traumatismos" name="traumatismos" value="<?php echo $fila5["traumatismos"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th class="fracturas">Fracturas</th>
-                                <td colspan="1"><input type="text" class="fracturas" name="fracturas" value="<?php echo $fila5["fracturas"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th class="luxaciones">Luxaciones</th>
-                                <td colspan="1"><input type="text" class="luxaciones" name="luxaciones" value="<?php echo $fila5["luxaciones"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th class="alergias">Alergias</th>
-                                <td colspan="1"><input type="text" class="alergias" name="alergias" value="<?php echo $fila5["alergias"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th colspan="1" class="agudezaVisual">Agudeza Visual</th>
-                                <td colspan="1"><input type="text" class="agudezaVisual" name="agudezaVisual" value="<?php echo $fila5["agudezaVisual"] ?>"></td>
-                                <th colspan="1" class="envioOpto">¿Envio al Optometrista?</th>
-                                <td colspan="1"><input type="text" class="envioOpto" name="envioOpto" value="<?php echo $fila5["envioOpto"] ?>"></td>
-                                 <th colspan="1" class="examLab">Examenes de Laboratorio</th>
-                                <td colspan="1"><input type="text" class="examLab" name="examLab" value="<?php echo $fila5["examLab"] ?>"></td>
-                            </tr>
-                            <tr>
-                               
-                            </tr>
-                            <tr>
-                                <th colspan="1" class="licenciaLentes">Licencia Indica Uso de Lentes</th>
-                                <td colspan="1"><input type="text" class="licenciaLentes" name="licenciaLentes" value="<?php echo $fila5["licenciaLentes"] ?>"></td>
-                                <th colspan="1" class="lentGraduadios">¿Usa Lentes Graduadios?</th>
-                                <td colspan="1"><input type="text" class="lentGraduadios" name="lentGraduadios" value="<?php echo $fila5["lentGraduadios"] ?>"></td>
-                                <th colspan="1" class="lentGraduadios">Tipo de Sangre</th>
-                                <td colspan="1"><input type="text" class="lentGraduadios" name="tipoSangre" value="<?php echo $fila5["tipoSangre"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th colspan="1" class="riesgoSalub">Riesgo para la Salub</th>
-                                <td colspan="1"><input type="text" class="riesgoSalub" name="riesgoSalub" value="<?php echo $fila5["riesgoSalub"] ?>"></td>
-                                <th colspan="1" class="perAbdominal">Perimetro Abdominal</th>
-                                <td colspan="1"><input type="text" class="perAbdominal" name="perAbdominal" value="<?php echo $fila5["perAbdominal"] ?>"></td>
-                                <th colspan="1" class="glucosaCapilar">Glucosa Capilar</th>
-                                <td colspan="1"><input type="text" class="glucosaCapilar" name="glucosaCapilar" value="<?php echo $fila5["glucosaCapilar"] ?>"></td>
-                            </tr>
-                            <tr>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Nombre</th>
+                                    <td colspan="4" style="width: auto;"><input type="text" name="nombre" id="nombre_completo" value="<?php echo $fila5['nombre']; ?>" style="width: 500px;"></td>
+                                    <th colspan="1" scope="col">Fecha</th>
+                                    <td colspan="4" style="width: auto;"> <input type="date" name="fecha" value="<?php echo $fila5["fecha"] ?>"></td>
+                                </tr>
+
+                                <tr>
+                                    <th colspan="1" scope="col">Edad</th>
+                                    <td style="width: auto;"><input type="text" class="pequenio" "edad" name="edad" value="<?php echo $fila5["edad"] ?>"></td>
+                                    <th colspan="1" scope="col">Sexo</th>
+                                    <td style="width: auto;">
+                                        <select name="sexo" id="sexo">
+                                            <option value="Masculino" <?php if ($fila5["sexo"] == "Masculino") echo "selected"; ?>>Masculino</option>
+                                            <option value="Femenino" <?php if ($fila5["sexo"] == "Femenino") echo "selected"; ?>>Femenino</option>
+                                        </select>
+                                    </td>
+                                    <th colspan="1" scope="col">Tens.Art.</th>
+                                    <td style="width: auto;"><input type="text" class="pequenio" "tensArt" name="tensArt" value="<?php echo $fila5["tensArt"] ?>"></td>
+
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Peso</th>
+                                    <td style="width: auto;"><input type="text" class="pequenio" "peso" name="peso" value="<?php echo $fila5["peso"] ?>"></td>
+                                    <th colspan="1" scope="col">Talla</th>
+                                    <td style="width: auto;"><input type="text" class="pequenio" "talla" name="talla" value="<?php echo $fila5["talla"] ?>"></td>
+                                    <th colspan="1" scope="col">Edo.Civil</th>
+                                    <td style="width: auto;"><input type="text" class="pequenio" "edoCivil" name="edoCivil" value="<?php echo $fila5["edoCivil"] ?>"></td>
+
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Fr.Card</th>
+                                    <td style="width: auto;"><input type="text" class="pequenio" "frCard" name="frCard" value="<?php echo $fila5["frCard"] ?>"></td>
+                                    <th colspan="1" scope="col">I.M.C</th>
+                                    <td style="width: auto;"><input type="text" class="pequenio" "imc" name="imc" value="<?php echo $fila5["imc"] ?>"></td>
+                                    <th colspan="1" scope="col">HORA </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Fr.Resp</th>
+                                    <td style="width: auto;"><input type="text" class="pequenio" "frResp" name="frResp" value="" <?php echo $fila5["frResp"] ?>"></td>
+                                    <th colspan="1" scope="col">Temp.</th>
+                                    <td style="width: auto;"><input type="text" class="pequenio" "temp" name="temp" value="<?php echo $fila5["temp"] ?>">
+                                    </td>
+                                    <td style="width: auto;"> <input class="sinborde" type="time" name="hora" value="<?php echo $fila5["hora"] ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">A.H.F.</th>
+                                    <td colspan="10" style="width: auto;" colspan="10"><input class="grande" type="text" class="" "ahf" name="ahf" value="<?php echo $fila5["ahf"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">A.P.N.P</th>
+                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "apnp" name="apnp" value="<?php echo $fila5["apnp"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">A.P.P</th>
+                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "app" name="app" value="<?php echo $fila5["app"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">P.Actual</th>
+                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "pActual" name="pActual" value="<?php echo $fila5["pActual"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">eFisica</th>
+                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "eFisica" name="eFisica" value="<?php echo $fila5["eFisica"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Fecha de Nacimiento</th>
+                                    <td style="width: auto;"><input type="date" class="fechaN" name="fechaN" value="<?php echo $fila5["fechaN"] ?>"></td>
+                                    <th colspan="1" scope="col">Escolaridad</th>
+                                    <td style="width: auto;"><input type="text" class="" "escolaridad" name="escolaridad" value="<?php echo $fila5["escolaridad"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Puesto Solicitado</th>
+                                    <td style="width: auto;"><input type="text" class="" "puestoS" name="puestoS" value="<?php echo $fila5["puestoS"] ?>"></td>
+                                    <th colspan="1" scope="col">Lugar de Origen</th>
+                                    <td style="width: auto;"><input type="text" class="" "lugarOrigen" name="lugarOrigen" value="<?php echo $fila5["lugarOrigen"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Analisis Covid</th>
+                                    <td style="width: auto;"><input type="text" class="" "analisisCovid" name="analisisCovid" value="<?php echo $fila5["analisisCovid"] ?>"></td>
+                                    <th colspan="1" scope="col">Indicaciones</th>
+                                    <td style="width: auto;"><input type="text" class="" "indicaciones" name="indicaciones" value="<?php echo $fila5["indicaciones"] ?>"></td>
+                                    <th colspan="1" scope="col" arUFM">Visitar UFM</th>
+                                    <td style="width: auto;"><input type="text" class="" "visitarUFM" name="visitarUFM" value="<?php echo $fila5["visitarUFM"] ?>"></td>
+
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Observaciones</th>
+                                    <td style="width: auto;"><input class="grande" type="text" class="" "observaciones" name="observaciones" value="<?php echo $fila5["observaciones"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Cirugias</th>
+                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "cirugias" name="cirugias" value="<?php echo $fila5["cirugias"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Traumatismos</th>
+                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "traumatismos" name="traumatismos" value="<?php echo $fila5["traumatismos"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Fracturas</th>
+                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "fracturas" name="fracturas" value="<?php echo $fila5["fracturas"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Luxaciones</th>
+                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "luxaciones" name="luxaciones" value="<?php echo $fila5["luxaciones"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Alergias</th>
+                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "alergias" name="alergias" value="<?php echo $fila5["alergias"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Agudeza Visual</th>
+                                    <td style="width: auto;"><input type="text" class="" "agudezaVisual" name="agudezaVisual" value="<?php echo $fila5["agudezaVisual"] ?>"></td>
+                                    <th colspan="1" scope="col">¿Envio al Optometrista?</th>
+                                    <td style="width: auto;"><input type="text" class="" "envioOpto" name="envioOpto" value="<?php echo $fila5["envioOpto"] ?>"></td>
+                                    <th colspan="1" scope="col">Examenes de Laboratorio</th>
+                                    <td style="width: auto;"><input type="text" class="" "examLab" name="examLab" value="<?php echo $fila5["examLab"] ?>"></td>
+                                </tr>
+                                <tr>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Licencia Indica Uso de Lentes</th>
+                                    <td style="width: auto;"><input type="text" class="" "licenciaLentes" name="licenciaLentes" value="<?php echo $fila5["licenciaLentes"] ?>"></td>
+                                    <th colspan="1" scope="col">¿Usa Lentes Graduadios?</th>
+                                    <td style="width: auto;"><input type="text" class="" "lentGraduadios" name="lentGraduadios" value="<?php echo $fila5["lentGraduadios"] ?>"></td>
+                                    <th colspan="1" scope="col">Tipo de Sangre</th>
+                                    <td style="width: auto;"><input type="text" class="" "lentGraduadios" name="tipoSangre" value="<?php echo $fila5["tipoSangre"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Riesgo para la Salub</th>
+                                    <td style="width: auto;"><input type="text" class="" "riesgoSalub" name="riesgoSalub" value="<?php echo $fila5["riesgoSalub"] ?>"></td>
+                                    <th colspan="1" scope="col">Perimetro Abdominal</th>
+                                    <td style="width: auto;"><input type="text" class="" "perAbdominal" name="perAbdominal" value="<?php echo $fila5["perAbdominal"] ?>"></td>
+                                    <th colspan="1" scope="col">Glucosa Capilar</th>
+                                    <td style="width: auto;"><input type="text" class="" "glucosaCapilar" name="glucosaCapilar" value="<?php echo $fila5["glucosaCapilar"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">I.R.A.S</th>
+                                    <td style="width: auto;"><input type="text" class="" "iras" name="iras" value="<?php echo $fila5["iras"] ?>"></td>
+                                    <th colspan="1" scope="col">Porcentaje de Oxigeno</th>
+                                    <td style="width: auto;"><input type="text" class="" "porcentajeOxigeno" name="porcentajeOxigeno" value="<?php echo $fila5["porcentajeOxigeno"] ?>"></td>
+                                    <th colspan="1" scope="col" aAplicada">Prueva Aplicada</th>
+                                    <td style="width: auto;"><input type="text" class="" "pruevaAplicada" name="pruevaAplicada" value="<?php echo $fila5["pruevaAplicada"] ?>"></td>
+                                </tr>
+                                <tr>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Fecha Aplicacion</th>
+                                    <td style="width: auto;"><input type="date" class="FechaAplicacion" name="FechaAplicacion" value="<?php echo $fila5["FechaAplicacion"] ?>"></td>
+                                    <th colspan="1" scope="col">Hora Aplicacion</th>
+                                    <td style="width: auto;"><input type="time" class="horaAplicacion" name="horaAplicacion" value="<?php echo $fila5["horaAplicacion"] ?>"></td>
+                                    <th colspan="1" scope="col">Resultado</th>
+                                    <td style="width: auto;"><input type="text" class="" "resultado" name="resultado" value="<?php echo $fila5["resultado"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Diagnostico</th>
+                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "diagnostico" name="diagnostico" value="<?php echo $fila5["diagnostico"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Indicaciones Finales</th>
+                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" name="indicacionesFinales" value="<?php echo $fila5["indicacionesFinales"] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col" > Es apto?</th>
+                                    <td colspan="1" style="width: auto;"><select name="aptos" id="aptos">
+                                            <option value="si" <?php if ($fila5["aptos"] == "si") echo "selected"; ?>>Si</option>
+                                            <option value="no" <?php if ($fila5["aptos"] == "no") echo "selected"; ?>>No</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <button type="submit" name="editar" class="btn btn-primary">Guardar</button>
+                                    </td>
+                                </tr>
                                 
-                                <th colspan="1" class="iras">I.R.A.S</th>
-                                <td colspan="1"><input type="text" class="iras" name="iras" value="<?php echo $fila5["iras"] ?>"></td>
-                                <th colspan="1" class="porcentajeOxigeno">Porcentaje de Oxigeno</th>
-                                <td colspan="1"><input type="text" class="porcentajeOxigeno" name="porcentajeOxigeno" value="<?php echo $fila5["porcentajeOxigeno"] ?>"></td>
-                                <th class="pruevaAplicada">Prueva Aplicada</th>
-                                <td><input type="text" class="pruevaAplicada" name="pruevaAplicada" value="<?php echo $fila5["pruevaAplicada"] ?>"></td>
-                            </tr>
-                            <tr>
-                                
-                            </tr>
-                            <tr>
-                                <th class="FechaAplicacion">Fecha Aplicacion</th>
-                                <td><input type="date" class="FechaAplicacion" name="FechaAplicacion" value="<?php echo $fila5["FechaAplicacion"] ?>"></td>
-                                <th class="horaAplicacion">Hora Aplicacion</th>
-                                <td><input type="time" class="horaAplicacion" name="horaAplicacion" value="<?php echo $fila5["horaAplicacion"] ?>"></td> 
-                                <th class="resultado">Resultado</th>
-                                <td><input type="text" class="resultado" name="resultado" value="<?php echo $fila5["resultado"] ?>"></td>
-                            </tr>
-                            <tr>
-                               
-                                <th class="diagnostico">Diagnostico</th>
-                                <td><input type="text" class="diagnostico" name="diagnostico" value="<?php echo $fila5["diagnostico"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th class="indicacionesFinales">Indicaciones Finales</th>
-                                <td><input type="text" name="indicacionesFinales" value="<?php echo $fila5["indicacionesFinales"] ?>"></td>
-                            </tr>
-                            <tr>
-                                <th class="">¿Es apto?</th>
-                                <td><select name="aptos" id="aptos">
-                                        <option value="si" <?php if ($fila5["aptos"] == "si") echo "selected"; ?>>Si</option>
-                                        <option value="no" <?php if ($fila5["aptos"] == "no") echo "selected"; ?>>No</option>
-                                    </select><button type="submit" name="editar" class="btn btn-primary">Guardar</button>
-                                </td>
-                            </tr>
+                            </thead>
+                        </form>
+                    </tbody>
 
-                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                            <script>
-                                $(document).ready(function() {
-                                    // Manejar el evento de clic del botón "Buscar"
-                                    $('#buscar-btn').click(function() {
-                                        buscar();
-                                    });
 
-                                    // Manejar el evento de presionar la tecla Enter en el campo de texto "Clave"
-                                    $('#clave').keydown(function(event) {
-                                        if (event.which === 13) {
-                                            event.preventDefault();
-                                            buscar(); // Llamar a la función buscar
-                                            $('#nombre_completo').focus();
-                                        }
-                                    });
-                                    $('#nombre_completo').keydown(function(event) {
-                                        if (event.which === 13) {
-                                            event.preventDefault();
-                                            // Aquí puedes realizar la acción de guardar o desplazarte al siguiente campo
-                                        }
-                                    });
 
-                                    // Manejar el evento de presionar la tecla Enter en los campos de texto
-                                    $('input').keydown(function(event) {
-                                        if (event.which === 13) {
-                                            event.preventDefault();
-                                            var inputs = $('input'); // Obtener todos los campos de texto
-                                            var currentIndex = inputs.index(this); // Obtener el índice del campo actual
-                                            var nextIndex = currentIndex + 1; // Calcular el índice del siguiente campo
-
-                                            // Mover el foco al siguiente campo de texto o al primer campo si es el último
-                                            if (nextIndex < inputs.length) {
-                                                inputs[nextIndex].focus();
-                                            } else {
-                                                inputs[0].focus();
-                                            }
-                                        }
-                                    });
-
-                                    // Manejar el evento de presionar la tecla Tab en los campos de texto
-                                    $('input').keydown(function(event) {
-                                        if (event.which === 9) {
-                                            var inputs = $('input'); // Obtener todos los campos de texto
-                                            var currentIndex = inputs.index(this); // Obtener el índice del campo actual
-                                            var nextIndex = currentIndex + 1; // Calcular el índice del siguiente campo
-
-                                            // Mover el foco al siguiente campo de texto o al primer campo si es el último
-                                            if (nextIndex < inputs.length) {
-                                                inputs[nextIndex].focus();
-                                            } else {
-                                                inputs[0].focus();
-                                            }
-
-                                            event.preventDefault(); // Evitar el comportamiento predeterminado de la tecla Tab
-                                        }
-                                    });
-                                    // Función para realizar la búsqueda
-                                    function buscar() {
-                                        var clave = $('#clave').val();
-                                        // Realizar la solicitud AJAX
-                                        $.ajax({
-                                            url: '../../paginas/consulta.php',
-                                            method: 'GET',
-                                            data: {
-                                                clave: clave
-                                            },
-                                            success: function(data) {
-                                                // Actualizar el campo de nombre completo con los datos devueltos
-                                                var resultado = JSON.parse(data);
-                                                var nombreCompleto = resultado.Nombre + ' ' + resultado.Paterno + ' ' + resultado.Materno;
-                                                $('#nombre_completo').val(nombreCompleto);
-                                            },
-                                            error: function() {
-                                                alert('Error al realizar la consulta.');
-                                            }
-                                        });
-                                    }
-                                });
-                            </script>
-
-                        </div>
-                    </form>
                 </table>
             </div>
         </div>
-
-
+        </div>
+        <br /><br />
     </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Manejar el evento de clic del botón "Buscar"
+            $('#buscar-btn').click(function() {
+                buscar();
+            });
+            // Manejar el evento de presionar la tecla Enter en el campo de texto "Clave"
+            $('#clave').keydown(function(event) {
+                if (event.which === 13) {
+                    event.preventDefault();
+                    buscar(); // Llamar a la función buscar
+                    $('#nombre_completo').focus();
+                }
+            });
+            $('#nombre_completo').keydown(function(event) {
+                if (event.which === 13) {
+                    event.preventDefault();
+                    // Aquí puedes realizar la acción de guardar o desplazarte al siguiente campo
+                }
+            });
+            // Manejar el evento de presionar la tecla Enter en los campos de texto
+            $('input').keydown(function(event) {
+                if (event.which === 13) {
+                    event.preventDefault();
+                    var inputs = $('input'); // Obtener todos los campos de texto
+                    var currentIndex = inputs.index(this); // Obtener el índice del campo actual
+                    var nextIndex = currentIndex + 1; // Calcular el índice del siguiente campo
+                    // Mover el foco al siguiente campo de texto o al primer campo si es el último
+                    if (nextIndex < inputs.length) {
+                        inputs[nextIndex].focus();
+                    } else {
+                        inputs[0].focus();
+                    }
+                }
+            });
 
+            // Manejar el evento de presionar la tecla Tab en los campos de texto
+            $('input').keydown(function(event) {
+                if (event.which === 9) {
+                    var inputs = $('input'); // Obtener todos los campos de texto
+                    var currentIndex = inputs.index(this); // Obtener el índice del campo actual
+                    var nextIndex = currentIndex + 1; // Calcular el índice del siguiente campo
+
+                    // Mover el foco al siguiente campo de texto o al primer campo si es el último
+                    if (nextIndex < inputs.length) {
+                        inputs[nextIndex].focus();
+                    } else {
+                        inputs[0].focus();
+                    }
+
+                    event.preventDefault(); // Evitar el comportamiento predeterminado de la tecla Tab
+                }
+            });
+            // Función para realizar la búsqueda
+            function buscar() {
+                var clave = $('#clave').val();
+                // Realizar la solicitud AJAX
+                $.ajax({
+                    url: '../../paginas/consulta.php',
+                    method: 'GET',
+                    data: {
+                        clave: clave
+                    },
+                    success: function(data) {
+                        // Actualizar el campo de nombre completo con los datos devueltos
+                        var resultado = JSON.parse(data);
+                        var nombreCompleto = resultado.Nombre + ' ' + resultado.Paterno + ' ' + resultado.Materno;
+                        $('#nombre_completo').val(nombreCompleto);
+                    },
+                    error: function() {
+                        alert('Error al realizar la consulta.');
+                    }
+                });
+            }
+        });
+    </script>
     <div id="footer_nav"></div>
 
 

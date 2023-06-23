@@ -12,6 +12,7 @@ if (isset($_GET['respuesta'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel Control Citas</title>
+    
     <link rel="stylesheet" href="../../plugins/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
     <script src="../../plugins/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../plugins/vendor/components/jquery/jquery.min.js"></script>
@@ -67,8 +68,9 @@ if (isset($_GET['respuesta'])) {
                                     <td style="width: auto;"><?php echo $fila2["id"] ?></td>
                                     <th colspan="1" scope="col">clave</th>
                                     <td style="width: auto;"><?php echo $fila2["clave"] ?></td>
-
                                 </tr>
+
+
                                 <tr>
                                     <th colspan="1" scope="col">nombre</th>
                                     <td colspan="4"><?php echo $fila2["nombre"] ?></td>

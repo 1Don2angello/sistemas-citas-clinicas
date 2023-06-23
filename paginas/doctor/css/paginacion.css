@@ -1,0 +1,13 @@
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-form .form-group {
+    margin-bottom: 0;
+}
+
+.search-form .form-group label {
+    margin-right: 5px;
+}

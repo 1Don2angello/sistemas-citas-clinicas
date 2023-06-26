@@ -29,9 +29,6 @@
             break;
     }
     
-    /*
-    * - programó: 
-    * - nombre: consultar_usuarios*/
     
     function consultar_usuario($obj_filtros){
         $filtros = json_decode($obj_filtros);
@@ -39,7 +36,7 @@
         //creamos la conexion con la base de datos
         $db_context = new BaseDatos();
         //variable de la consulta SQL
-        $query = "SELECT * FROM cat_usuarios WHERE usuarios_usuario = '".$filtros->usuarios_usuario."' AND usuarios_clave = '".$filtros->usuarios_clave."'";
+        $query = "SELECT * FROM gestion_citas.cat_usuarios WHERE usuarios_usuario = '".$filtros->usuarios_usuario."' AND usuarios_clave = '".$filtros->usuarios_clave."'";
         //variable que contiene el resultado de la consulta
         $stmt = sqlsrv_query($db_context->conexion, $query);
         //verificamos si la consulta se realizó correctamente
@@ -77,7 +74,7 @@
         // Creamos la instancia de la clase BaseDatos
         $db_context = new BaseDatos();
         // Variable de la consulta SQL
-        $query = "SELECT * FROM cat_usuarios WHERE usuarios_usuario = '$user' AND usuarios_clave = '$pass'";
+        $query = "SELECT * FROM gestion_citas.cat_usuarios WHERE usuarios_usuario = '$user' AND usuarios_clave = '$pass'";
         // Ejecutar la consulta SQL
         $result = sqlsrv_query($db_context->conexion, $query);
     

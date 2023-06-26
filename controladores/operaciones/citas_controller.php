@@ -6,9 +6,6 @@
     require "../../entidades/cls/cls_ope_citas.php";
     require "../../entidades/cls/cls_horas_ocupadas.php";
     require "../../entidades/cls/cls_salas_ocupadas.php";
-    
-        
-
 
     //variable que indica a cual funcion hace referencia la peticion ajax
     $funcion = $_POST['funcion'];

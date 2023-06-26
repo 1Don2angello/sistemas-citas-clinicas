@@ -3,9 +3,6 @@
     //agregamos todas las referencias necesarias
     require "../../configDBsqlserver%20copy.php";
     require "../../entidades/apl_configuracion.php";        
-        
-
-
     //variable que indica a cual funcion hace referencia la peticion ajax
     $funcion = $_POST['funcion'];
 

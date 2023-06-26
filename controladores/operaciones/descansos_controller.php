@@ -3,9 +3,6 @@
     //agregamos todas las referencias necesarias
     require "../../configDBsqlserver%20copy.php";
     require "../../entidades/ope_descansos.php";
-        
-
-
     //variable que indica a cual funcion hace referencia la peticion ajax
     $funcion = $_POST['funcion'];
 
@@ -33,7 +30,7 @@
         //creamos la conexion con la base de datos
         $db_context = new BaseDatos();
         //eliminamos todos los registros existentes en la tabla ope_descansos
-        $query_delete = "DELETE FROM ope_descansos";
+        $query_delete = "DELETE FROM gestion_citas.ope_descansos";
         $stmt_delete = sqlsrv_query($db_context->conexion, $query_delete);
         //verificamos si la eliminación se realizó correctamente
         if ($stmt_delete === false) {
@@ -42,7 +39,7 @@
         //insertamos los nuevos registros en la tabla ope_descansos
         for ($i = 0; $i < sizeof($filtros); $i++) {
             //variable de la consulta SQL
-            $query_insert = "INSERT INTO ope_descansos (descansos_id, descansos_dia, descansos_inicio, descansos_final) VALUES (NULL, '".$filtros[$i]->descansos_dia."', '".$filtros[$i]->descansos_inicio."', '".$filtros[$i]->descansos_final."')";
+            $query_insert = "INSERT INTO gestion_citas.ope_descansos (descansos_id, descansos_dia, descansos_inicio, descansos_final) VALUES (NULL, '".$filtros[$i]->descansos_dia."', '".$filtros[$i]->descansos_inicio."', '".$filtros[$i]->descansos_final."')";
             //variable que contiene el resultado de la consulta
             $stmt_insert = sqlsrv_query($db_context->conexion, $query_insert);
             //verificamos si la inserción se realizó correctamente
@@ -67,7 +64,7 @@
         //creamos la conexion con la base de datos
         $db_context = new BaseDatos();
         //variable de la consulta SQL
-        $query = "SELECT * FROM ope_descansos";
+        $query = "SELECT * FROM gestion_citas.ope_descansos";
         //variable que contiene el resultado de la consulta
         $result = mysqli_query($db_context->conexion,$query);        
         //recorremos el resultado fila por fila

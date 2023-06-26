@@ -1,50 +1,37 @@
 <?php
     
     //agregamos todas las referencias necesarias
-    require "../../configDB.php";
+    require "../../configDBsqlserver%20copy.php";
     require "../../entidades/ope_citas.php";
     require "../../entidades/cls/cls_ope_citas.php";
-    
     require '../../plugins/vendor/autoload.php';
     use PhpOffice\PhpSpreadsheet\Spreadsheet;
     use PhpOffice\PhpSpreadsheet\Writer\Xlsx;        
 
-
     //variable que indica a cual funcion hace referencia la peticion ajax
     $funcion = $_POST['funcion'];
-
     //evaluamos el contenido del valor recibido por POST y ejecutamos la funcion segun los parametros recibidos
     switch($funcion){
-                
         case "consultar_cls":
             consultar_cls($_POST['obj_filtros']);
             break;
-        
         case "exportar_excel":
             exportar_excel($_POST['obj_json']);
             break;
-
         default:
             echo "{\"mensaje\":\"No se ha especificado una funcion valida\"}";
             break;
     }
 
-    
     function consultar_cls($obj_filtros){
-        
         $filtros = json_decode($obj_filtros);
-
         $fecha_inicio = explode(",",$filtros->citas_fecha)[0];
         $fecha_fin = explode(",",$filtros->citas_fecha)[1];
-
         $hora_inicio = explode(",",$filtros->citas_hora)[0];
         $hora_fin = explode(",",$filtros->citas_hora)[1];
-
         $lista_resultado = [];//variable en la que se almacena el resultado de la consulta
-        
         //creamos la conexion con la base de datos
         $db_context = new BaseDatos();
-        
         //variable de la consulta SQL
         $query = "SELECT * FROM ope_citas AS oc "
         ."INNER JOIN cat_clientes AS cc ON oc.citas_clientes_id = cc.clientes_id "
@@ -52,38 +39,27 @@
         ."INNER JOIN cat_categorias AS cca ON cs.servicios_categoria_id = cca.categorias_id "
         ."INNER JOIN cat_usuarios AS cu ON oc.citas_proveedor_id = cu.usuarios_id "
         ."WHERE oc.citas_estatus='". $filtros->citas_estatus ."' ";
-
         if($filtros->servicios_id!=-1){
             $query.= "AND oc.citas_servicios_id = " . $filtros->servicios_id . " ";
         }
-
         if($filtros->proveedores_id!=-1){
             $query.= "AND oc.citas_proveedor_id = " . $filtros->proveedores_id . " ";
         }
-
         if($filtros->clientes_id!=-1){
             $query.= "AND cc.clientes_id =".$filtros->clientes_id." ";
         }
-
         if($fecha_inicio!=""){
             $query.= "AND oc.citas_fecha >= '" . $fecha_inicio . "' ";
         }
-
         if($fecha_fin!=""){
             $query.= "AND oc.citas_fecha <= '" . $fecha_fin . "' ";
         }
-
         $query.="ORDER BY citas_fecha ASC";
-                        
-
         //echo $query;
-
         //variable que contiene el resultado de la consulta
         $result = mysqli_query($db_context->conexion,$query);        
-
         //recorremos el resultado fila por fila
         while(($row = mysqli_fetch_array($result))==true){                               
-
             $item = new cls_ope_citas(
                 $row['citas_id'],
                 $row['citas_servicios_id'],
@@ -95,38 +71,27 @@
                 $row['citas_notas'],
                 $row['citas_fecha_creo'],
                 $row['citas_sala'],
-
                 $row['servicios_id'],
                 $row['servicios_nombre'],
                 $row['servicios_duracion'],
                 $row['servicios_precio'],
-
                 $row['categorias_id'],
                 $row['categorias_nombre'],
-
                 $row['clientes_id'],
                 $row['clientes_nombre'] . " " . $row['clientes_apellido_p'] . " " . $row['clientes_apellido_m'],
                 $row['clientes_correo'],
                 $row['clientes_telefono'],
-
                 $row['usuarios_nombre'] . " " . $row['usuarios_apellido_p'] . " " . $row['usuarios_apellido_m']
             );
-
-                        
             //agregamos el array interno al array de resultado
             array_push($lista_resultado, $item);
         }
-        
-        
         if($hora_inicio==""){
             $hora_inicio="00:00";
         }
-
         if($hora_fin==""){
             $hora_fin="24:00";
         }
-
-
         $array_tmp=[];
         for($i=0;$i<sizeof($lista_resultado);$i++){
                         
@@ -135,11 +100,8 @@
             }
         }
         $lista_resultado = $array_tmp;
-
-
         //cerramos la conexion con la base de datos
         $db_context->desconectar($db_context->conexion);        
-
         //retornamos el resultado obtenido
         echo json_encode($lista_resultado);
     }

@@ -159,7 +159,7 @@
             }
         }
     
-        $consulta_fecha = "SELECT * FROM ope_citas WHERE citas_fecha = ? AND citas_hora = ?";
+        $consulta_fecha = "SELECT * FROM gestion_citas.ope_citas WHERE citas_fecha = ? AND citas_hora = ?";
         $stmt_fecha = sqlsrv_prepare($db_context->conexion, $consulta_fecha, array(&$fecha, &$hora_cita));
         $result_fecha = sqlsrv_execute($stmt_fecha);
     
@@ -279,7 +279,7 @@
         //creamos la conexion con la base de datos
         $db_context = new BaseDatos();
         //variable de la consulta SQL
-        $query = "SELECT * FROM ope_citas AS oc "
+        $query = "SELECT * FROM gestion_citas.ope_citas AS oc "
         ."INNER JOIN cat_clientes AS cc ON oc.citas_clientes_id = cc.clientes_id "
         ."INNER JOIN cat_usuarios AS cu ON oc.citas_proveedor_id = cu.usuarios_id "
         ."INNER JOIN cat_servicios AS cs ON oc.citas_servicios_id = cs.servicios_id "
@@ -329,7 +329,7 @@
         //creamos la conexion con la base de datos
         $db_context = new BaseDatos();
         //variable de la consulta SQL
-        $query = "SELECT * FROM ope_citas AS oc "
+        $query = "SELECT * FROM gestion_citas.ope_citas AS oc "
         ."INNER JOIN cat_clientes AS cc ON oc.citas_clientes_id = cc.clientes_id "
         ."INNER JOIN cat_usuarios AS cu ON oc.citas_proveedor_id = cu.usuarios_id "
         ."INNER JOIN cat_servicios AS cs ON oc.citas_servicios_id = cs.servicios_id "
@@ -405,8 +405,8 @@
         
         //variable de la consulta SQL
         $query = "SELECT oc.citas_hora as hora_inicio, cs.servicios_duracion as duracion, oc.citas_proveedor_id, oc.citas_fecha 
-                  FROM ope_citas AS oc
-                  INNER JOIN cat_servicios AS cs ON oc.citas_servicios_id = cs.servicios_id
+                  FROM gestion_citas.ope_citas AS oc
+                  INNER JOIN gestion_citas.cat_servicios AS cs ON oc.citas_servicios_id = cs.servicios_id
                   WHERE oc.citas_proveedor_id = ".$proveedor_id." AND oc.citas_fecha = '".$fecha."'";
     
         $stmt = sqlsrv_query($db_context->conexion, $query);
@@ -446,8 +446,8 @@
         
         //variable de la consulta SQL
         $query = "SELECT oc.citas_hora as hora_inicio, cs.servicios_duracion as duracion, oc.citas_proveedor_id, oc.citas_fecha 
-                  FROM ope_citas AS oc
-                  INNER JOIN cat_servicios AS cs ON oc.citas_servicios_id = cs.servicios_id
+                  FROM gestion_citas.ope_citas AS oc
+                  INNER JOIN gestion_citas.cat_servicios AS cs ON oc.citas_servicios_id = cs.servicios_id
                   WHERE oc.citas_proveedor_id = ".$proveedor_id." AND oc.citas_fecha = '".$fecha."'";
     
         $stmt = sqlsrv_query($db_context->conexion, $query);
@@ -486,7 +486,7 @@
         $db_context = new BaseDatos();
         
         //variable de la consulta SQL
-        $query = "SELECT * FROM ope_citas WHERE citas_clientes_id = " . $id;
+        $query = "SELECT * FROM gestion_citas.ope_citas WHERE citas_clientes_id = " . $id;
     
         $stmt = sqlsrv_query($db_context->conexion, $query);
     

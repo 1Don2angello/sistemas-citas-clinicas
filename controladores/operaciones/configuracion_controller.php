@@ -1,7 +1,7 @@
 <?php
     
     //agregamos todas las referencias necesarias
-    require "../../configDB.php";
+    require "../../configDBsqlserver%20copy.php";
     require "../../entidades/apl_configuracion.php";        
         
 
@@ -28,12 +28,8 @@
     
 
     function actualizar($obj_filtros){
-        
         $error = "";
-
         $filtros = json_decode($obj_filtros);
-
-
         //buscamos si viene el objeto extra que indica que se actualizo la imagen
         $index_img=-1;
         for($i=0;$i<sizeof($filtros);$i++){
@@ -42,43 +38,28 @@
                 break;
             }
         }
-
         if($index_img!=-1){
             unset($filtros[$index_img]);
             unlink("../../img/logotipo.jpg");
             rename("../../img/logotipo_edit.jpg","../../img/logotipo.jpg");
         }
-
-
-
-
         //creamos la conexion con la base de datos
         $db_context = new BaseDatos();
-        
-        
-        
         for($i=0;$i<sizeof($filtros);$i++){
-    
             $query = "UPDATE `apl_configuracion` SET ".            
             "configuracion_clase = '".$filtros[$i]->configuracion_clase."', ".        
             "configuracion_valor = '".$filtros[$i]->configuracion_valor."' ".        
-            "WHERE configuracion_nombre = '".$filtros[$i]->configuracion_nombre."'";        
-            
+            "WHERE configuracion_nombre = '".$filtros[$i]->configuracion_nombre."'";         
             //variable que contiene el resultado de la consulta
             $result = mysqli_query($db_context->conexion,$query);   
-            
-
             //evaluamos si la operacion se realizó correctamente
             if($result==false){
                 $error = "error";
                 break;
             }
         }
-
         //cerramos la conexion con la base de datos
         $db_context->desconectar($db_context->conexion);        
-        
-
         //evaluamos si la operacion se realizó correctamente
         if($error==""){
             echo "{\"mensaje\":\"correcto\"}";

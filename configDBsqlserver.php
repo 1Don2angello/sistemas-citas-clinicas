@@ -25,3 +25,4 @@ try {
 } catch (PDOException $e) {
     echo "Error al conectar a SQL Server 2: " . $e->getMessage();
 }
+

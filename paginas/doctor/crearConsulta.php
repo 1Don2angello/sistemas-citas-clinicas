@@ -17,7 +17,7 @@ if (isset($_GET['respuesta'])) {
     <script src="../../plugins/vendor/components/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="../../plugins/node_modules/sweetalert2/dist/sweetalert2.min.css" />
     <script src="../../plugins/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/style.css">
 
 </head>
@@ -38,7 +38,7 @@ if (isset($_GET['respuesta'])) {
                 <h1> Crear consulta</h1>
                 <br>
                 <hr>
-                <table class="table table-bordered " style="width: 90%">
+                <table class="table table-bordered " style="width: auto">
                     <tbody>
                         <form action="procesoConsulta.php" method="POST">
                             <input type="hidden" name="id" value="" />
@@ -51,189 +51,266 @@ if (isset($_GET['respuesta'])) {
                                 <tr>
                                     <th colspan="1" scope="col">Clave</th>
                                     <td style="width: auto;">
-                                        <input type="text" name="clave" id="clave"  value="" >
+                                        <input type="text" name="clave" id="clave" value="">
 
                                     </td>
 
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Nombre</th>
-                                    <td colspan="4" style="width: auto;"><input type="text" name="nombre" id="nombre_completo"  value="" style="width: 500px;"></td>
+                                    <td colspan="3" style="width: auto;"><input type="text" name="nombre" id="nombre_completo" value="" style="width: 500px;"></td>
                                     <th colspan="1" scope="col">Fecha</th>
-                                    <td colspan="4" style="width: auto;"> <input type="date" name="fecha"  value="" ></td>
+                                    <td colspan="4" style="width: auto;"> <input type="date" name="fecha" value=""></td>
                                 </tr>
 
                                 <tr>
                                     <th colspan="1" scope="col">Edad</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio"  name="edad"  value="" ></td>
+                                    <td style="width: auto;">
+                                        <select type="text" class="grande" name="edad" id="edad">
+                                            <?php
+                                            for ($i = 17; $i <= 66; $i++) {
+                                                echo "<option value=''>" . $i . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+
+                                    </td>
                                     <th colspan="1" scope="col">Sexo</th>
                                     <td style="width: auto;">
                                         <select name="sexo" id="sexo">
-                                            <option value="Masculino" >Masculino</option>
+                                            <option value="Masculino">Masculino</option>
                                             <option value="Femenino">Femenino</option>
                                         </select>
                                     </td>
-                                    <th colspan="1" scope="col">Tens.Art.</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio"  name="tensArt"  value="" ></td>
+                                    <th colspan="1" scope="col">Tensión Arterial</th>
+                                    <td colspan="1" style="width: auto;"><input type="text" class="grande" name="tensArt" value=""></td>
 
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Peso</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio"  name="peso"  value="" ></td>
-                                    <th colspan="1" scope="col">Talla</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio"  name="talla"  value="" ></td>
-                                    <th colspan="1" scope="col">Edo.Civil</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio"  name="edoCivil"  value="" ></td>
+                                    <td tyle="width: auto;">
 
-                                </tr>
-                                <tr>
-                                    <th colspan="1" scope="col">Fr.Card</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio" name="frCard"  value="" ></td>
-                                    <th colspan="1" scope="col">I.M.C</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio"  name="imc"  value="" ></td>
-                                    <th colspan="1" scope="col">HORA </th>
-                                </tr>
-                                <tr>
-                                    <th colspan="1" scope="col">Fr.Resp</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio" name="frResp" value="" ></td>
-                                    <th colspan="1" scope="col">Temp.</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio" name="temp"  value="" >
+                                        <input type="text" name="peso" class="grande" id="pesoInput" value="" required>kg
+                                        <script>
+                                            var pesoInput = document.getElementById("pesoInput");
+
+                                            pesoInput.addEventListener("input", function(event) {
+                                                var input = event.target;
+                                                var inputValue = input.value.trim();
+
+                                                // Eliminar cualquier carácter no numérico
+                                                var numericValue = inputValue.replace(/[^0-9.]/g, "");
+
+                                                // Validar si el valor es un número
+                                                if (!isNaN(numericValue)) {
+                                                    // Agregar "kg" al final del valor numérico
+                                                    input.value = numericValue;
+                                                } else {
+                                                    // Limpiar el campo si no es un número válido
+                                                    input.value = "";
+                                                }
+                                            });
+                                        </script>
                                     </td>
-                                    <td style="width: auto;"> <input class="sinborde" type="time" name="hora"  value="" >
+
+                                    <th>Altura</th>
+                                    <td>
+                                        <select name="talla" id="altura">m
+                                            <?php
+                                            for ($i = 100; $i <= 200; $i++) {
+                                                $altura = $i / 100;
+                                                echo '<option value="' . $altura . '">' . $altura;
+                                            }
+                                            ?>
+                                        </select>
+
+                                    </td>
+
+                                    <th colspan="1" scope="col">Estado Civil</th>
+                                    <td style="width: auto;">
+                                        <select type="text" class="grande" name="edoCivil" value="" style="border-color: gainsboro;">
+                                            <option value="Soltero">Soltero</option>
+                                            <option value="Casado">Casado</option>
+                                            <option value="Divorciado">Divorciado</option>
+                                            <option value="Separado">Separado</option>
+                                            <option value="Viudo">Viudo</option>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">A.H.F.</th>
-                                    <td colspan="10" style="width: auto;" colspan="10"><input class="grande" type="text" class=""  name="ahf"  value="" ></td>
+                                    <th colspan="1" scope="col">Frecuencia Cardíaca</th>
+                                    <td style="width: auto;"><input type="text" class="grande" name="frCard" value=""></td>
+                                    <th colspan="1" scope="col">Índice de Masa Corporal</th>
+                                    <td style="width: auto;"><input type="text" class="grande" name="imc" value=""></td>
+                                    <th colspan="2" scope="col">HORA </th>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">A.P.N.P</th>
-                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "apnp" name="apnp"  value="" "></td>
+                                    <th colspan="1" scope="col">Frecuencia Respiratoria</th>
+                                    <td colspan="1" style="width: auto;"><input type="text" class="grande" name="frResp" value=""></td>
+                                    <th colspan="1" scope="col">Temperatura corporal</th>
+                                    <td style="width: auto;"><input type="text" class="grande" name="temp" value="">
+                                    </td>
+                                    <td colspan="2" style="width: auto;"> <input class="sinborde" type="time" name="hora" value="">
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">A.P.P</th>
-                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "app" name="app"  value="" ></td>
+                                    <th colspan="1" scope="col">Antecedentes Heredo-Familiares</th>
+                                    <td colspan="5" style="width: auto;" colspan="5"><input class="grande" type="text" class="" name="ahf" value=""></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">P.Actual</th>
-                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "pActual" name="pActual"  value="" "pAc></td>
+                                    <th colspan="1" scope="col">Antecedentes Personales No Patológicos</th>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" class="" name="apnp" value="" "></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">eFisica</th>
-                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "eFisica" name="eFisica"  value="" "eFi></td>
+                                    <th colspan=" 1" scope="col">Antecedentes Personales Patológicos</th>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" class="" name="app" value=""></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">Fecha de Nacimiento</th>
-                                    <td style="width: auto;"><input type="date" class="fechaN" name="fechaN"  value="" "fe></td>
+                                    <th colspan="1" scope="col">Padecimiento Actual.</th>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" class="" name="pActual" value="" "pAc></td>
+                                </tr>
+                                <tr>
+                                    <th colspan=" 1" scope="col">Exploración Física</th>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" class="" name="eFisica" value="" "eFi></td>
+                                </tr>
+                                <tr>
+                                    <th colspan=" 1" scope="col">Fecha de Nacimiento</th>
+                                    <td colspan="2" style="width: auto;"><input class="grande" type="date" class="fechaN" name="fechaN" value=""></td>
                                     <th colspan="1" scope="col">Escolaridad</th>
-                                    <td style="width: auto;"><input type="text" class="" "escolaridad" name="escolaridad"  value="" "escolar></td>
+                                    <td colspan="2" style="width: auto;">
+                                        <select name="escolaridad">
+                                            <option value="Primaria">Primaria</option>
+                                            <option value="Secundaria">Secundaria</option>
+                                            <option value="Preparatoria">Preparatoria</option>
+                                            <option value="Universidad">Universidad</option>
+                                            <option value="Posgrado">Posgrado</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                    </td>
+
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Puesto Solicitado</th>
-                                    <td style="width: auto;"><input type="text" class="" "puestoS" name="puestoS"  value="" "pue></td>
+                                    <td colspan="2" style="width: auto;"><input class="grande" type="text" class="" name="puestoS" value=""></td>
                                     <th colspan="1" scope="col">Lugar de Origen</th>
-                                    <td style="width: auto;"><input type="text" class="" "lugarOrigen" name="lugarOrigen"  value="" "lugarOr></td>
-                                </tr>
-                                <tr>
-                                    <th colspan="1" scope="col">Analisis Covid</th>
-                                    <td style="width: auto;"><input type="text" class="" "analisisCovid" name="analisisCovid"  value="" "analisisC></td>
-                                    <th colspan="1" scope="col">Indicaciones</th>
-                                    <td style="width: auto;"><input type="text" class="" "indicaciones" name="indicaciones"  value="" "indicaci></td>
-                                    <th colspan="1" scope="col" arUFM">Visitar UFM</th>
-                                    <td style="width: auto;"><input type="text" class="" "visitarUFM" name="visitarUFM"  value="" "visita></td>
+                                    <td colspan="2" style="width: auto;">
+                                        <select name="lugarOrigen">
+                                            <option value="">Selecciona un estado</option>
+                                            <?php
+                                            $estados = array("Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Coahuila", "Colima", "Chiapas", "Chihuahua", "Ciudad de México", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas");
+
+                                            foreach ($estados as $estado) {
+                                                echo '<option value="' . $estado . '">' . $estado . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
 
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">Observaciones</th>
-                                    <td style="width: auto;"><input class="grande" type="text" class="" "observaciones" name="observaciones"  value="" "observaci></td>
+                                    <th colspan="1" scope="col">Analisis Covid</th>
+                                    <td colspan="2" style="width: auto;"><input class="grande" type="text" class="" name="analisisCovid" value=""></td>
+
+                                    <th colspan="1" scope="col" arUFM">Visitar UFM</th>
+                                    <td colspan="2" style="width: auto;"><input class="grande" type="text" class="" name="visitarUFM" value=""></td>
+
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Indicaciones</th>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" class="" name="indicaciones" value=""></td>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Cirugias</th>
-                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "cirugias" name="cirugias"  value="" "ciru></td>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" class="" name="cirugias" value=""></td>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Traumatismos</th>
-                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "traumatismos" name="traumatismos"  value="" "traumati></td>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" class="" name="traumatismos" value=""></td>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Fracturas</th>
-                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "fracturas" name="fracturas"  value="" "fract></td>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" class="" name="fracturas" value=""></td>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Luxaciones</th>
-                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "luxaciones" name="luxaciones"  value="" "luxaci></td>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" class="" name="luxaciones" value=""></td>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Alergias</th>
-                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "alergias" name="alergias"  value="" "aler></td>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" class="" name="alergias" value=""></td>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Agudeza Visual</th>
-                                    <td style="width: auto;"><input type="text" class="" "agudezaVisual" name="agudezaVisual"  value="" "agudezaVi></td>
+                                    <td style="width: auto;"><input type="text" class="" name="agudezaVisual" value=""></td>
                                     <th colspan="1" scope="col">¿Envio al Optometrista?</th>
-                                    <td style="width: auto;"><input type="text" class="" "envioOpto" name="envioOpto"  value="" "envio></td>
+                                    <td style="width: auto;"><input type="text" class="" name="envioOpto" value=""></td>
                                     <th colspan="1" scope="col">Examenes de Laboratorio</th>
-                                    <td style="width: auto;"><input type="text" class="" "examLab" name="examLab"  value="" "exa></td>
+                                    <td style="width: auto;"><input type="text" class="" name="examLab" value=""></td>
                                 </tr>
                                 <tr>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Licencia Indica Uso de Lentes</th>
-                                    <td style="width: auto;"><input type="text" class="" "licenciaLentes" name="licenciaLentes"  value="" "licenciaLe></td>
+                                    <td style="width: auto;"><input type="text" class="" name="licenciaLentes" value=""></td>
                                     <th colspan="1" scope="col">¿Usa Lentes Graduadios?</th>
-                                    <td style="width: auto;"><input type="text" class="" "lentGraduadios" name="lentGraduadios"  value="" "lentGradua></td>
+                                    <td style="width: auto;"><input type="text" class="" name="lentGraduadios" value=""></td>
                                     <th colspan="1" scope="col">Tipo de Sangre</th>
-                                    <td style="width: auto;"><input type="text" class="" "lentGraduadios" name="tipoSangre"  value="" "tipoSa></td>
+                                    <td style="width: auto;"><input type="text" class="" name="tipoSangre" value=""></td>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Riesgo para la Salub</th>
-                                    <td style="width: auto;"><input type="text" class="" "riesgoSalub" name="riesgoSalub"  value="" "riesgoS></td>
+                                    <td style="width: auto;"><input type="text" class="" name="riesgoSalub" value=""></td>
                                     <th colspan="1" scope="col">Perimetro Abdominal</th>
-                                    <td style="width: auto;"><input type="text" class="" "perAbdominal" name="perAbdominal"  value="" "perAbdom></td>
+                                    <td style="width: auto;"><input type="text" class="" name="perAbdominal" value=""></td>
                                     <th colspan="1" scope="col">Glucosa Capilar</th>
-                                    <td style="width: auto;"><input type="text" class="" "glucosaCapilar" name="glucosaCapilar"  value="" "glucosaCap></td>
+                                    <td style="width: auto;"><input type="text" class="" name="glucosaCapilar" value=""></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">I.R.A.S</th>
-                                    <td style="width: auto;"><input type="text" class="" "iras" name="iras"  value="" "></td>
-                                    <th colspan="1" scope="col">Porcentaje de Oxigeno</th>
-                                    <td style="width: auto;"><input type="text" class="" "porcentajeOxigeno" name="porcentajeOxigeno"  value="" "porcentajeOxi></td>
+                                    <th colspan="1" scope="col">Observacion visual</th>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" class="" name="observaciones" value=""></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" scope="col">Infecciones Respiratorias Agudas</th>
+                                    <td style="width: auto;"><input type="text" class="" "iras" name="iras" value="" "></td>
+                                    <th colspan=" 1" scope="col">Porcentaje de Oxigeno</th>
+                                    <td style="width: auto;"><input type="text" class="" name="porcentajeOxigeno" value=""></td>
                                     <th colspan="1" scope="col" aAplicada">Prueva Aplicada</th>
-                                    <td style="width: auto;"><input type="text" class="" "pruevaAplicada" name="pruevaAplicada"  value="" "pruevaApli></td>
+                                    <td style="width: auto;"><input type="text" class="" name="pruevaAplicada" value=""></td>
                                 </tr>
                                 <tr>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Fecha Aplicacion</th>
-                                    <td style="width: auto;"><input type="date" class="FechaAplicacion" name="FechaAplicacion"  value="" "FechaAplica></td>
+                                    <td style="width: auto;"><input type="date" class="FechaAplicacion" name="FechaAplicacion" value=""></td>
                                     <th colspan="1" scope="col">Hora Aplicacion</th>
-                                    <td style="width: auto;"><input type="time" class="horaAplicacion" name="horaAplicacion"  value="" "horaAplica></td>
+                                    <td style="width: auto;"><input type="time" class="horaAplicacion" name="horaAplicacion" value=""></td>
                                     <th colspan="1" scope="col">Resultado</th>
-                                    <td style="width: auto;"><input type="text" class="" "resultado" name="resultado"  value="" "resul></td>
+                                    <td style="width: auto;"><input type="text" class="" name="resultado" value=""></td>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Diagnostico</th>
-                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "diagnostico" name="diagnostico"  value="" "diagnos></td>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" class="" name="diagnostico" value=""></td>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Indicaciones Finales</th>
-                                    <td colspan="10" style="width: auto;"><input class="grande" type="text" name="indicacionesFinales"  value="" "indicacionesFin></td>
+                                    <td colspan="5" style="width: auto;"><input class="grande" type="text" name="indicacionesFinales" value=""></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col" > Es apto?</th>
-                                    <td colspan="1" style="width: auto;"><select name="aptos" id="aptos">
-                                            <option value="si">Si</option>
-                                            <option value="no" >No</option>
-                                        </select>
-                                    </td>
 
+                                    <th colspan="1" scope="col"> Estado del paciente</th>
+                                    <td colspan="1" style="width: auto;"><select name="aptos" id="aptos">
+                                            <option value="apto">Apto</option>
+                                            <option value="no-apto">No apto</option>
+                                            <option value="condicion">Condicionado</option>
+                                            <option value="mcondicion">Muy condicionado</option>
+                                        </select>
                                 </tr>
                                 <tr>
                                     <td>
-                                    <button type="submit" name="procesoConsulta" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" name="procesoConsulta" class="btn btn-primary">Guardar</button>
                                     </td>
                                 </tr>
-                                
+
                             </thead>
                         </form>
                     </tbody>

@@ -150,8 +150,7 @@ if (isset($_GET['respuesta'])) {
                                     <td style="width: auto;"><?php echo $fila2["indicaciones"] ?></td>
                                     <th colspan="1" scope="col">Visitar UFM</th>
                                     <td style="width: auto;"><?php echo $fila2["visitarUFM"] ?></td>
-                                    <th colspan="1" scope="col">Observaciones</th>
-                                    <td style="width: auto;"><?php echo $fila2["observaciones"] ?></td>
+                                    
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Cirugias</th>
@@ -203,6 +202,10 @@ if (isset($_GET['respuesta'])) {
                                     <td style="width: auto;"><?php echo $fila2["perAbdominal"] ?></td>
                                     <th colspan="1" scope="col">Glucosa Capilar</th>
                                     <td style="width: auto;"><?php echo $fila2["glucosaCapilar"] ?></td>
+                                </tr>
+                                <tr>
+                                <th colspan="1" scope="col">Observacion visual</th>
+                                    <td style="width: auto;"><?php echo $fila2["observaciones"] ?></td>
                                 </tr>
                                 <!-- Resto de las columnas -->
 

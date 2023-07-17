@@ -52,67 +52,67 @@ try {
         $diagnostico = $_POST["diagnostico"];
         $indicacionesFinales = $_POST["indicacionesFinales"];
 
-       // Resto de las variables...
-        $aptos = $_POST["aptos"] ;
-       $query3 = "INSERT INTO gestion_citas.pacientes (clave, hora, nombre, fecha, edad, peso, sexo, talla, tensArt, edoCivil, frCard, frResp, imc, temp, ahf, apnp, app, pActual, eFisica, fechaN, puestoS, escolaridad, lugarOrigen, analisisCovid, indicaciones, visitarUFM, observaciones, cirugias, traumatismos, fracturas, luxaciones, alergias, agudezaVisual, licenciaLentes, riesgoSalub, envioOpto, lentGraduadios, perAbdominal, examLab, tipoSangre, glucosaCapilar, iras, porcentajeOxigeno, pruevaAplicada, FechaAplicacion, horaAplicacion, resultado, diagnostico, indicacionesFinales, aptos) 
+        // Resto de las variables...
+        $aptos = $_POST["aptos"];
+        $query3 = "INSERT INTO gestion_citas.pacientes (clave, hora, nombre, fecha, edad, peso, sexo, talla, tensArt, edoCivil, frCard, frResp, imc, temp, ahf, apnp, app, pActual, eFisica, fechaN, puestoS, escolaridad, lugarOrigen, analisisCovid, indicaciones, visitarUFM, observaciones, cirugias, traumatismos, fracturas, luxaciones, alergias, agudezaVisual, licenciaLentes, riesgoSalub, envioOpto, lentGraduadios, perAbdominal, examLab, tipoSangre, glucosaCapilar, iras, porcentajeOxigeno, pruevaAplicada, FechaAplicacion, horaAplicacion, resultado, diagnostico, indicacionesFinales, aptos) 
        VALUES (:clave, :hora, :nombre, :fecha, :edad, :peso, :sexo, :talla, :tensArt, :edoCivil, :frCard, :frResp, :imc, :temp, :ahf, :apnp, :app, :pActual, :eFisica, :fechaN, :puestoS, :escolaridad, :lugarOrigen, :analisisCovid, :indicaciones, :visitarUFM, :observaciones, :cirugias, :traumatismos, :fracturas, :luxaciones, :alergias, :agudezaVisual, :licenciaLentes, :riesgoSalub, :envioOpto, :lentGraduadios, :perAbdominal, :examLab, :tipoSangre, :glucosaCapilar, :iras, :porcentajeOxigeno, :pruevaAplicada, :FechaAplicacion, :horaAplicacion, :resultado, :diagnostico, :indicacionesFinales, :aptos )";
 
-$stmt = $conn2->prepare($query3);
-$stmt->bindParam(':clave', $clave);
-$stmt->bindParam(':hora', $hora);
-$stmt->bindParam(':nombre', $nombre);
-$stmt->bindParam(':fecha', $fecha);
-$stmt->bindParam(':edad', $edad);
-$stmt->bindParam(':peso', $peso);
-$stmt->bindParam(':sexo', $sexo);
-$stmt->bindParam(':talla', $talla);
-$stmt->bindParam(':tensArt', $tensArt);
-$stmt->bindParam(':edoCivil', $edoCivil);
-$stmt->bindParam(':frCard', $frCard);
-$stmt->bindParam(':frResp', $frResp);
-$stmt->bindParam(':imc', $imc);
-$stmt->bindParam(':temp', $temp);
-$stmt->bindParam(':ahf', $ahf);
-$stmt->bindParam(':apnp', $apnp);
-$stmt->bindParam(':app', $app);
-$stmt->bindParam(':pActual', $pActual);
-$stmt->bindParam(':eFisica', $eFisica);
-$stmt->bindParam(':fechaN', $fechaN);
-$stmt->bindParam(':puestoS', $puestoS);
-$stmt->bindParam(':escolaridad', $escolaridad);
-$stmt->bindParam(':lugarOrigen', $lugarOrigen);
-$stmt->bindParam(':analisisCovid', $analisisCovid);
-$stmt->bindParam(':indicaciones', $indicaciones);
-$stmt->bindParam(':visitarUFM', $visitarUFM);
-$stmt->bindParam(':observaciones', $observaciones);
-$stmt->bindParam(':cirugias', $cirugias);
-$stmt->bindParam(':traumatismos', $traumatismos);
-$stmt->bindParam(':fracturas', $fracturas);
-$stmt->bindParam(':luxaciones', $luxaciones);
-$stmt->bindParam(':alergias', $alergias);
-$stmt->bindParam(':agudezaVisual', $agudezaVisual);
-$stmt->bindParam(':licenciaLentes', $licenciaLentes);
-$stmt->bindParam(':riesgoSalub', $riesgoSalub);
-$stmt->bindParam(':envioOpto', $envioOpto);
-$stmt->bindParam(':lentGraduadios', $lentGraduadios);
-$stmt->bindParam(':perAbdominal', $perAbdominal);
-$stmt->bindParam(':examLab', $examLab);
-$stmt->bindParam(':tipoSangre', $tipoSangre);
-$stmt->bindParam(':glucosaCapilar', $glucosaCapilar);
-$stmt->bindParam(':iras', $iras);
-$stmt->bindParam(':porcentajeOxigeno', $porcentajeOxigeno);
-$stmt->bindParam(':pruevaAplicada', $pruevaAplicada);
-$stmt->bindParam(':FechaAplicacion', $FechaAplicacion);
-$stmt->bindParam(':horaAplicacion', $horaAplicacion);
-$stmt->bindParam(':resultado', $resultado);
-$stmt->bindParam(':diagnostico', $diagnostico);
-$stmt->bindParam(':indicacionesFinales', $indicacionesFinales);
-//varios datos 
-$stmt->bindParam(':aptos', $aptos);
-if ($stmt->execute()) {
-   header('location:consultas.php?respuesta=La consulta fue AGREGADA correctamente');
-}
-}
+        $stmt = $conn2->prepare($query3);
+        $stmt->bindParam(':clave', $clave);
+        $stmt->bindParam(':hora', $hora);
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':fecha', $fecha);
+        $stmt->bindParam(':edad', $edad);
+        $stmt->bindParam(':peso', $peso);
+        $stmt->bindParam(':sexo', $sexo);
+        $stmt->bindParam(':talla', $talla);
+        $stmt->bindParam(':tensArt', $tensArt);
+        $stmt->bindParam(':edoCivil', $edoCivil);
+        $stmt->bindParam(':frCard', $frCard);
+        $stmt->bindParam(':frResp', $frResp);
+        $stmt->bindParam(':imc', $imc);
+        $stmt->bindParam(':temp', $temp);
+        $stmt->bindParam(':ahf', $ahf);
+        $stmt->bindParam(':apnp', $apnp);
+        $stmt->bindParam(':app', $app);
+        $stmt->bindParam(':pActual', $pActual);
+        $stmt->bindParam(':eFisica', $eFisica);
+        $stmt->bindParam(':fechaN', $fechaN);
+        $stmt->bindParam(':puestoS', $puestoS);
+        $stmt->bindParam(':escolaridad', $escolaridad);
+        $stmt->bindParam(':lugarOrigen', $lugarOrigen);
+        $stmt->bindParam(':analisisCovid', $analisisCovid);
+        $stmt->bindParam(':indicaciones', $indicaciones);
+        $stmt->bindParam(':visitarUFM', $visitarUFM);
+        $stmt->bindParam(':observaciones', $observaciones);
+        $stmt->bindParam(':cirugias', $cirugias);
+        $stmt->bindParam(':traumatismos', $traumatismos);
+        $stmt->bindParam(':fracturas', $fracturas);
+        $stmt->bindParam(':luxaciones', $luxaciones);
+        $stmt->bindParam(':alergias', $alergias);
+        $stmt->bindParam(':agudezaVisual', $agudezaVisual);
+        $stmt->bindParam(':licenciaLentes', $licenciaLentes);
+        $stmt->bindParam(':riesgoSalub', $riesgoSalub);
+        $stmt->bindParam(':envioOpto', $envioOpto);
+        $stmt->bindParam(':lentGraduadios', $lentGraduadios);
+        $stmt->bindParam(':perAbdominal', $perAbdominal);
+        $stmt->bindParam(':examLab', $examLab);
+        $stmt->bindParam(':tipoSangre', $tipoSangre);
+        $stmt->bindParam(':glucosaCapilar', $glucosaCapilar);
+        $stmt->bindParam(':iras', $iras);
+        $stmt->bindParam(':porcentajeOxigeno', $porcentajeOxigeno);
+        $stmt->bindParam(':pruevaAplicada', $pruevaAplicada);
+        $stmt->bindParam(':FechaAplicacion', $FechaAplicacion);
+        $stmt->bindParam(':horaAplicacion', $horaAplicacion);
+        $stmt->bindParam(':resultado', $resultado);
+        $stmt->bindParam(':diagnostico', $diagnostico);
+        $stmt->bindParam(':indicacionesFinales', $indicacionesFinales);
+        //varios datos 
+        $stmt->bindParam(':aptos', $aptos);
+        if ($stmt->execute()) {
+            header('location:consultas.php?respuesta=La consulta fue AGREGADA correctamente');
+        }
+    }
 } catch (Exception $e) {
-header('location:consultas.php?respuesta=Error'. $e->getMessage());
+    header('location:consultas.php?respuesta=Error' . $e->getMessage());
 }

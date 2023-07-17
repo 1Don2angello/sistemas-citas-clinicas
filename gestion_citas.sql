@@ -367,9 +367,11 @@ CREATE TABLE pacientes (
     horaAplicacion varchar(20) NOT NULL,
     resultado varchar(500),
     diagnostico varchar(500),
-    indicacionesFinales varchar(500)
+    indicacionesFinales varchar(500),
+    aptos varchar(500)
 );
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/* dd */

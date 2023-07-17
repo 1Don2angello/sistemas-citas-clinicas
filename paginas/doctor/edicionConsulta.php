@@ -75,14 +75,25 @@ if (isset($_GET['respuesta'])) {
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Nombre</th>
-                                    <td colspan="4" style="width: auto;"><input type="text" name="nombre" id="nombre_completo" value="<?php echo $fila5['nombre']; ?>" style="width: 500px;"></td>
+                                    <td colspan="3" style="width: auto;"><input type="text" name="nombre" id="nombre_completo" value="<?php echo $fila5['nombre']; ?>" style="width: 500px;"></td>
                                     <th colspan="1" scope="col">Fecha</th>
                                     <td colspan="4" style="width: auto;"> <input type="date" name="fecha" value="<?php echo $fila5["fecha"] ?>"></td>
                                 </tr>
 
                                 <tr>
                                     <th colspan="1" scope="col">Edad</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio" "edad" name="edad" value="<?php echo $fila5["edad"] ?>"></td>
+                                    <td style="width: auto;">
+                                        <select class="pequenio" name="edad">
+                                            <?php
+                                            $selectedValue = $fila5["edad"]; // Valor seleccionado actualmente
+                                            for ($i = 17; $i <= 66; $i++) {
+                                                $selected = ($i == $selectedValue) ? "selected" : ""; // Marcar el valor seleccionado actualmente
+                                                echo "<option value='$i' $selected>$i</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+
                                     <th colspan="1" scope="col">Sexo</th>
                                     <td style="width: auto;">
                                         <select name="sexo" id="sexo">
@@ -90,66 +101,137 @@ if (isset($_GET['respuesta'])) {
                                             <option value="Femenino" <?php if ($fila5["sexo"] == "Femenino") echo "selected"; ?>>Femenino</option>
                                         </select>
                                     </td>
-                                    <th colspan="1" scope="col">Tens.Art.</th>
+                                    <th colspan="1" scope="col">Tensión Arterial</th>
                                     <td style="width: auto;"><input type="text" class="pequenio" "tensArt" name="tensArt" value="<?php echo $fila5["tensArt"] ?>"></td>
 
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Peso</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio" "peso" name="peso" value="<?php echo $fila5["peso"] ?>"></td>
-                                    <th colspan="1" scope="col">Talla</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio" "talla" name="talla" value="<?php echo $fila5["talla"] ?>"></td>
-                                    <th colspan="1" scope="col">Edo.Civil</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio" "edoCivil" name="edoCivil" value="<?php echo $fila5["edoCivil"] ?>"></td>
+                                    <td style="width: auto;">
+                                        <input type="text" class="pequenio" name="peso" value="<?php echo $fila5["peso"] ?>" required>kg
+                                        <script>
+                                            var pesoInput = document.querySelector('input[name="peso"]');
+
+                                            pesoInput.addEventListener("input", function(event) {
+                                                var input = event.target;
+                                                var inputValue = input.value.trim();
+
+                                                // Eliminar cualquier carácter no numérico
+                                                var numericValue = inputValue.replace(/[^0-9.]/g, "");
+
+                                                // Validar si el valor es un número
+                                                if (!isNaN(numericValue)) {
+                                                    // Agregar "kg" al final del valor numérico
+                                                    input.value = numericValue;
+                                                } else {
+                                                    // Limpiar el campo si no es un número válido
+                                                    input.value = "";
+                                                }
+                                            });
+                                        </script>
+                                    </td>
+
+                                    <th colspan="1" scope="col">Altura</th>
+                                    <td style="width: auto;">
+                                        <select name="talla" id="talla">m
+                                            <?php
+                                            for ($i = 100; $i <= 200; $i++) {
+                                                $altura = $i / 100;
+                                                $selected = ($altura == $fila5["talla"]) ? "selected" : "";
+                                                echo '<option value="' . $altura . '" ' . $selected . '>' . $altura . ' m</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+
+
+                                    <th colspan="1" scope="col">Estado Civil</th>
+                                    <td style="width: auto;">
+                                        <select name="edoCivil" id="estadoCivil">
+                                            <?php
+                                            $estadosCivil = array("Soltero", "Casado", "Divorciado", "Separado", "Viudo");
+                                            foreach ($estadosCivil as $estadoCivil) {
+                                                $selected = ($estadoCivil == $fila5["edoCivil"]) ? "selected" : "";
+                                                echo '<option value="' . $estadoCivil . '" ' . $selected . '>' . $estadoCivil . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+
+
 
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">Fr.Card</th>
+                                    <th colspan="1" scope="col">Frecuencia Cardíaca</th>
                                     <td style="width: auto;"><input type="text" class="pequenio" "frCard" name="frCard" value="<?php echo $fila5["frCard"] ?>"></td>
-                                    <th colspan="1" scope="col">I.M.C</th>
+                                    <th colspan="1" scope="col">Índice de Masa Corporal</th>
                                     <td style="width: auto;"><input type="text" class="pequenio" "imc" name="imc" value="<?php echo $fila5["imc"] ?>"></td>
                                     <th colspan="1" scope="col">HORA </th>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">Fr.Resp</th>
+                                    <th colspan="1" scope="col">Frecuencia Respiratoria</th>
                                     <td style="width: auto;"><input type="text" class="pequenio" "frResp" name="frResp" value="" <?php echo $fila5["frResp"] ?>"></td>
-                                    <th colspan="1" scope="col">Temp.</th>
+                                    <th colspan="1" scope="col">Temperatura corporal</th>
                                     <td style="width: auto;"><input type="text" class="pequenio" "temp" name="temp" value="<?php echo $fila5["temp"] ?>">
                                     </td>
                                     <td style="width: auto;"> <input class="sinborde" type="time" name="hora" value="<?php echo $fila5["hora"] ?>">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">A.H.F.</th>
+                                    <th colspan="1" scope="col">Antecedentes Heredo-Familiares</th>
                                     <td colspan="10" style="width: auto;" colspan="10"><input class="grande" type="text" class="" "ahf" name="ahf" value="<?php echo $fila5["ahf"] ?>"></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">A.P.N.P</th>
+                                    <th colspan="1" scope="col">Antecedentes Personales No Patológicos</th>
                                     <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "apnp" name="apnp" value="<?php echo $fila5["apnp"] ?>"></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">A.P.P</th>
+                                    <th colspan="1" scope="col">Antecedentes Personales Patológicos</th>
                                     <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "app" name="app" value="<?php echo $fila5["app"] ?>"></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">P.Actual</th>
+                                    <th colspan="1" scope="col">Padecimiento Actual.</th>
                                     <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "pActual" name="pActual" value="<?php echo $fila5["pActual"] ?>"></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">eFisica</th>
+                                    <th colspan="1" scope="col">Exploración Física</th>
                                     <td colspan="10" style="width: auto;"><input class="grande" type="text" class="" "eFisica" name="eFisica" value="<?php echo $fila5["eFisica"] ?>"></td>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Fecha de Nacimiento</th>
                                     <td style="width: auto;"><input type="date" class="fechaN" name="fechaN" value="<?php echo $fila5["fechaN"] ?>"></td>
                                     <th colspan="1" scope="col">Escolaridad</th>
-                                    <td style="width: auto;"><input type="text" class="" "escolaridad" name="escolaridad" value="<?php echo $fila5["escolaridad"] ?>"></td>
+                                    <td colspan="2" style="width: auto;">
+                                        <select name="escolaridad" id="escolaridad">
+                                            <?php
+                                            $escolaridades = array("Primaria", "Secundaria", "Preparatoria", "Universidad", "Posgrado", "Otro");
+                                            foreach ($escolaridades as $escolaridad) {
+                                                $selected = ($escolaridad == $fila5["escolaridad"]) ? "selected" : "";
+                                                echo '<option value="' . $escolaridad . '" ' . $selected . '>' . $escolaridad . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Puesto Solicitado</th>
                                     <td style="width: auto;"><input type="text" class="" "puestoS" name="puestoS" value="<?php echo $fila5["puestoS"] ?>"></td>
                                     <th colspan="1" scope="col">Lugar de Origen</th>
-                                    <td style="width: auto;"><input type="text" class="" "lugarOrigen" name="lugarOrigen" value="<?php echo $fila5["lugarOrigen"] ?>"></td>
+                                    <td colspan="2" style="width: auto;">
+                                        <select name="lugarOrigen">
+                                            <option value="">Selecciona un estado</option>
+                                            <?php
+                                            $estados = array("Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Coahuila", "Colima", "Chiapas", "Chihuahua", "Ciudad de México", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas");
+
+                                            foreach ($estados as $estado) {
+                                                $selected = ($estado == $fila5["lugarOrigen"]) ? "selected" : "";
+                                                echo '<option value="' . $estado . '" ' . $selected . '>' . $estado . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Analisis Covid</th>
@@ -211,7 +293,7 @@ if (isset($_GET['respuesta'])) {
                                     <td style="width: auto;"><input type="text" class="" "glucosaCapilar" name="glucosaCapilar" value="<?php echo $fila5["glucosaCapilar"] ?>"></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col">I.R.A.S</th>
+                                    <th colspan="1" scope="col">Infecciones Respiratorias Agudas</th>
                                     <td style="width: auto;"><input type="text" class="" "iras" name="iras" value="<?php echo $fila5["iras"] ?>"></td>
                                     <th colspan="1" scope="col">Porcentaje de Oxigeno</th>
                                     <td style="width: auto;"><input type="text" class="" "porcentajeOxigeno" name="porcentajeOxigeno" value="<?php echo $fila5["porcentajeOxigeno"] ?>"></td>
@@ -237,20 +319,23 @@ if (isset($_GET['respuesta'])) {
                                     <td colspan="10" style="width: auto;"><input class="grande" type="text" name="indicacionesFinales" value="<?php echo $fila5["indicacionesFinales"] ?>"></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1" scope="col" > Es apto?</th>
-                                    <td colspan="1" style="width: auto;"><select name="aptos" id="aptos">
-                                            <option value="si" <?php if ($fila5["aptos"] == "si") echo "selected"; ?>>Si</option>
-                                            <option value="no" <?php if ($fila5["aptos"] == "no") echo "selected"; ?>>No</option>
+                                    <th colspan="1" scope="col">Estado del paciente</th>
+                                    <td colspan="1" style="width: auto;">
+                                        <select name="aptos" id="estadoPaciente">
+                                            <option value="apto" <?php if ($fila5["aptos"] == "apto") echo 'selected'; ?>>Apto</option>
+                                            <option value="no-apto" <?php if ($fila5["aptos"] == "no-apto") echo 'selected'; ?>>No apto</option>
+                                            <option value="condicion" <?php if ($fila5["aptos"] == "condicion") echo 'selected'; ?>>Condicionado</option>
+                                            <option value="mcondicion" <?php if ($fila5["aptos"] == "mcondicion") echo 'selected'; ?>>Muy condicionado</option>
                                         </select>
                                     </td>
-
                                 </tr>
+
                                 <tr>
                                     <td>
-                                    <button type="submit" name="editar" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" name="editar" class="btn btn-primary">Guardar</button>
                                     </td>
                                 </tr>
-                                
+
                             </thead>
                         </form>
                     </tbody>

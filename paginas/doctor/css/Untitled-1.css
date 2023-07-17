@@ -1,0 +1,78 @@
+/* esto es para la hoja */
+.pdf-page {
+  font-family: "DejaVu Sans", "Arial", sans-serif;
+}
+
+.pdf-page {
+  box-sizing: border-box;
+  box-shadow: 0 15px 110px 10px;
+  background-color: #fff;
+  color: #333;
+  position: relative;
+  margin-top: 1px;
+  margin-left: -5px;
+}
+
+.pdf-header {
+  position: absolute;
+  top: 1cm;
+  left: 2.3cm;
+  right: 8cm;
+  border-bottom: 100px;
+  margin-bottom: 10%;
+}
+
+.pdf-footer {
+  bottom: 0.5cm;
+  height: 3cm;
+  left: 1cm;
+  right: 1cm;
+  position: center;
+}
+
+.header {
+  height: 125px;
+  
+}
+.footer {
+  height: 320px;
+}
+
+.pdf-body {
+ 
+    position: absolute;
+    top: 1.8in;
+    bottom: 1cm;
+    left: 0.5in;
+    right: 2.5in;
+    padding:.6em;
+    
+}
+
+
+
+.size-a4 {
+  width: 595.3px;
+  height: 841.9px;
+
+}
+
+.size-letter {
+  width: 612px;
+  height: 792px;
+}
+
+.size-executive {
+  width: 122.25in;
+  height: 10.5in;
+}
+
+.company-logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: #3aabf0;
+}
+
+.signature {
+  padding-top: 0.5in;
+}

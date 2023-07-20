@@ -44,16 +44,17 @@
                                             <option value="Femenino">Femenino</option>
                                         </select>
                                     </td>
-                                    <th>Edad</th>
-                                    <td>
-                                        <select name="edad" id="edad">
+                                    <th colspan="1" scope="col">Edad</th>
+                                    <td style="width: auto;">
+                                        <select class="pequenio" id="txt_edad"  name="edad">
                                             <?php
+                                            $selectedValue = $fila5["edad"]; // Valor seleccionado actualmente
                                             for ($i = 17; $i <= 66; $i++) {
-                                                echo "<option value=''>" . $i . "</option>";
+                                                $selected = ($i == $selectedValue) ? "selected" : ""; // Marcar el valor seleccionado actualmente
+                                                echo "<option value='$i' $selected>$i</option>";
                                             }
                                             ?>
                                         </select>
-
                                     </td>
                                     <th>Altura</th>
                                     <td>
@@ -177,6 +178,23 @@
                     event.preventDefault(); // Evitar el comportamiento predeterminado de la tecla Tab
                 }
             });
+             // Función para calcular la edad a partir de la fecha de nacimiento
+             function calcularEdad(fechaNacimiento) {
+                var fechaNac = new Date(fechaNacimiento);
+                var fechaActual = new Date();
+
+                var edad = fechaActual.getFullYear() - fechaNac.getFullYear();
+
+                // Si el cumpleaños de este año aún no ha sucedido, restar 1 a la edad
+                var mesActual = fechaActual.getMonth() + 1;
+                var mesNacimiento = fechaNac.getMonth() + 1;
+                if (mesActual < mesNacimiento || (mesActual === mesNacimiento && fechaActual.getDate() < fechaNac.getDate())) {
+                    edad--;
+                }
+
+                return edad;
+            }
+            
             // Función para realizar la búsqueda
             function buscar() {
                 var clave = $('#clave').val();
@@ -192,6 +210,10 @@
                         var resultado = JSON.parse(data);
                         var nombreCompleto = resultado.Nombre + ' ' + resultado.Paterno + ' ' + resultado.Materno;
                         $('#nombre_completo').val(nombreCompleto);
+                         // Calcular la edad a partir de la fecha de nacimiento
+                        var fechaNacimiento = resultado.Fecha_Nacimiento; // Asegúrate de que el campo sea el adecuado
+                        var edad = calcularEdad(fechaNacimiento);
+                        $('#txt_edad').val(edad);
                     },
                     error: function() {
                         alert('Error al realizar la consulta.');

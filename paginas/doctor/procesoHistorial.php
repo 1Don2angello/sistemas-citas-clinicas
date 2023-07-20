@@ -37,5 +37,5 @@ try {
         }
     }
 } catch (Exception $e) {
-    header('location:consultas.php?respuesta=Error' . $e->getMessage());
+    header('location:historial.php?respuesta=Error' . $e->getMessage());
 }

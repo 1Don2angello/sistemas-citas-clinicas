@@ -39,6 +39,7 @@ function inicializar_pagina() {
       dayMaxEvents: true, // allow "more" link when too many events
 
       eventClick: function (info) {
+        //debugger;
         var datos = "";
         for (var i = 0; i < info.event.classNames.length; i++) {
           datos += info.event.classNames[i] + " ";
@@ -778,7 +779,7 @@ function consultar_citas_mes(fecha) {
                 id: datos[i].citas_id,
                 description: i,
                 title:
-                  datos[i].clientes_nombre_completo +
+                  datos[i].clientes_nombre +
                   " (" +
                   datos[i].citas_hora +
                   ")",
@@ -2329,6 +2330,7 @@ function consultar_citas_sin_sala() {
       data: { funcion: "consultar_citas_sin_sala" },
       async: false,
       success: function (data) {
+        //debugger;
         console.log(data);
         var datos = JSON.parse(data);
 
@@ -2353,7 +2355,7 @@ function consultar_citas_sin_sala() {
             for (var i = 0; i < citas_pendientes.length; i++) {
               contenido +=
                 "<tr><td>" +
-                citas_pendientes[i].clientes_nombre_completo +
+                citas_pendientes[i].clientes_nombre +
                 " (" +
                 citas_pendientes[i].citas_fecha +
                 ", " +

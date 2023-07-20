@@ -1313,7 +1313,6 @@ function consultar_cliente_registrado() {
   return resultado;
 }
 
-
 function registrar_cliente() {
   resultado = true;
 
@@ -1339,6 +1338,7 @@ function registrar_cliente() {
       url: "../controladores/catalogos/cat_clientes_controller.php",
       data: { funcion: "agregar", obj_filtros: JSON.stringify(obj_filtros) },
       success: function (response) {
+        debugger;
         try {
           console.log(response);
           var jsonData = JSON.parse(response);
@@ -1356,10 +1356,13 @@ function registrar_cliente() {
           } else {
             /* = jsonData.id; */
             Cliente_ID = jsonData.id;
-          /* liente_ID  = jsonData.id; */ // Almacenar el ID del cliente en la variable local
-          
+           
+            console.log(Cliente_ID);
+
+            /* liente_ID  = jsonData.id; */ // Almacenar el ID del cliente en la variable local
           }
         } catch (ex_ajax) {
+          alert(Cliente_ID);
           alert("[registrar_cliente -> ajax]: " + ex_ajax);
         }
       },
@@ -1384,7 +1387,7 @@ function registrar_cita() {
     var obj_filtros = {
       citas_servicios_id: $("#select_servicio").val(),
       citas_proveedor_id: $("#select_proveedor").val(),
-      citas_clientes_id: Cliente_ID , // Utilizar ClienteID en lugar de 
+      citas_clientes_id: Cliente_ID, // Utilizar ClienteID en lugar de
       citas_estatus: "activo",
       citas_fecha: $("#hid_fecha").val(),
       citas_hora: $("#hid_hora").val(),

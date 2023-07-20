@@ -45,9 +45,9 @@ function agregar($obj_filtros)
         "'" . $filtros->clientes_direccion . "', " .
         "'" . $filtros->clientes_sexo . "', " .
         "'" . $filtros->clientes_edad . "')";
-    /* // Imprimir la consulta SQL
+    // Imprimir la consulta SQL
     echo "Consulta SQL: " . $query;
- */
+
     // Variable que contiene el resultado de la consulta
     $result = $db_context->conexion->query($query);
     // Evaluamos si la operación se realizó correctamente

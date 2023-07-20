@@ -49,16 +49,36 @@ if (isset($_GET['respuesta'])) {
             <section id="area_trabajo">
                 <div class="box wide hidden-on-narrow">
                     <div class="box-col">
-                        <h1><?php
-                            // consulta a la db
-                            include('../../configDBsqlserver.php'); // Conexión a la db
+                        <!-- <h1>
+                        </h1> -->
+                        <h1>
+                            <?php
+                            include('../../configDB.php');
+                            $baseDatos = new BaseDatos();
+                            $conexion = $baseDatos->conexion;
+
                             $id = $_GET['id'];
                             $consulta2 = "SELECT * FROM gestion_citas.pacientes WHERE id = :id";
 
-                            $stmt = $conn2->prepare($consulta2);
+                            $stmt = $conexion->prepare($consulta2);
                             $stmt->bindParam(':id', $id);
-                            $stmt->execute(); ?>
+                            $stmt->execute();
+
+                            // Obtener el resultado de la consulta como un arreglo asociativo
+                            $datos_paciente = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                            // Verificar si se encontró un registro y mostrar los datos
+                            if ($datos_paciente) {
+                                echo "Nombre: " . $datos_paciente['nombre'];
+                                echo "<br>";
+                                echo "Edad: " . $datos_paciente['edad'];
+                                // Aquí puedes mostrar otros datos del paciente según la estructura de la tabla
+                            } else {
+                                echo "No se encontró el paciente con el ID proporcionado.";
+                            }
+                            ?>
                         </h1>
+
                         <h4>Select Page size</h4>
                         <select id="paper" style="width: 100px;">
                             <option value="size-a4" selected>A4</option>
@@ -75,13 +95,13 @@ if (isset($_GET['respuesta'])) {
                     <div class="margen">
                         <div class="pdf-header">
 
-                            <img src="./css/HEADER.jpeg" class="imagenes" />
+                            <img src="./css/HEADER.png" class="imagenes" />
                         </div>
                         <div class="pdf-footer">
                             <img src="./css/FOOTER con firma.png" class="imagenes2" />
                         </div>
                         <div class="pdf-body">
-                            <div  style="width: 100%; text-align: center;">
+                            <div style="width: 100%; text-align: center;">
                                 <table class="tabla" style="width: 100%; max-width: 8.5in; ">
                                     <tbody>
                                         <?php

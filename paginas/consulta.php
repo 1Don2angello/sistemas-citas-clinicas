@@ -13,7 +13,7 @@ try {
   $clave = $_GET['clave'];
 
   // Realizar la consulta en la base de datos
-  $query = "SELECT Nombre, Paterno, Materno, Depto FROM dbo.BD WHERE clave = '$clave'";
+  $query = "SELECT Nombre, Paterno, Materno, Depto, Fecha_Nacimiento,Telefono, Correo FROM dbo.BD2 WHERE clave = '$clave'";
   $stmt = $conn->query($query);
   $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 

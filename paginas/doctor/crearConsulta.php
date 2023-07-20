@@ -64,16 +64,17 @@ if (isset($_GET['respuesta'])) {
                                 </tr>
 
                                 <tr>
-                                    <th colspan="1" scope="col">Edad</th>
+                                <th colspan="1" scope="col">Edad</th>
                                     <td style="width: auto;">
-                                        <select type="text" class="grande" name="edad" id="edad">
+                                        <select class="pequenio" name="edad">
                                             <?php
+                                            $selectedValue = $fila5["edad"]; // Valor seleccionado actualmente
                                             for ($i = 17; $i <= 66; $i++) {
-                                                echo "<option value=''>" . $i . "</option>";
+                                                $selected = ($i == $selectedValue) ? "selected" : ""; // Marcar el valor seleccionado actualmente
+                                                echo "<option value='$i' $selected>$i</option>";
                                             }
                                             ?>
                                         </select>
-
                                     </td>
                                     <th colspan="1" scope="col">Sexo</th>
                                     <td style="width: auto;">
@@ -157,6 +158,7 @@ if (isset($_GET['respuesta'])) {
                                     <th colspan="1" scope="col">Estado Civil</th>
                                     <td style="width: auto;">
                                         <select type="text" class="grande" name="edoCivil" value="" style="border-color: gainsboro;">
+                                            <option value="Seleccionar">----</option>
                                             <option value="Soltero">Soltero</option>
                                             <option value="Casado">Casado</option>
                                             <option value="Divorciado">Divorciado</option>
@@ -201,6 +203,7 @@ if (isset($_GET['respuesta'])) {
                                     <th colspan="1" scope="col">Escolaridad</th>
                                     <td colspan="2" style="width: auto;">
                                         <select name="escolaridad">
+                                            <option value="Seleccionar">----</option>
                                             <option value="Primaria">Primaria</option>
                                             <option value="Secundaria">Secundaria</option>
                                             <option value="Preparatoria">Preparatoria</option>
@@ -234,7 +237,13 @@ if (isset($_GET['respuesta'])) {
                                     <td colspan="2" style="width: auto;"><input class="grande" type="text" class="" name="analisisCovid" value=""></td>
 
                                     <th colspan="1" scope="col" arUFM">Visitar UFM</th>
-                                    <td colspan="2" style="width: auto;"><input class="grande" type="text" class="" name="visitarUFM" value=""></td>
+                                    <td colspan="2" style="width: auto;">
+                                        <select name="visitarUFM" id="visitarUFM">
+                                            <option value="Seleccionar">----</option>
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </td>
 
                                 </tr>
                                 <tr>
@@ -265,7 +274,13 @@ if (isset($_GET['respuesta'])) {
                                     <th colspan="1" scope="col">Agudeza Visual</th>
                                     <td style="width: auto;"><input type="text" class="" name="agudezaVisual" value=""></td>
                                     <th colspan="1" scope="col">¿Envio al Optometrista?</th>
-                                    <td style="width: auto;"><input type="text" class="" name="envioOpto" value=""></td>
+                                    <td style="width: auto;">
+                                        <select name="envioOpto" id="envioOpto">
+                                            <option value="Seleccionar">----</option>
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </td>
                                     <th colspan="1" scope="col">Examenes de Laboratorio</th>
                                     <td style="width: auto;"><input type="text" class="" name="examLab" value=""></td>
                                 </tr>
@@ -273,11 +288,35 @@ if (isset($_GET['respuesta'])) {
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Licencia Indica Uso de Lentes</th>
-                                    <td style="width: auto;"><input type="text" class="" name="licenciaLentes" value=""></td>
+                                    <td style="width: auto;">
+                                        <select name="licenciaLentes" id="licenciaLentes">
+                                            <option value="Seleccionar">----</option>
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </td>
                                     <th colspan="1" scope="col">¿Usa Lentes Graduadios?</th>
-                                    <td style="width: auto;"><input type="text" class="" name="lentGraduadios" value=""></td>
+                                    <td style="width: auto;">
+                                        <select name="lentGraduadios" id="lentGraduadios">
+                                            <option value="Seleccionar">----</option>
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </td>
                                     <th colspan="1" scope="col">Tipo de Sangre</th>
-                                    <td style="width: auto;"><input type="text" class="" name="tipoSangre" value=""></td>
+                                    <td style="width: auto;">
+                                        <select name="tipoSangre" id="tipoSangre">
+                                            <option value="Seleccionar">----</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Riesgo para la Salub</th>

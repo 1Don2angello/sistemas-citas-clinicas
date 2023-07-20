@@ -91,9 +91,9 @@ function agregar($obj_filtros)
     // Variable de la consulta SQL
     $query = "INSERT INTO gestion_citas.ope_citas " .
     "(citas_servicios_id, citas_proveedor_id, citas_clientes_id, citas_estatus, citas_fecha, citas_hora, citas_notas, citas_fecha_creo, citas_sala) " .
-    "VALUES (".$filtros->citas_servicios_id.", ".$filtros->citas_proveedor_id.", ".$filtros->citas_clientes_id.", ".$filtros->citas_estatus.", ".$filtros->citas_fecha."', '".$filtros->citas_hora."', '".$filtros->citas_notas."', GETDATE(), '".$filtros->citas_sala."')";
+    "VALUES (".$filtros->citas_servicios_id.", ".$filtros->citas_proveedor_id.", ".$filtros->citas_clientes_id.", '".$filtros->citas_estatus."', '".$filtros->citas_fecha."', '".$filtros->citas_hora."', '".$filtros->citas_notas."', GETDATE(), '".$filtros->citas_sala."')";
  // Imprimir la consulta SQL
-   echo "Consulta SQL: " . $query;
+   /* echo "Consulta SQL: " . $query; */
     // Ejecutar la declaración
     $result = $db_context->conexion->query($query);
 

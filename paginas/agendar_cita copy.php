@@ -24,6 +24,7 @@
 </head>
 
 <body>
+
   <div class="container cont-principal">
     <div class="barra_titulo">
       <div class="row">
@@ -57,7 +58,7 @@
               <select class="form-control" id="select_servicio" style="width: 100%; height: 40px">
                 <option value="">- seleccionar -</option>
               </select>
-              <!-- <input type="text" id="select_servicio" class="form-control" style="width: 100%" readonly value="servicio medico" /> -->
+              <!-- <input type="text" id="select_servicio" class="form-control" style="width: 100%"  value="servicio medico" /> -->
             </div>
           </div>
 
@@ -112,6 +113,7 @@
         </div>
       </div>
     </div>
+
     <div id="paso_3" class="contenedor_paso contenedor_formulario">
       <h3 style="width: 100%; color: gray; text-align: center">Ingrese su información</h3>
       <p style="width: 100%; color: gray; text-align: center">Si ya ha registrado citas anteriormente, sólo basta con ingresar su nombre completo</p>
@@ -128,22 +130,22 @@
       <div class="row" style="margin-bottom: 20px">
         <div class="col-lg-4">
           <label for="txt_nombre" style="font-weight: bold">Nombre :</label>
-          <input type="text" id="txt_nombre" class="form-control" style="width: 100%" readonly />
+          <input type="text" id="txt_nombre" class="form-control" style="width: 100%" />
         </div>
         <div class="col-lg-4">
           <label for="txt_apellido_p" style="font-weight: bold">Apellido Paterno :</label>
-          <input type="text" id="txt_apellido_p" class="form-control" style="width: 100%" readonly />
+          <input type="text" id="txt_apellido_p" class="form-control" style="width: 100%" />
         </div>
         <div class="col-lg-4">
           <label for="txt_apellido_m" style="font-weight: bold">Apellido Materno :</label>
-          <input type="text" id="txt_apellido_m" class="form-control" style="width: 100%" readonly />
+          <input type="text" id="txt_apellido_m" class="form-control" style="width: 100%" />
         </div>
       </div>
 
       <div class="row" style="margin-bottom: 20px">
         <div class="col-lg-6">
           <label for="txt_domicilio" style="font-weight: bold">Depto :</label>
-          <input type="text" id="txt_domicilio" class="form-control" style="width: 100%" readonly />
+          <input type="text" id="txt_domicilio" class="form-control" style="width: 100%" />
         </div>
         <div class="col-lg-6">
           <label for="txt_telefono" style="font-weight: bold">Teléfono :</label>
@@ -209,6 +211,25 @@
             realizarBusqueda();
             $('#txt_nombre').focus(); // Mover el foco al campo "txt_nombre"
           });
+
+
+          // Función para calcular la edad a partir de la fecha de nacimiento
+          function calcularEdad(fechaNacimiento) {
+            var fechaNac = new Date(fechaNacimiento);
+            var fechaActual = new Date();
+
+            var edad = fechaActual.getFullYear() - fechaNac.getFullYear();
+
+            // Si el cumpleaños de este año aún no ha sucedido, restar 1 a la edad
+            var mesActual = fechaActual.getMonth() + 1;
+            var mesNacimiento = fechaNac.getMonth() + 1;
+            if (mesActual < mesNacimiento || (mesActual === mesNacimiento && fechaActual.getDate() < fechaNac.getDate())) {
+              edad--;
+            }
+
+            return edad;
+          }
+
           // Función para realizar la búsqueda y actualizar los campos
           function realizarBusqueda() {
             var clave = $('#clave').val();
@@ -226,6 +247,13 @@
                 $('#txt_apellido_p').val(resultado.Paterno);
                 $('#txt_apellido_m').val(resultado.Materno);
                 $('#txt_domicilio').val(resultado.Depto);
+                $('#txt_telefono').val(resultado.Telefono);
+                // Calcular la edad a partir de la fecha de nacimiento
+                var fechaNacimiento = resultado.Fecha_Nacimiento; // Asegúrate de que el campo sea el adecuado
+                var edad = calcularEdad(fechaNacimiento);
+                $('#txt_edad').val(edad);
+                $('#txt_correo').val(resultado.Correo);
+
               },
               error: function() {
                 alert('Error al realizar la consulta.');
@@ -259,7 +287,7 @@
           <p style="font-size: 18px">
             <span style="font-weight: bold">Hora: </span><span id="confirma_hora"></span>
           </p>
-        
+
           <p style="font-size: 18px">
             <span style="font-weight: bold">Duración: </span><span id="confirma_duracion"></span>
           </p>
@@ -270,7 +298,7 @@
           <h4 style="font-weight: bold; width: 100%; text-align: center">
             Datos del cliente:
           </h4>
-          
+
 
           <p style="font-size: 18px">
             <span style="font-weight: bold">Cliente: </span><span id="confirma_nombre">N/A</span>
@@ -290,6 +318,9 @@
         </div>
       </div>
     </div>
+
+
+    
     <div class="contenedor_inferior">
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 text-center">

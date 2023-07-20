@@ -48,7 +48,7 @@
                     // Calcular el número de registro inicial para la consulta
                     $registroInicial = ($paginaActual - 1) * $registrosPorPagina;
                     // Consulta SQL con criterios de búsqueda y paginación
-                    $consulta5 = "SELECT * FROM gestion_citas.historial WHERE clave LIKE '%$clave%' AND nombre LIKE '%$nombre%' ORDER BY id OFFSET $registroInicial ROWS FETCH NEXT $registrosPorPagina ROWS ONLY;";
+                    $consulta5 = "SELECT * FROM gestion_citas.historial WHERE clave LIKE '%$clave%' AND nombre LIKE '%$nombre%' ORDER BY id DESC OFFSET $registroInicial ROWS FETCH NEXT $registrosPorPagina ROWS ONLY;";
                     $resultado5 = $conn2->query($consulta5);
                     if ($resultado5 === false) {
                         die(print_r($conn2->errorInfo(), true));

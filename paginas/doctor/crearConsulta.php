@@ -64,9 +64,9 @@ if (isset($_GET['respuesta'])) {
                                 </tr>
 
                                 <tr>
-                                <th colspan="1" scope="col">Edad</th>
+                                    <th colspan="1" scope="col">Edad</th>
                                     <td style="width: auto;">
-                                        <select class="pequenio" name="edad">
+                                        <select class="pequenio" id="txt_edad" name="edad">
                                             <?php
                                             $selectedValue = $fila5["edad"]; // Valor seleccionado actualmente
                                             for ($i = 17; $i <= 66; $i++) {
@@ -88,7 +88,7 @@ if (isset($_GET['respuesta'])) {
 
                                 </tr>
 
-                                
+
                                 <tr>
                                     <th colspan="1" scope="col">Peso</th>
                                     <td tyle="width: auto;">
@@ -199,7 +199,7 @@ if (isset($_GET['respuesta'])) {
                                 </tr>
                                 <tr>
                                     <th colspan=" 1" scope="col">Fecha de Nacimiento</th>
-                                    <td colspan="2" style="width: auto;"><input class="grande" type="date" class="fechaN" name="fechaN" value=""></td>
+                                    <td colspan="2" style="width: auto;"><input class="grande" type="date" class="fechaN"  id="fechaN" name="fechaN" value=""></td>
                                     <th colspan="1" scope="col">Escolaridad</th>
                                     <td colspan="2" style="width: auto;">
                                         <select name="escolaridad">
@@ -438,6 +438,23 @@ if (isset($_GET['respuesta'])) {
                     event.preventDefault(); // Evitar el comportamiento predeterminado de la tecla Tab
                 }
             });
+            // Función para calcular la edad a partir de la fecha de nacimiento
+            function calcularEdad(fechaNacimiento) {
+                var fechaNac = new Date(fechaNacimiento);
+                var fechaActual = new Date();
+
+                var edad = fechaActual.getFullYear() - fechaNac.getFullYear();
+
+                // Si el cumpleaños de este año aún no ha sucedido, restar 1 a la edad
+                var mesActual = fechaActual.getMonth() + 1;
+                var mesNacimiento = fechaNac.getMonth() + 1;
+                if (mesActual < mesNacimiento || (mesActual === mesNacimiento && fechaActual.getDate() < fechaNac.getDate())) {
+                    edad--;
+                }
+
+                return edad;
+            }
+
             // Función para realizar la búsqueda
             function buscar() {
                 var clave = $('#clave').val();
@@ -453,6 +470,13 @@ if (isset($_GET['respuesta'])) {
                         var resultado = JSON.parse(data);
                         var nombreCompleto = resultado.Nombre + ' ' + resultado.Paterno + ' ' + resultado.Materno;
                         $('#nombre_completo').val(nombreCompleto);
+                        // Calcular la edad a partir de la fecha de nacimiento
+                        var fechaNacimiento = resultado.Fecha_Nacimiento; // Asegúrate de que el campo sea el adecuado
+                        var edad = calcularEdad(fechaNacimiento);
+                        $('#txt_edad').val(edad);
+                        // Imprimir la fecha de nacimiento en el campo de entrada con clase "fechaN"
+                        $('#fechaN').val(fechaNacimiento);
+
                     },
                     error: function() {
                         alert('Error al realizar la consulta.');

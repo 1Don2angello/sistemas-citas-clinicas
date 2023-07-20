@@ -201,6 +201,7 @@
                         var edad = calcularEdad(fechaNacimiento);
                         $('#txt_edad').val(edad);
                         $('#txt_correo').val(resultado.Correo);
+                        
 
                     },
                     error: function() {

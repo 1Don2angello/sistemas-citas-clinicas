@@ -69,13 +69,41 @@
                 Agendar una Cita
               </button>
             </div>
-            <span style="display: block; width: 100%; text-align: right"
-            ><a href="./paginas/registrarse.php">registrarse</a><i class="fa fa-arrow-right"></i
-          ></span>
-            <span style="display: block; width: 100%; text-align: right"
-              >Iniciar Sesión <i class="fa fa-arrow-right"></i
-            ></span>
-          </form>
+
+            <style>
+              /* Estilos para los enlaces */
+              .link-container {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                margin-top: 20px;
+              }
+            
+              .link-container a {
+                text-decoration: none;
+                color: #333;
+                margin-right: 10px; /* Ajustar el margen entre el enlace y el icono */
+              }
+            
+              .link-container i {
+                margin-right: 5px; /* Ajustar el margen entre los íconos */
+              }
+            </style>
+            
+            <!-- ... Tu código HTML anterior ... -->
+            
+            <div class="form-content">
+              <form action="paginas/agendar_cita copy.php">
+                <!-- Resto de tu formulario -->
+            
+                <div class="link-container">
+                   <i class="fa fa-arrow-left"></i>
+                  <a href="./paginas/registrarse.php">Registrarse</a>
+                  Iniciar Sesión  <!-- Añadir espacio después del icono -->
+                  <i class="fa fa-arrow-right"></i>
+                </div>
+              </form>
+            </div>
         </div>
       </div>
 

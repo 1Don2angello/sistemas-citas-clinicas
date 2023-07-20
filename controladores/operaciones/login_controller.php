@@ -40,7 +40,7 @@
     
 
     /*
-    * - programó: Juan Carlos Gómez Rangel
+    * - programó: teodoro perez
     * - nombre: consultar_usuarios
     * - fecha: 8/06/2021    
     * - retorno: array json compuestos de objetos tipo "tbl_pacientes"
@@ -49,36 +49,37 @@
                 en la base de datos segun los filtros que le pasen
     */
     function consultar_usuario($obj_filtros){
-        
         $filtros = json_decode($obj_filtros);
         $lista_resultado = [];//variable en la que se almacena el resultado de la consulta
-                
+    
         //creamos la conexion con la base de datos
         $db_context = new BaseDatos();
         //variable de la consulta SQL
-        $query = "SELECT * FROM cat_usuarios WHERE usuarios_usuario = '".$filtros->usuarios_usuario."' AND usuarios_clave = '".$filtros->usuarios_clave."'";
-
+        $query = "SELECT * FROM gestion_citas.cat_usuarios WHERE usuarios_usuario = '".$filtros->usuarios_usuario."' AND usuarios_clave = '".$filtros->usuarios_clave."'";
+    
         //variable que contiene el resultado de la consulta
-        $result = mysqli_query($db_context->conexion,$query);        
-        $nombre_usuario;
-
+        $result = $db_context->conexion->query($query);
+    
         //recorremos el resultado fila por fila
-        if(($row = mysqli_fetch_array($result))==true){                       
-            $encontrado=true;
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+        if($row !== false){                       
+            $encontrado = true;
             $nombre_usuario = $row['usuarios_nombre'] . " " . $row['usuarios_apellido_p'] . " " . $row['usuarios_apellido_m'];
         }else{
-            $encontrado=false;
+            $encontrado = false;
         }
-
+    
         //cerramos la conexion con la base de datos
         $db_context->desconectar($db_context->conexion);        
-
+    
         //retornamos el resultado obtenido
         if($encontrado)
             echo "{\"mensaje\":\"correcto\",\"nombre\":\"".$nombre_usuario."\"}";
         else
             echo "{\"mensaje\":\"error\"}";
     }
+    
+    
 
     
 
@@ -97,38 +98,38 @@
 
 
 
-
-    function crear_session($user,$pass){
-
     
+    function crear_session($user, $pass){
         //creamos la conexion con la base de datos
         $db_context = new BaseDatos();
         //variable de la consulta SQL
-        $query = "SELECT * FROM cat_usuarios WHERE usuarios_usuario = '".$user."' AND usuarios_clave = '".$pass."'";
-
-        //variable que contiene el resultado de la consulta
-        $result = mysqli_query($db_context->conexion,$query);        
-
+        $query = "SELECT * FROM gestion_citas.cat_usuarios WHERE usuarios_usuario = :user AND usuarios_clave = :pass";
+        
+        //preparar la consulta
+        $stmt = $db_context->conexion->prepare($query);
+        $stmt->bindParam(':user', $user);
+        $stmt->bindParam(':pass', $pass);
+    
+        //ejecutar la consulta
+        $stmt->execute();
+    
         //recorremos el resultado fila por fila
-        if(($row = mysqli_fetch_array($result))==true){                       
-            
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($row !== false){                       
             session_start();
-            $_SESSION["usuario"]=$user;
-            $_SESSION["clave"]=$pass;            
-            $_SESSION["rol"]=$row['usuarios_rol'];
-            $_SESSION["nombre_usuario"]=$row['usuarios_nombre'] . " " . $row['usuarios_apellido_p'] . " " . $row['usuarios_apellido_m'];
+            $_SESSION["usuario"] = $user;
+            $_SESSION["clave"] = $pass;            
+            $_SESSION["rol"] = $row['usuarios_rol'];
+            $_SESSION["nombre_usuario"] = $row['usuarios_nombre'] . " " . $row['usuarios_apellido_p'] . " " . $row['usuarios_apellido_m'];
             $_SESSION["usuario_id"] = $row['usuarios_id'];
             echo "{\"mensaje\":\"correcto\"}";
-
         }else{
             echo "{\"mensaje\":\"error\"}";
         }
-
+    
         //cerramos la conexion con la base de datos
         $db_context->desconectar($db_context->conexion);        
-        
-
     }
-
+    
     
 ?>

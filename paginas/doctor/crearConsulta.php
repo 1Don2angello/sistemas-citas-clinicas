@@ -86,14 +86,14 @@ if (isset($_GET['respuesta'])) {
                                     <td colspan="1" style="width: auto;"><input type="text" class="grande" name="tensArt" value=""></td>
 
                                 </tr>
+
+                                
                                 <tr>
                                     <th colspan="1" scope="col">Peso</th>
                                     <td tyle="width: auto;">
-
                                         <input type="text" name="peso" class="grande" id="pesoInput" value="" required>kg
                                         <script>
                                             var pesoInput = document.getElementById("pesoInput");
-
                                             pesoInput.addEventListener("input", function(event) {
                                                 var input = event.target;
                                                 var inputValue = input.value.trim();
@@ -125,6 +125,34 @@ if (isset($_GET['respuesta'])) {
                                         </select>
 
                                     </td>
+                                    <th colspan="1" scope="col">Índice de Masa Corporal</th>
+                                    <td style="width: auto;"><input type="text" class="grande" name="imc" id="imcInput" value="" readonly></td>
+                                </tr>
+                                <script>
+                                    var pesoInput = document.getElementById("pesoInput");
+                                    var alturaSelect = document.getElementById("altura");
+                                    var imcInput = document.getElementById("imcInput");
+
+                                    pesoInput.addEventListener("input", function(event) {
+                                        calcularIMC();
+                                    });
+
+                                    alturaSelect.addEventListener("change", function(event) {
+                                        calcularIMC();
+                                    });
+
+                                    function calcularIMC() {
+                                        var peso = parseFloat(pesoInput.value);
+                                        var altura = parseFloat(alturaSelect.value);
+                                        var imc = peso / (altura * altura);
+                                        imcInput.value = imc.toFixed(2);
+                                    }
+                                </script>
+
+                                <tr>
+                                    <th colspan="1" scope="col">Frecuencia Cardíaca</th>
+                                    <td style="width: auto;"><input type="text" class="grande" name="frCard" value=""></td>
+
 
                                     <th colspan="1" scope="col">Estado Civil</th>
                                     <td style="width: auto;">
@@ -136,12 +164,6 @@ if (isset($_GET['respuesta'])) {
                                             <option value="Viudo">Viudo</option>
                                         </select>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="1" scope="col">Frecuencia Cardíaca</th>
-                                    <td style="width: auto;"><input type="text" class="grande" name="frCard" value=""></td>
-                                    <th colspan="1" scope="col">Índice de Masa Corporal</th>
-                                    <td style="width: auto;"><input type="text" class="grande" name="imc" value=""></td>
                                     <th colspan="2" scope="col">HORA </th>
                                 </tr>
                                 <tr>

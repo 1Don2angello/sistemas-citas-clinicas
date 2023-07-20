@@ -5,49 +5,36 @@ $(document).ready(function () {
     consultar_nombre_empresa();
 });
 
+function consultar_nombre_empresa() {
+  try {
+      var obj_filtros = new Object();
+      obj_filtros.configuracion_clase = "info_empresa";
 
-
-function consultar_nombre_empresa(){
-  
-  try{
-                    
-    var obj_filtros = new Object();
-    obj_filtros.configuracion_clase = "info_empresa";        
-                    
-
-    $.ajax({
-
-        type: "POST",
-        async: false,
-        url: 'controladores/operaciones/configuracion_controller.php',
-        data: {"funcion" : "consultar", "obj_filtros": JSON.stringify(obj_filtros)},
-        success: function(response)
-        {                
-
-            try{
-                
-                //console.log(response);
-                var jsonData = JSON.parse(response);                     
-                
-                $("#lb_nombre_empresa").text(jsonData[0].configuracion_valor);
-
-            }catch(ex_ajax){
-
-                alert("[consultar_nombre_empresa -> ajax]: " + ex_ajax);
-            }
-
-        },
-        error: function(e){
-            
-            alert(e.responseText);                
-        }
-    });        
-
-  }catch(ex){
+      $.ajax({
+          type: "POST",
+          async: false,
+          url: 'controladores/operaciones/configuracion_controller.php',
+          data: {
+              "funcion": "consultar",
+              "obj_filtros": JSON.stringify(obj_filtros)
+          },
+          success: function(response) {
+              try {
+                  var jsonData = JSON.parse(response);
+                  $("#lb_nombre_empresa").text(jsonData[0].configuracion_valor);
+              } catch (ex_ajax) {
+                  alert("[consultar_nombre_empresa -> ajax]: " + ex_ajax);
+              }
+          },
+          error: function(e) {
+              alert(e.responseText);
+          }
+      });
+  } catch (ex) {
       alert("[consultar_nombre_empresa -> function]: " + ex);
   }
-
 }
+
 
 
 

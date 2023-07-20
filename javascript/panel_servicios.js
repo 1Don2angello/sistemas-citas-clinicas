@@ -505,7 +505,8 @@ function agregar_servicios(){
         obj_filtros.servicios_precio =$("#txt_precio_edit_servicio").val();        
         obj_filtros.servicios_categoria_id =$("#select_categoria_edit_servicio").val();
                 
-
+        console.log("Contenido de obj_filtros:", obj_filtros);
+        console.log("JSON de obj_filtros:", JSON.stringify(obj_filtros));
         $.ajax({
 
             type: "POST",
@@ -516,9 +517,9 @@ function agregar_servicios(){
             {                
 
                 try{
-                                    
+                    console.log(response);            
                     var jsonData = JSON.parse(response); 
-            
+                    
                     $(".loader").fadeOut("slow");
                     if(jsonData.mensaje=="correcto"){
                         

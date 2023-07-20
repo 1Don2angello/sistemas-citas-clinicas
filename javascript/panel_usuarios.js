@@ -362,7 +362,8 @@ function agregar_usuario(){
         obj_filtros.usuarios_clave =$("#txt_clave_edit").val();
         obj_filtros.usuarios_rol =$("#select_rol_edit option:selected").text();
                 
-
+        console.log("Contenido de obj_filtros:", obj_filtros);
+        console.log("JSON de obj_filtros:", JSON.stringify(obj_filtros));
         $.ajax({
 
             type: "POST",
@@ -374,7 +375,7 @@ function agregar_usuario(){
 
                 try{
                     
-                    //console.log(response);
+                    console.log(response);
                     var jsonData = JSON.parse(response); 
                                 
                     if(jsonData.mensaje=="correcto"){
@@ -491,7 +492,8 @@ function actualizar_cliente(){
         obj_filtros.usuarios_usuario =$("#txt_usuario_edit").val();
         obj_filtros.usuarios_clave =$("#txt_clave_edit").val();
         obj_filtros.usuarios_rol =$("#select_rol_edit option:selected").text();
-                
+        console.log("Contenido de obj_filtros:", obj_filtros);
+        console.log("JSON de obj_filtros:", JSON.stringify(obj_filtros));    
 
         $.ajax({
 

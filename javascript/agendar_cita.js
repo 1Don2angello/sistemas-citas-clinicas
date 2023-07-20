@@ -1313,14 +1313,13 @@ function consultar_cliente_registrado() {
   return resultado;
 }
 
+
 function registrar_cliente() {
   resultado = true;
 
   try {
     $(".loader").css("display", "block");
-
     var obj_filtros = new Object();
-
     obj_filtros.clientes_nombre = $("#txt_nombre").val();
     obj_filtros.clientes_apellido_p = $("#txt_apellido_p").val();
     obj_filtros.clientes_apellido_m = $("#txt_apellido_m").val();
@@ -1331,6 +1330,9 @@ function registrar_cliente() {
     obj_filtros.clientes_edad =
       $("#txt_edad").val() == "" ? 0 : parseInt($("#txt_edad").val(), 10);
 
+    console.log("Contenido de obj_filtros:", obj_filtros);
+    console.log("JSON de obj_filtros:", JSON.stringify(obj_filtros));
+
     $.ajax({
       type: "POST",
       async: false,
@@ -1338,7 +1340,7 @@ function registrar_cliente() {
       data: { funcion: "agregar", obj_filtros: JSON.stringify(obj_filtros) },
       success: function (response) {
         try {
-          //console.log(response);
+          console.log(response);
           var jsonData = JSON.parse(response);
 
           $(".loader").fadeOut("slow");
@@ -1352,7 +1354,10 @@ function registrar_cliente() {
 
             resultado = false;
           } else {
+            /* = jsonData.id; */
             Cliente_ID = jsonData.id;
+          /* liente_ID  = jsonData.id; */ // Almacenar el ID del cliente en la variable local
+          
           }
         } catch (ex_ajax) {
           alert("[registrar_cliente -> ajax]: " + ex_ajax);
@@ -1363,6 +1368,8 @@ function registrar_cliente() {
         $(".loader").fadeOut("slow");
       },
     });
+    // En lugar de asignar el ID a la variable Cliente_ID, devuélvelo como resultado
+    /* return jsonData.id; */
   } catch (ex) {
     alert("[registrar_cliente -> function]: " + ex);
   }
@@ -1374,33 +1381,35 @@ function registrar_cita() {
   $(".loader").css("display", "block");
 
   try {
-    $(".loader").css("display", "block");
+    var obj_filtros = {
+      citas_servicios_id: $("#select_servicio").val(),
+      citas_proveedor_id: $("#select_proveedor").val(),
+      citas_clientes_id: Cliente_ID , // Utilizar ClienteID en lugar de 
+      citas_estatus: "activo",
+      citas_fecha: $("#hid_fecha").val(),
+      citas_hora: $("#hid_hora").val(),
+      citas_notas: $("#txt_nota").val(),
+      citas_sala: "",
+    };
 
-    var obj_filtros = new Object();
-    obj_filtros.citas_servicios_id = $("#select_servicio").val();
-    obj_filtros.citas_proveedor_id = $("#select_proveedor").val();
-    obj_filtros.citas_clientes_id = Cliente_ID;
-    obj_filtros.citas_estatus = "activo";
-    obj_filtros.citas_fecha = $("#hid_fecha").val();
-    obj_filtros.citas_hora = $("#hid_hora").val();
-    obj_filtros.citas_notas = $("#txt_nota").val();
-    obj_filtros.citas_sala = "";
+    console.log("Contenido de obj_filtros:", obj_filtros);
 
     $.ajax({
       type: "POST",
-      async: false,
       url: "../controladores/operaciones/citas_controller.php",
       data: { funcion: "agregar", obj_filtros: JSON.stringify(obj_filtros) },
       success: function (response) {
         try {
-          //console.log(response);
+          console.log(response);
+
           var jsonData = JSON.parse(response);
 
           if (jsonData.mensaje == "correcto") {
             Swal.fire({
               title: "La cita se ha registrado correctamente",
+              //text: "Datos de la cita:\n" + JSON.stringify(obj_filtros),
               icon: "success",
-              confirmButtonText: `Salir`,
+              confirmButtonText: "Salir",
             }).then((result) => {
               window.location.href = "../index.html";
             });
@@ -1409,7 +1418,7 @@ function registrar_cita() {
               title:
                 "Ha ocurrido un error registrando la cita, favor de intentarlo más tarde",
               icon: "error",
-              confirmButtonText: `Salir`,
+              confirmButtonText: "Salir",
             }).then((result) => {
               window.location.href = "../index.html";
             });
@@ -1420,16 +1429,14 @@ function registrar_cita() {
 
         $(".loader").fadeOut("slow");
       },
-      error: function (e) {
+      error: function (xhr, status, error) {
         $(".loader").fadeOut("slow");
-        alert(e.responseText);
+        alert(error);
       },
     });
   } catch (ex) {
     alert("[registrar_cita -> function]: " + ex);
   }
-
-  $(".loader").css("display", "none");
 }
 
 /* function enviar_correo() {

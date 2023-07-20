@@ -45,7 +45,7 @@ function inicializar_pagina() {
         }
 
         var json_datos = JSON.parse(datos);
-        //console.log(json_datos);
+        console.log(json_datos);
 
         var contenido =
           '<span style="font-weight:bold; font-size:20px;">Datos de la cita</span><br><br>' +
@@ -53,7 +53,7 @@ function inicializar_pagina() {
           json_datos.servicios_nombre +
           "</span><br>" +
           '<span style="font-size:18px;"><span style="font-weight:bold;">Proveedor: </span>' +
-          json_datos.proveedores_nombre_completo +
+          json_datos.usuarios_nombre +
           "</span><br><br>" +
           '<span style="font-weight:bold;">Fecha: </span>' +
           json_datos.citas_fecha +
@@ -68,7 +68,7 @@ function inicializar_pagina() {
           json_datos.citas_sala +
           "<br><br>" +
           '<span style="font-weight:bold;">Cliente: </span>' +
-          json_datos.clientes_nombre_completo +
+          json_datos.clientes_nombre +
           "<br>" +
           '<span style="font-weight:bold;">Teléfono: </span>' +
           json_datos.clientes_telefono +
@@ -156,7 +156,7 @@ function inicializar_pagina() {
           return false;
         }
 
-        //console.log(info);
+        console.log(info);
         var fecha_seleccionada = new Date(obtener_fecha(info.event.start));
         fecha_seleccionada.setHours(23);
         fecha_seleccionada.setMinutes(59);
@@ -220,17 +220,19 @@ function inicializar_pagina() {
               }
               var json_obj = JSON.parse(json_txt);
 
-              notificar_correo_reagendar(
+              /* notificar_correo_reagendar(
                 json_obj.clientes_nombre_completo,
                 json_obj.clientes_correo,
                 json_obj.servicios_nombre,
                 json_obj.citas_proveedor_id,
                 json_obj.citas_fecha,
                 json_obj.citas_hora
-              );
+              ); */
 
               var fecha = Fecha_Actual_Calendar;
               consultar_citas_mes(fecha.substring(0, 7));
+
+              window.location.reload();
             }
           } else {
             info.revert();
@@ -403,7 +405,7 @@ function eventos() {
         $("#modal_cita").modal("hide");
 
         $(".loader").css("display", "block");
-        notificar_correo();
+        /* notificar_correo(); */
         $(".loader").css("display", "none");
       }
 
@@ -802,7 +804,7 @@ function consultar_citas_mes(fecha) {
 
   $(".loader").fadeOut("slow");
 }
-
+/* 
 function notificar_correo() {
   if ($("#hid_cita_id").val() == "") {
     return false;
@@ -1024,8 +1026,8 @@ function notificar_correo() {
   } catch (ex) {
     alert("Error [enviar_correo -> function]: " + ex);
   }
-}
-
+} */
+/* 
 function notificar_correo_reagendar(
   nombre_cliente_prm,
   correo_cliente_prm,
@@ -1199,7 +1201,7 @@ function notificar_correo_reagendar(
   } catch (ex) {
     alert("Error [enviar_correo -> function]: " + ex);
   }
-}
+} */
 
 function _llenar_combo_servicios() {
   try {
@@ -2057,7 +2059,7 @@ function registrar_cliente() {
       $("#txt_edad_modal").val() == ""
         ? 0
         : parseInt($("#txt_edad_modal").val(), 10);
-
+    console.log("Contenido de obj_filtros:", obj_filtros);
     $.ajax({
       type: "POST",
       async: false,
@@ -2065,7 +2067,7 @@ function registrar_cliente() {
       data: { funcion: "agregar", obj_filtros: JSON.stringify(obj_filtros) },
       success: function (response) {
         try {
-          //console.log(response);
+          console.log(response);
           var jsonData = JSON.parse(response);
 
           $(".loader").fadeOut("slow");
@@ -2096,7 +2098,7 @@ function registrar_cliente() {
 
   return resultado;
 }
-
+/* 
 function registrar_cita() {
   try {
     $(".loader").css("display", "block");
@@ -2110,7 +2112,7 @@ function registrar_cita() {
     obj_filtros.citas_hora = $("#select_hora_modal").val();
     obj_filtros.citas_notas = $("#txt_nota_modal").val();
     obj_filtros.citas_sala = $("#select_sala_modal").val();
-
+    console.log("Contenido de obj_filtros:", obj_filtros);
     $.ajax({
       type: "POST",
       async: false,
@@ -2148,6 +2150,63 @@ function registrar_cita() {
       error: function (e) {
         $(".loader").fadeOut("slow");
         alert(e.responseText);
+      },
+    });
+  } catch (ex) {
+    alert("[registrar_cita -> function]: " + ex);
+  }
+} */
+function registrar_cita() {
+  try {
+    $(".loader").css("display", "block");
+
+    var obj_filtros = new Object();
+    obj_filtros.citas_servicios_id = $("#select_servicio_modal").val();
+    obj_filtros.citas_proveedor_id = $("#select_proveedor_modal").val();
+    obj_filtros.citas_clientes_id = Cliente_ID;
+    obj_filtros.citas_estatus = "activo";
+    obj_filtros.citas_fecha = $("#date_fecha_modal").val();
+    obj_filtros.citas_hora = $("#select_hora_modal").val();
+    obj_filtros.citas_notas = $("#txt_nota_modal").val();
+    obj_filtros.citas_sala = $("#select_sala_modal").val();
+    console.log("Contenido de obj_filtros:", obj_filtros);
+    $.ajax({
+      type: "POST",
+      async: false,
+      url: "../controladores/operaciones/citas_controller.php",
+      data: { funcion: "agregar", obj_filtros: JSON.stringify(obj_filtros) },
+      success: function (response) {
+        try {
+          //console.log(response);
+          var jsonData = JSON.parse(response);
+
+          if (jsonData.mensaje == "correcto") {
+            Swal.fire({
+              title: "La cita se ha registrado correctamente",
+              icon: "success",
+              confirmButtonText: `Salir`,
+            }).then((result) => {
+              $("#modal_cita").modal("hide");
+            });
+          } else {
+            Swal.fire({
+              title:
+                "Ha ocurrido un error registrando la cita, favor de intentarlo más tarde",
+              icon: "error",
+              confirmButtonText: `Salir`,
+            }).then((result) => {
+              $("#modal_cita").modal("hide");
+            });
+          }
+        } catch (ex_ajax) {
+          alert("[registrar_cita -> ajax]: " + ex_ajax);
+        }
+
+        $(".loader").fadeOut("slow");
+      },
+      error: function (xhr, status, error) {
+        $(".loader").fadeOut("slow");
+        alert("Error en la llamada AJAX: " + error);
       },
     });
   } catch (ex) {
@@ -2461,7 +2520,7 @@ function limpiar_modal() {
   $("#txt_nota_modal").val("");
   $("#txt_nombre_modal").val("");
   $("#txt_apellido_p_modal").val("");
-  $("#txt_apellido_p_modal").val("");
+  $("#txt_apellido_m_modal").val("");
   $("#txt_telefono_modal").val("");
   $("#txt_domicilio_modal").val("");
   $("#txt_correo_modal").val("");

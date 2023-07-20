@@ -26,45 +26,42 @@
     }
 
     
-    
     function actualizar($obj_filtros){
         
-        $error="";
+        $error = "";
         $filtros = json_decode($obj_filtros);
-
+    
         //creamos la conexion con la base de datos
         $db_context = new BaseDatos();
-        
-
-        mysqli_query($db_context->conexion,"DELETE FROM ope_descansos");   
-
-
-        for($i=0;$i< sizeof($filtros);$i++){
     
+        $query = "TRUNCATE TABLE gestion_citas.ope_descansos";
+        $result = $db_context->conexion->query($query);
+    
+        for($i = 0; $i < sizeof($filtros); $i++){
+        
             //variable de la consulta SQL        
-            $query = "INSERT INTO `ope_descansos` (descansos_id,descansos_dia,descansos_inicio,descansos_final) VALUES (NULL,'".$filtros[$i]->descansos_dia."',".$filtros[$i]->descansos_inicio.",".$filtros[$i]->descansos_final.")";        
-            
+            $query = "INSERT INTO gestion_citas.ope_descansos (descansos_id, descansos_dia, descansos_inicio, descansos_final) VALUES (NULL, '".$filtros[$i]->descansos_dia."', '".$filtros[$i]->descansos_inicio."', '".$filtros[$i]->descansos_final."')";        
+                
             //variable que contiene el resultado de la consulta
-            $result = mysqli_query($db_context->conexion,$query);   
-
-            if($result==false){
-                $error="error";
+            $result = $db_context->conexion->query($query);
+    
+            if($result == false){
+                $error = "error";
+                break;
             }
         }
-
-
+    
         //cerramos la conexion con la base de datos
         $db_context->desconectar($db_context->conexion);        
-        
+            
         //evaluamos si la operacion se realizó correctamente
-        if($error==""){
+        if($error == ""){
             echo "{\"mensaje\":\"correcto\"}";
-        }else{
+        } else {
             echo "{\"mensaje\":\"error\"}";
         }
     }
-
-
+    
 
     function consultar(){
                 
@@ -74,14 +71,14 @@
         $db_context = new BaseDatos();
         
         //variable de la consulta SQL
-        $query = "SELECT * FROM ope_descansos";
+        $query = "SELECT * FROM gestion_citas.ope_descansos";
         
         //variable que contiene el resultado de la consulta
-        $result = mysqli_query($db_context->conexion,$query);        
-
+        $result = $db_context->conexion->query($query);        
+    
         //recorremos el resultado fila por fila
-        while(($row = mysqli_fetch_array($result))==true){                               
-
+        while($row = $result->fetch(PDO::FETCH_ASSOC)){                               
+    
             $item = new ope_descansos(
                 $row['descansos_id'],
                 $row['descansos_dia'],
@@ -92,12 +89,13 @@
             //agregamos el array interno al array de resultado
             array_push($lista_resultado, $item);
         }
-
+    
         //cerramos la conexion con la base de datos
         $db_context->desconectar($db_context->conexion);        
-
+    
         //retornamos el resultado obtenido
         echo json_encode($lista_resultado);
     }
+    
 
 ?>

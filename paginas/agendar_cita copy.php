@@ -117,8 +117,6 @@
       <p style="width: 100%; color: gray; text-align: center">Si ya ha registrado citas anteriormente, sólo basta con ingresar su nombre completo</p>
       <br /><br />
 
-
-
       <div class="row" style="margin-bottom: 20px">
         <form id="buscar-form" method="GET" action="">
           <label for="clave">Buscar por clave:</label>
@@ -248,7 +246,7 @@
         <div class="col-lg-6" style="margin-bottom: 40px">
           <h4 style="font-weight: bold; width: 100%; text-align: center">
             Datos de la cita:
-          </h4><br />
+          </h4>
           <p style="font-size: 18px">
             <span style="font-weight: bold">Servicio: </span><span id="confirma_servicio"></span>
           </p>
@@ -261,7 +259,7 @@
           <p style="font-size: 18px">
             <span style="font-weight: bold">Hora: </span><span id="confirma_hora"></span>
           </p>
-          <br />
+        
           <p style="font-size: 18px">
             <span style="font-weight: bold">Duración: </span><span id="confirma_duracion"></span>
           </p>
@@ -272,7 +270,7 @@
           <h4 style="font-weight: bold; width: 100%; text-align: center">
             Datos del cliente:
           </h4>
-          <br />
+          
 
           <p style="font-size: 18px">
             <span style="font-weight: bold">Cliente: </span><span id="confirma_nombre">N/A</span>

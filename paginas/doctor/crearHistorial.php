@@ -31,9 +31,9 @@
                                 </div>
                                 <tr>
                                     <th>Clave</th>
-                                    <th colspan="1"><input type="text" name="clave" id="" value=""></th>
+                                    <th colspan="1"><input type="text" name="clave" id="clave" value=""></th>
                                     <th>Nombre</th>
-                                    <th colspan="7"><input type="text" name="nombre" id="" value="" style="width: 752px;"></th>
+                                    <th colspan="7"><input type="text" name="nombre" id="nombre_completo" value="" style="width: 752px;"></th>
                                 </tr>
                                 <tr>
                                     <th>Sexo</th>
@@ -93,14 +93,14 @@
                                         </script>
                                     </td>
                                     <th>Analisis Covid</th>
-                                        <td >
-                                            <select name="analisisCovid" id="analisisCovid" style="border-color: gainsboro;">
-                                                <option value="Negativo">Negativo</option>
-                                                <option value="Positivo">Positivo</option>
-                                                <option value="Sospechoso">Sopechoso</option>
-                                                <option value="Muy sospechoso">Muy Sospechoso</option>
-                                            </select>
-                                        </td>
+                                    <td>
+                                        <select name="analisisCovid" id="analisisCovid" style="border-color: gainsboro;">
+                                            <option value="Negativo">Negativo</option>
+                                            <option value="Positivo">Positivo</option>
+                                            <option value="Sospechoso">Sopechoso</option>
+                                            <option value="Muy sospechoso">Muy Sospechoso</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th style="height:100px">Sintomas</th>

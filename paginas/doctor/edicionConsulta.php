@@ -107,10 +107,10 @@ if (isset($_GET['respuesta'])) {
                                 </tr>
                                 <tr>
                                     <th colspan="1" scope="col">Peso</th>
-                                    <td style="width: auto;">
-                                        <input type="text" class="pequenio" name="peso" value="<?php echo $fila5["peso"] ?>" required>kg
+                                    <td tyle="width: auto;">
+                                        <input type="text" name="peso" class="grande" id="pesoInput" value="<?php echo $fila5["peso"] ?>" required>kg
                                         <script>
-                                            var pesoInput = document.querySelector('input[name="peso"]');
+                                            var pesoInput = document.getElementById("pesoInput");
 
                                             pesoInput.addEventListener("input", function(event) {
                                                 var input = event.target;
@@ -123,14 +123,16 @@ if (isset($_GET['respuesta'])) {
                                                 if (!isNaN(numericValue)) {
                                                     // Agregar "kg" al final del valor numérico
                                                     input.value = numericValue;
+                                                    calcularIMC();
                                                 } else {
                                                     // Limpiar el campo si no es un número válido
                                                     input.value = "";
+                                                    imcInput.value = "";
                                                 }
                                             });
                                         </script>
                                     </td>
-
+                                    
                                     <th colspan="1" scope="col">Altura</th>
                                     <td style="width: auto;">
                                         <select name="talla" id="talla">m
@@ -138,13 +140,42 @@ if (isset($_GET['respuesta'])) {
                                             for ($i = 100; $i <= 200; $i++) {
                                                 $altura = $i / 100;
                                                 $selected = ($altura == $fila5["talla"]) ? "selected" : "";
-                                                echo '<option value="' . $altura . '" ' . $selected . '>' . $altura . ' m</option>';
+                                                echo '<option value="' . $altura . '" ' . $selected . '>' . $altura . ' </option>';
                                             }
                                             ?>
                                         </select>
                                     </td>
 
+                                    <th colspan="1" scope="col">Índice de Masa Corporal</th>
+                                    <td style="width: auto;">
+                                        <input type="text" class="grande" name="imc" id="imcInput" value="<?php echo $fila5["imc"]; ?>" readonly>
+                                    </td>
+                                </tr>
 
+                                <script>
+                                    var pesoInput = document.getElementById("pesoInput");
+                                    var alturaSelect = document.getElementById("talla");
+                                    var imcInput = document.getElementById("imcInput");
+
+                                    pesoInput.addEventListener("input", function(event) {
+                                        calcularIMC();
+                                    });
+
+                                    alturaSelect.addEventListener("change", function(event) {
+                                        calcularIMC();
+                                    });
+
+                                    function calcularIMC() {
+                                        var peso = parseFloat(pesoInput.value);
+                                        var altura = parseFloat(alturaSelect.value);
+                                        var imc = peso / (altura * altura);
+                                        imcInput.value = imc.toFixed(2);
+                                    }
+                                </script>
+                                
+                                <tr>
+                                    <th colspan="1" scope="col">Frecuencia Cardíaca</th>
+                                    <td style="width: auto;"><input type="text" class="pequenio" "frCard" name="frCard" value="<?php echo $fila5["frCard"] ?>"></td>
                                     <th colspan="1" scope="col">Estado Civil</th>
                                     <td style="width: auto;">
                                         <select name="edoCivil" id="estadoCivil">
@@ -157,15 +188,6 @@ if (isset($_GET['respuesta'])) {
                                             ?>
                                         </select>
                                     </td>
-
-
-
-                                </tr>
-                                <tr>
-                                    <th colspan="1" scope="col">Frecuencia Cardíaca</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio" "frCard" name="frCard" value="<?php echo $fila5["frCard"] ?>"></td>
-                                    <th colspan="1" scope="col">Índice de Masa Corporal</th>
-                                    <td style="width: auto;"><input type="text" class="pequenio" "imc" name="imc" value="<?php echo $fila5["imc"] ?>"></td>
                                     <th colspan="1" scope="col">HORA </th>
                                 </tr>
                                 <tr>

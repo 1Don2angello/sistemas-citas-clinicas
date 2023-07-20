@@ -51,21 +51,16 @@ function inicializar_pagina(){
 
 
 function eventos(){
-
     $("#btn_buscar").on('click',function(e){
         e.preventDefault();
-
         try{
-
             var validacion="";
             if($("#txt_hora_inicio").val().length<5 && $("#txt_hora_inicio").val().length>0){
                 validacion+="- Favor de ingresar una hora de inicio válida.<br>";
             }
-
             if($("#txt_hora_fin").val().length<5 && $("#txt_hora_fin").val().length>0){
                 validacion+="- Favor de ingresar una hora final válida.<br>";
             }
-
             if(validacion!=""){
                 const Toast = Swal.mixin({
                     toast: true,
@@ -78,73 +73,53 @@ function eventos(){
                       toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
                 });
-                  
                 Toast.fire({
                     icon: 'error',
                     title: '<span style="font-weight:bold; font-size:18px;">Error de validación:</span><br><br> ' + validacion
                 });
-
                 return false;
             }
-
             consultar_reportes();
-
         }catch(ex){
             alert("[btn_buscar -> click]:" + ex);
         }   
-
     });
-
-
-
     $("#btn_excel").on('click',function(e){
         e.preventDefault();
-
         try{
             
             $(".loader").css("display","block");        
-                                    
-                            
             $.ajax({
-    
                 type: "POST",
                 async: false,
                 url: '../controladores/operaciones/reportes_controller.php',
                 data: {"funcion" : "exportar_excel", "obj_json": tabla_to_json("table_citas")},
                 success: function(response)
                 {                
-    
-                    try{
-                        
-                        //console.log(response);
-                        var jsonData = JSON.parse(response); 
-                
+                    try{ 
+                        console.log(response);
+                        var jsonData = JSON.parse(response);
+                        var jsonData = JSON.stringify(response)
                         if(jsonData.mensaje=="correcto"){
-                                                        
+                            //text: "Datos del reporte \n" + JSON.stringify(response),
                             window.location.href="../controladores/utils/descargar_archivo.php?file_path=" + jsonData.file;
                         }else{
-
                             Swal.fire({
                                 title: 'Ha ocurrido un error generando el reporte, favor de intentarlo de nuevo más tarde',                            
                                 icon: 'error',
                                 confirmButtonText: `Salir`,
                             });
                         }
-    
                     }catch(ex_ajax){
-    
                         alert("[btn_excel -> ajax]: " + ex_ajax);
                     }
-    
                 },
                 error: function(e){
                     
                     alert(e.responseText);                
                 }
             });
-    
             $(".loader").fadeOut("slow");
-    
         }catch(ex){
             alert("[btn_excel -> click]: " + ex);
         }

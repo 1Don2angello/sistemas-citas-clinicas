@@ -236,10 +236,10 @@ if (isset($_GET['respuesta'])) {
                                     <th colspan="1" scope="col">Analisis Covid</th>
                                     <td colspan="2" style="width: auto;"><input class="grande" type="text" class="" name="analisisCovid" value=""></td>
 
-                                    <th colspan="1" scope="col" arUFM">Visitar UFM</th>
+                                    <th colspan="1" scope="col">Visitar UFM</th>
                                     <td colspan="2" style="width: auto;">
                                         <select name="visitarUFM" id="visitarUFM" required>
-                                            <option value="Seleccionar">----</option>
+                                            <option value="----">----</option>
                                             <option value="Si">Si</option>
                                             <option value="No">No</option>
                                         </select>
@@ -276,7 +276,7 @@ if (isset($_GET['respuesta'])) {
                                     <th colspan="1" scope="col">¿Envio al Optometrista?</th>
                                     <td style="width: auto;">
                                         <select name="envioOpto" id="envioOpto" required>
-                                            <option value="Seleccionar">----</option>
+                                            <option value="----">----</option>
                                             <option value="Si">Si</option>
                                             <option value="No">No</option>
                                         </select>
@@ -290,7 +290,7 @@ if (isset($_GET['respuesta'])) {
                                     <th colspan="1" scope="col">Licencia Indica Uso de Lentes</th>
                                     <td style="width: auto;">
                                         <select name="licenciaLentes" id="licenciaLentes" required>
-                                            <option value="Seleccionar">----</option>
+                                            <option value="----">----</option>
                                             <option value="Si">Si</option>
                                             <option value="No">No</option>
                                         </select>
@@ -298,7 +298,7 @@ if (isset($_GET['respuesta'])) {
                                     <th colspan="1" scope="col">¿Usa Lentes Graduadios?</th>
                                     <td style="width: auto;">
                                         <select name="lentGraduadios" id="lentGraduadios" required>
-                                            <option value="Seleccionar">----</option>
+                                            <option value="----">----</option>
                                             <option value="Si">Si</option>
                                             <option value="No">No</option>
                                         </select>
@@ -306,7 +306,7 @@ if (isset($_GET['respuesta'])) {
                                     <th colspan="1" scope="col">Tipo de Sangre</th>
                                     <td style="width: auto;">
                                         <select name="tipoSangre" id="tipoSangre" required>
-                                            <option value="Seleccionar">----</option>
+                                            <option value="----">----</option>
                                             <option value="A+">A+</option>
                                             <option value="A-">A-</option>
                                             <option value="B+">B+</option>

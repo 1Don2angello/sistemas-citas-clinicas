@@ -10,7 +10,7 @@ if (isset($_GET['respuesta'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Consulta</title>
+    <title>Crear Consulta</title>
 
     <link rel="stylesheet" href="../../plugins/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
     <script src="../../plugins/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -60,7 +60,7 @@ if (isset($_GET['respuesta'])) {
                                     <th colspan="1" scope="col">Nombre</th>
                                     <td colspan="3" style="width: auto;"><input type="text" name="nombre" id="nombre_completo" value="" style="width: 500px;"></td>
                                     <th colspan="1" scope="col">Fecha</th>
-                                    <td colspan="4" style="width: auto;"> <input type="date" name="fecha" value=""></td>
+                                    <td colspan="4" style="width: auto;"> <input type="date" name="fecha" value="" required></td>
                                 </tr>
 
                                 <tr>
@@ -238,7 +238,7 @@ if (isset($_GET['respuesta'])) {
 
                                     <th colspan="1" scope="col" arUFM">Visitar UFM</th>
                                     <td colspan="2" style="width: auto;">
-                                        <select name="visitarUFM" id="visitarUFM">
+                                        <select name="visitarUFM" id="visitarUFM" required>
                                             <option value="Seleccionar">----</option>
                                             <option value="Si">Si</option>
                                             <option value="No">No</option>
@@ -275,7 +275,7 @@ if (isset($_GET['respuesta'])) {
                                     <td style="width: auto;"><input type="text" class="" name="agudezaVisual" value=""></td>
                                     <th colspan="1" scope="col">¿Envio al Optometrista?</th>
                                     <td style="width: auto;">
-                                        <select name="envioOpto" id="envioOpto">
+                                        <select name="envioOpto" id="envioOpto" required>
                                             <option value="Seleccionar">----</option>
                                             <option value="Si">Si</option>
                                             <option value="No">No</option>
@@ -289,7 +289,7 @@ if (isset($_GET['respuesta'])) {
                                 <tr>
                                     <th colspan="1" scope="col">Licencia Indica Uso de Lentes</th>
                                     <td style="width: auto;">
-                                        <select name="licenciaLentes" id="licenciaLentes">
+                                        <select name="licenciaLentes" id="licenciaLentes" required>
                                             <option value="Seleccionar">----</option>
                                             <option value="Si">Si</option>
                                             <option value="No">No</option>
@@ -297,7 +297,7 @@ if (isset($_GET['respuesta'])) {
                                     </td>
                                     <th colspan="1" scope="col">¿Usa Lentes Graduadios?</th>
                                     <td style="width: auto;">
-                                        <select name="lentGraduadios" id="lentGraduadios">
+                                        <select name="lentGraduadios" id="lentGraduadios" required>
                                             <option value="Seleccionar">----</option>
                                             <option value="Si">Si</option>
                                             <option value="No">No</option>
@@ -305,7 +305,7 @@ if (isset($_GET['respuesta'])) {
                                     </td>
                                     <th colspan="1" scope="col">Tipo de Sangre</th>
                                     <td style="width: auto;">
-                                        <select name="tipoSangre" id="tipoSangre">
+                                        <select name="tipoSangre" id="tipoSangre" required>
                                             <option value="Seleccionar">----</option>
                                             <option value="A+">A+</option>
                                             <option value="A-">A-</option>

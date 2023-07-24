@@ -42,45 +42,7 @@ switch ($funcion) {
     default:
         echo "{\"mensaje\":\"No se ha especificado una funcion valida\"}";
         break;
-}/* 
-function agregar($obj_filtros)
-{
-    $filtros = json_decode($obj_filtros);
-    // Crear la instancia de la clase BaseDatos
-    $db_context = new BaseDatos();
-
-    // Variable de la consulta SQL con marcadores de posición
-    $query = "INSERT INTO gestion_citas.ope_citas " .
-        "(citas_servicios_id, citas_proveedor_id, citas_clientes_id, citas_estatus, citas_fecha, citas_hora, citas_notas, citas_fecha_creo, citas_sala) " .
-        "VALUES (:servicios_id, :proveedor_id, :clientes_id, :estatus, :fecha, :hora, :notas, CURRENT_DATE(), :sala)";
-
-    // Preparar la declaración
-    $stmt = $db_context->conexion->prepare($query);
-
-    // Vincular los valores a los marcadores de posición
-    $stmt->bindValue(':servicios_id', $filtros->citas_servicios_id);
-    $stmt->bindValue(':proveedor_id', $filtros->citas_proveedor_id);
-    $stmt->bindValue(':clientes_id', $filtros->citas_clientes_id);
-    $stmt->bindValue(':estatus', $filtros->citas_estatus);
-    $stmt->bindValue(':fecha', $filtros->citas_fecha);
-    $stmt->bindValue(':hora', $filtros->citas_hora);
-    $stmt->bindValue(':notas', $filtros->citas_notas);
-    $stmt->bindValue(':sala', $filtros->citas_sala);
-
-    // Ejecutar la declaración
-    $result = $stmt->execute();
-    echo "Consulta SQL: " . $query;
-    // Verificar si la operación se realizó correctamente
-    if ($result) {
-        echo "{\"mensaje\":\"correcto\"}";
-    } else {
-        echo "{\"mensaje\":\"error\"}";
-    }
-
-    // Cerrar la conexión con la base de datos
-    $db_context->desconectar($db_context->conexion);
-} */
-
+}
 
 function agregar($obj_filtros)
 {
@@ -90,10 +52,10 @@ function agregar($obj_filtros)
 
     // Variable de la consulta SQL
     $query = "INSERT INTO gestion_citas.ope_citas " .
-    "(citas_servicios_id, citas_proveedor_id, citas_clientes_id, citas_estatus, citas_fecha, citas_hora, citas_notas, citas_fecha_creo, citas_sala) " .
-    "VALUES (".$filtros->citas_servicios_id.", ".$filtros->citas_proveedor_id.", ".$filtros->citas_clientes_id.", '".$filtros->citas_estatus."', '".$filtros->citas_fecha."', '".$filtros->citas_hora."', '".$filtros->citas_notas."', GETDATE(), '".$filtros->citas_sala."')";
- // Imprimir la consulta SQL
-   /* echo "Consulta SQL: " . $query; */
+        "(citas_servicios_id, citas_proveedor_id, citas_clientes_id, citas_estatus, citas_fecha, citas_hora, citas_notas, citas_fecha_creo, citas_sala) " .
+        "VALUES (" . $filtros->citas_servicios_id . ", " . $filtros->citas_proveedor_id . ", " . $filtros->citas_clientes_id . ", '" . $filtros->citas_estatus . "', '" . $filtros->citas_fecha . "', '" . $filtros->citas_hora . "', '" . $filtros->citas_notas . "', GETDATE(), '" . $filtros->citas_sala . "')";
+    // Imprimir la consulta SQL
+    //echo "Consulta SQL: " . $query; 
     // Ejecutar la declaración
     $result = $db_context->conexion->query($query);
 
@@ -108,78 +70,6 @@ function agregar($obj_filtros)
     $db_context->desconectar($db_context->conexion);
 }
 
-/* function agregar($obj_filtros)
-{
-    $filtros = json_decode($obj_filtros);
-    // Creamos la conexión con la base de datos
-    $db_context = new BaseDatos();
-    // Variable de la consulta SQL
-    $query = "INSERT INTO gestion_citas.ope_citas " .
-        "(citas_id, citas_servicios_id, citas_proveedor_id, citas_clientes_id, citas_estatus, citas_fecha, citas_hora, citas_notas, citas_fecha_creo, citas_sala) " .
-        "VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?)";
-    // Preparamos la declaración
-    $stmt = sqlsrv_prepare($db_context->conexion, $query, array(
-        &$filtros->citas_servicios_id,
-        &$filtros->citas_proveedor_id,
-        &$filtros->citas_clientes_id,
-        &$filtros->citas_estatus,
-        &$filtros->citas_fecha,
-        &$filtros->citas_hora,
-        &$filtros->citas_notas,
-        &$filtros->citas_sala
-    ));
-    // Verificamos si ocurrió algún error al preparar la declaración
-    if ($stmt === false) {
-        die(print_r(sqlsrv_errors(), true));
-    }
-    
-    // Imprimir los valores de los filtros y el JSON
-    echo "Valores de los filtros:";
-    echo "<pre>";
-    print_r($filtros);
-    echo "</pre>";
-    
-    echo "JSON de obj_filtros:";
-    echo "<pre>";
-    echo json_encode($filtros);
-    echo "</pre>";
-    
-    // Ejecutamos la declaración
-    $result = sqlsrv_execute($stmt);
-    // Verificamos si ocurrió algún error al ejecutar la declaración
-    if ($result === false) {
-        die(print_r(sqlsrv_errors(), true));
-    }
-    // Evaluamos si la operación se realizó correctamente
-    if ($result) {
-        echo "{\"mensaje\":\"correcto\"}";
-    } else {
-        echo "{\"mensaje\":\"error\"}";
-    }
-    // Cerramos la conexión con la base de datos
-    $db_context->desconectar($db_context->conexion);
-}
-
-
- */
-/* function agregar($obj_filtros) {
-        $filtros = json_decode($obj_filtros); $error = "";
-        // Configuración de la conexión a la base de datos
-        //creamos la conexion con la base de datos
-        $db_context = new BaseDatos();
-         $query = "INSERT INTO 'gestion_citas.ope_citas' (`citas_id`, `citas_servicios_id`, `citas_proveedor_id`,`citas_clientes_id`,`citas_estatus`,`citas_fecha`,`citas_hora`,`citas_notas`,`citas_fecha_creo`,`citas_sala`) ".
-         "VALUES (NULL, ".$filtros->citas_servicios_id.", ".$filtros->citas_proveedor_id.", ".$filtros->citas_clientes_id.", '".$filtros->citas_estatus."', '".$filtros->citas_fecha."', '".$filtros->citas_hora."', '".$filtros->citas_notas."', CURRENT_TIMESTAMP, '".$filtros->citas_sala."')";
-          //variable que contiene el resultado de la consulta
-        $result = $db_context->conexion->query($query);
-        //evaluamos si la operacion se realizó correctamente
-        if($result == true){
-            echo "{\"mensaje\":\"correcto\"}";
-        } else {
-            echo "{\"mensaje\":\"".$db_context->conexion->$error."\"}";
-        }
-        //cerramos la conexion con la base de datos
-        $db_context->desconectar($db_context->conexion);
-    } */
 
 function actualizar($obj_filtros)
 {
@@ -280,7 +170,8 @@ function consultar($obj_filtros)
     //creamos la conexion con la base de datos
     $db_context = new BaseDatos();
     //variable de la consulta SQL
-    $query = "SELECT * FROM gestion_citas.ope_citas WHERE citas_estatus='activo' ";
+    $query = "SELECT * FROM gestion_citas.gestion_citas.ope_citas WHERE citas_estatus='activo' ";
+    
     if ($filtros->citas_servicios_id != -1) {
         $query .= "AND citas_servicios_id = " . $filtros->citas_servicios_id . " ";
     }
@@ -298,9 +189,13 @@ function consultar($obj_filtros)
         setlocale(LC_TIME, "es_ES");
         $query .= "AND citas_fecha >= '" . strftime("%Y-%m-%d") . "' ";
     }
+    
+    // Imprimir la consulta SQL antes de ejecutarla
+    //echo "Consulta SQL: " . $query . "<br>";
     //variable que contiene el resultado de la consulta
     $result = $db_context->conexion->query($query);
     //recorremos el resultado fila por fila
+    
     while (($row = $result->fetch(PDO::FETCH_ASSOC)) == true) {
         $item = new ope_citas(
             $row['citas_id'],
@@ -329,13 +224,16 @@ function consultar_citas_sin_sala()
     $lista_resultado = []; //variable en la que se almacena el resultado de la consulta
     //creamos la conexion con la base de datos
     $db_context = new BaseDatos();
+    $db_context = new BaseDatos2();
     //variable de la consulta SQL
-    $query = "SELECT * FROM gestion_citas.ope_citas AS oc "
-        . "INNER JOIN gestion_citas.cat_clientes AS cc ON oc.citas_clientes_id = cc.clientes_id "
-        . "INNER JOIN gestion_citas.cat_usuarios AS cu ON oc.citas_proveedor_id = cu.usuarios_id "
-        . "INNER JOIN gestion_citas.cat_servicios AS cs ON oc.citas_servicios_id = cs.servicios_id "
-        . "INNER JOIN gestion_citas.cat_categorias AS cca ON cs.servicios_categoria_id = cca.categorias_id "
-        . "WHERE citas_estatus='activo' AND citas_sala = ''";
+    $query = "SELECT * FROM gestion_citas.gestion_citas.ope_citas AS oc "
+        . "INNER JOIN dbo.catEmpleados AS cc ON oc.citas_clientes_id = cc.Id "
+        . "INNER JOIN gestion_citas.gestion_citas.cat_usuarios AS cu ON oc.citas_proveedor_id = cu.usuarios_id "
+        . "INNER JOIN gestion_citas.gestion_citas.cat_servicios AS cs ON oc.citas_servicios_id = cs.servicios_id "
+        . "INNER JOIN gestion_citas.gestion_citas.cat_categorias AS cca ON cs.servicios_categoria_id = cca.categorias_id "
+        . "WHERE oc.citas_estatus = 'activo' AND oc.citas_sala = '';";
+    // Imprimir la consulta SQL
+   // echo "Consulta SQL: " . $query . "<br>";
     //echo $query;
     //variable que contiene el resultado de la consulta
     $result = $db_context->conexion->query($query);
@@ -358,10 +256,10 @@ function consultar_citas_sin_sala()
             $row['servicios_precio'],
             $row['categorias_id'],
             $row['categorias_nombre'],
-            $row['clientes_id'],
-            $row['clientes_nombre'] . " " . $row['clientes_apellido_p'] . " " . $row['clientes_apellido_m'],
-            $row['clientes_correo'],
-            $row['clientes_telefono'],
+            $row['Id'],
+            $row['Nombre'] . " " . $row['Paterno'] . " " . $row['Materno'],
+            $row['Correo'],
+            $row['Telefono'],
             $row['usuarios_nombre'] . " " . $row['usuarios_apellido_p'] . " " . $row['usuarios_apellido_m']
         );
         //agregamos el array interno al array de resultado
@@ -381,12 +279,13 @@ function consultar_cls($obj_filtros)
     $lista_resultado = []; //variable en la que se almacena el resultado de la consulta
     //creamos la conexión con la base de datos
     $db_context = new BaseDatos();
+    $db_context = new BaseDatos2();
     //variable de la consulta SQL
-    $query = "SELECT * FROM gestion_citas.ope_citas AS oc "
-        . "INNER JOIN gestion_citas.cat_clientes AS cc ON oc.citas_clientes_id = cc.clientes_id "
-        . "INNER JOIN gestion_citas.cat_usuarios AS cu ON oc.citas_proveedor_id = cu.usuarios_id "
-        . "INNER JOIN gestion_citas.cat_servicios AS cs ON oc.citas_servicios_id = cs.servicios_id "
-        . "INNER JOIN gestion_citas.cat_categorias AS cca ON cs.servicios_categoria_id = cca.categorias_id "
+    $query = "SELECT * FROM gestion_citas.gestion_citas.ope_citas AS oc "
+        . "INNER JOIN dbo.catEmpleados AS cc ON oc.citas_clientes_id = cc.Id "
+        . "INNER JOIN gestion_citas.gestion_citas.cat_usuarios AS cu ON oc.citas_proveedor_id = cu.usuarios_id "
+        . "INNER JOIN gestion_citas.gestion_citas.cat_servicios AS cs ON oc.citas_servicios_id = cs.servicios_id "
+        . "INNER JOIN gestion_citas.gestion_citas.cat_categorias AS cca ON cs.servicios_categoria_id = cca.categorias_id "
         . "WHERE citas_estatus='" . $filtros->citas_estatus . "' ";
     if ($filtros->citas_servicios_id != -1) {
         $query .= "AND citas_servicios_id = " . $filtros->citas_servicios_id . " ";
@@ -427,10 +326,15 @@ function consultar_cls($obj_filtros)
             'servicios_precio' => $row['servicios_precio'],
             'categorias_id' => $row['categorias_id'],
             'categorias_nombre' => $row['categorias_nombre'],
-            'clientes_id' => $row['clientes_id'],
+            /* 'clientes_id' => $row['clientes_id'],
             'clientes_nombre' => $row['clientes_nombre'] . " " . $row['clientes_apellido_p'] . " " . $row['clientes_apellido_m'],
             'clientes_correo' => $row['clientes_correo'],
-            'clientes_telefono' => $row['clientes_telefono'],
+            'clientes_telefono' => $row['clientes_telefono'], */
+            // Cambios en los nombres de las claves para reflejar la nueva estructura de la tabla de clientes
+            'clientes_id' => $row['Id'],
+            'clientes_nombre' => $row['Nombre'] . " " . $row['Paterno'] . " " . $row['Materno'],
+            'clientes_correo' => $row['Correo'],
+            'clientes_telefono' => $row['Telefono'],
             'usuarios_nombre' => $row['usuarios_nombre'] . " " . $row['usuarios_apellido_p'] . " " . $row['usuarios_apellido_m']
         ];
         //agregamos el array interno al array de resultado

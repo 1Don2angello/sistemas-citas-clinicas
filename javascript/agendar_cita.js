@@ -1123,7 +1123,7 @@ function consultar_citas(fecha) {
   filtros.citas_proveedor_id = $("#select_proveedor").val();
   filtros.citas_sala = "";
   filtros.citas_atendidas = "";
-
+  console.log("Contenido de obj_filtros:", filtros);
   try {
     $.ajax({
       type: "POST",
@@ -1131,6 +1131,7 @@ function consultar_citas(fecha) {
       data: { funcion: "consultar", obj_filtros: JSON.stringify(filtros) },
       async: false,
       success: function (datos) {
+        console.log("contenido de datos==",datos);
         if (datos !== null) {
           try {
             console.log(datos);
@@ -1286,7 +1287,7 @@ function consultar_cliente_registrado() {
       },
       success: function (response) {
         try {
-          //console.log(response);
+          console.log(response);
           var jsonData = JSON.parse(response);
 
           if (jsonData.length == 0) {
@@ -1312,7 +1313,7 @@ function consultar_cliente_registrado() {
 
   return resultado;
 }
-
+/* 
 function registrar_cliente() {
   resultado = true;
 
@@ -1354,12 +1355,8 @@ function registrar_cliente() {
 
             resultado = false;
           } else {
-            /* = jsonData.id; */
             Cliente_ID = jsonData.id;
-           
             console.log(Cliente_ID);
-
-            /* liente_ID  = jsonData.id; */ // Almacenar el ID del cliente en la variable local
           }
         } catch (ex_ajax) {
           alert(Cliente_ID);
@@ -1372,13 +1369,13 @@ function registrar_cliente() {
       },
     });
     // En lugar de asignar el ID a la variable Cliente_ID, devuélvelo como resultado
-    /* return jsonData.id; */
+    // return jsonData.id; 
   } catch (ex) {
     alert("[registrar_cliente -> function]: " + ex);
   }
 
   return resultado;
-}
+} */
 
 function registrar_cita() {
   $(".loader").css("display", "block");
@@ -1410,7 +1407,7 @@ function registrar_cita() {
           if (jsonData.mensaje == "correcto") {
             Swal.fire({
               title: "La cita se ha registrado correctamente",
-              //text: "Datos de la cita:\n" + JSON.stringify(obj_filtros),
+              text: "Datos de la cita:\n" + JSON.stringify(obj_filtros),
               icon: "success",
               confirmButtonText: "Salir",
             }).then((result) => {

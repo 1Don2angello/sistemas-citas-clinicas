@@ -2,6 +2,7 @@
 //agregamos todas las referencias necesarias
 require "../../configDB.php";
 require "../../entidades/cat_clientes.php";
+
 //variable que indica a cual funcion hace referencia la peticion ajax
 $funcion = $_POST['funcion'];
 //evaluamos el contenido del valor recibido por POST y ejecutamos la funcion segun los parametros recibidos
@@ -15,7 +16,7 @@ switch ($funcion) {
     case "consultar_por_id":
         consultar_por_id($_POST['id']);
         break;
-    case "agregar":
+    /* case "agregar":
         agregar($_POST['obj_filtros']);
         break;
     case "actualizar":
@@ -23,25 +24,25 @@ switch ($funcion) {
         break;
     case "eliminar":
         eliminar($_POST['id']);
-        break;
+        break; */
     default:
         echo "{\"mensaje\":\"No se ha especificado una funcion valida\"}";
         break;
 }
-function agregar($obj_filtros)
+/* function agregar($obj_filtros)
 {
     $filtros = json_decode($obj_filtros);
     // Crear la instancia de la clase BaseDatos
     $db_context = new BaseDatos();
     // Variable de la consulta SQL
     $query = "INSERT INTO gestion_citas.cat_clientes " .
-        "(clientes_nombre, clientes_apellido_p, clientes_apellido_m, clientes_telefono, clientes_correo, clientes_direccion, clientes_sexo, clientes_edad) " .
+        "(clientes_nombre, clientes_apellido_p, clientes_apellido_m, clientes_telefono, Correo, clientes_direccion, clientes_sexo, clientes_edad) " .
         "VALUES (" .
         "'" . $filtros->clientes_nombre . "', " .
         "'" . $filtros->clientes_apellido_p . "', " .
         "'" . $filtros->clientes_apellido_m . "', " .
         "'" . $filtros->clientes_telefono . "', " .
-        "'" . $filtros->clientes_correo . "', " .
+        "'" . $filtros->Correo . "', " .
         "'" . $filtros->clientes_direccion . "', " .
         "'" . $filtros->clientes_sexo . "', " .
         "'" . $filtros->clientes_edad . "')";
@@ -60,46 +61,6 @@ function agregar($obj_filtros)
     $db_context->desconectar($db_context->conexion);
 }
 
-
-
-
-
-/*  function agregar($obj_filtros) {                        
-        $filtros = json_decode($obj_filtros);
-    
-        // Creamos la conexión con la base de datos
-        $db_context = new BaseDatos();
-    
-        // Variable de la consulta SQL
-        $query = "INSERT INTO gestion_citas.cat_clientes " . 
-                 "(clientes_id, clientes_nombre, clientes_apellido_p, clientes_apellido_m, clientes_telefono, clientes_correo, clientes_direccion, clientes_sexo, clientes_edad) " .
-                 "VALUES (NULL, " .
-                 "'".$filtros->clientes_nombre."', " .
-                 "'".$filtros->clientes_apellido_p."', " .
-                 "'".$filtros->clientes_apellido_m."', " .
-                 "'".$filtros->clientes_telefono."', " .
-                 "'".$filtros->clientes_correo."', " .
-                 "'".$filtros->clientes_direccion."', " .
-                 "'".$filtros->clientes_sexo."', " .
-                 "'".$filtros->clientes_edad."')";
-            
-        // Variable que contiene el resultado de la consulta
-        $result = $db_context->conexion->query($query);
-    
-        // Evaluamos si la operación se realizó correctamente
-        if ($result == true) {
-            $insertId = $db_context->conexion->lastInsertId();
-            echo "{\"mensaje\":\"correcto\",\"id\":". $insertId ."}";
-        } else {
-            echo "{\"mensaje\":\"error\"}";
-        }
-    
-        // Cerramos la conexión con la base de datos
-        $db_context->desconectar($db_context->conexion);  
-    }
-     */
-
-
 function actualizar($obj_filtros)
 {
     $filtros = json_decode($obj_filtros);
@@ -111,7 +72,7 @@ function actualizar($obj_filtros)
         "clientes_apellido_p = '" . $filtros->clientes_apellido_p . "', " .
         "clientes_apellido_m = '" . $filtros->clientes_apellido_m . "', " .
         "clientes_telefono = '" . $filtros->clientes_telefono . "', " .
-        "clientes_correo = '" . $filtros->clientes_correo . "', " .
+        "Correo = '" . $filtros->Correo . "', " .
         "clientes_direccion = '" . $filtros->clientes_direccion . "', " .
         "clientes_sexo = '" . $filtros->clientes_sexo . "', " .
         "clientes_edad = '" . $filtros->clientes_edad . "' " .
@@ -148,7 +109,7 @@ function eliminar($id)
         echo "{\"mensaje\":\"error\"}";
     }
 }
-
+ */
 
 
 function consultar($obj_filtros)
@@ -156,26 +117,25 @@ function consultar($obj_filtros)
     $filtros = json_decode($obj_filtros);
     $lista_resultado = []; //variable en la que se almacena el resultado de la consulta
     //creamos la conexion con la base de datos
-    $db_context = new BaseDatos();
+    $db_context = new BaseDatos2();
     //variable de la consulta SQL
-    $query = "SELECT * FROM gestion_citas.cat_clientes " .
-        "WHERE clientes_nombre LIKE '%" . $filtros->clientes_nombre . "%' " .
-        "AND clientes_apellido_p LIKE '%" . $filtros->clientes_apellido_p . "%' " .
-        "AND clientes_apellido_m LIKE '%" . $filtros->clientes_apellido_m . "%'";
+    $query = "SELECT * FROM dbo.catEmpleados " .
+        "WHERE Nombre LIKE '%" . $filtros->clientes_nombre . "%' " .
+        "AND Paterno LIKE '%" . $filtros->clientes_apellido_p . "%' " .
+        "AND Materno LIKE '%" . $filtros->clientes_apellido_m . "%'";
     //variable que contiene el resultado de la consulta
     $result = $db_context->conexion->query($query);
     //recorremos el resultado fila por fila
     while (($row = $result->fetch(PDO::FETCH_ASSOC)) == true) {
         $item = new cat_clientes(
-            $row['clientes_id'],
-            $row['clientes_nombre'],
-            $row['clientes_apellido_p'],
-            $row['clientes_apellido_m'],
-            $row['clientes_telefono'],
-            $row['clientes_correo'],
-            $row['clientes_direccion'],
-            $row['clientes_sexo'],
-            $row['clientes_edad']
+            $row['Id'],
+            $row['Nombre'],
+            $row['Paterno'],
+            $row['Materno'],
+            $row['Telefono'],
+            $row['Correo'],
+            $row['Depto'],
+          
         );
         //agregamos el array interno al array de resultado
         array_push($lista_resultado, $item);
@@ -184,37 +144,31 @@ function consultar($obj_filtros)
     $db_context->desconectar($db_context->conexion);
     //retornamos el resultado obtenido
     echo json_encode($lista_resultado);
-}
-
-
-
-
-
+} 
 function consultar_exacto($obj_filtros)
 {
     $filtros = json_decode($obj_filtros);
     $lista_resultado = []; //variable en la que se almacena el resultado de la consulta
     //creamos la conexion con la base de datos
-    $db_context = new BaseDatos();
+    $db_context = new BaseDatos2();
     //variable de la consulta SQL
-    $query = "SELECT * FROM gestion_citas.cat_clientes " .
-        "WHERE clientes_nombre = '" . $filtros->clientes_nombre . "' " .
-        "AND clientes_apellido_p = '" . $filtros->clientes_apellido_p . "' " .
-        "AND clientes_apellido_m = '" . $filtros->clientes_apellido_m . "'";
+    $query = "SELECT * FROM dbo.catEmpleados " .
+        "WHERE Nombre = '" . $filtros->clientes_nombre . "' " .
+        "AND Paterno = '" . $filtros->clientes_apellido_p . "' " .
+        "AND Materno = '" . $filtros->clientes_apellido_m . "'";
     //variable que contiene el resultado de la consulta
     $result = $db_context->conexion->query($query);
     //recorremos el resultado fila por fila
     while (($row = $result->fetch(PDO::FETCH_ASSOC)) == true) {
         $item = new cat_clientes(
-            $row['clientes_id'],
-            $row['clientes_nombre'],
-            $row['clientes_apellido_p'],
-            $row['clientes_apellido_m'],
-            $row['clientes_telefono'],
-            $row['clientes_correo'],
-            $row['clientes_direccion'],
-            $row['clientes_sexo'],
-            $row['clientes_edad']
+            $row['Id'],
+            $row['Nombre'],
+            $row['Paterno'],
+            $row['Materno'],
+            $row['Telefono'],
+            $row['Correo'],
+            $row['Depto'],
+            
         );
         //agregamos el array interno al array de resultado
         array_push($lista_resultado, $item);
@@ -233,24 +187,23 @@ function consultar_por_id($id)
 {
     $lista_resultado = []; //variable en la que se almacena el resultado de la consulta
     //creamos la conexion con la base de datos
-    $db_context = new BaseDatos();
+    $db_context = new BaseDatos2();
     //variable de la consulta SQL
-    $query = "SELECT * FROM gestion_citas.cat_clientes " .
-        "WHERE clientes_id = " . $id;
+    $query = "SELECT * FROM dbo.catEmpleados " .
+        "WHERE Id = " . $id;
     //variable que contiene el resultado de la consulta
     $result = $db_context->conexion->query($query);
     //recorremos el resultado fila por fila
     if (($row = $result->fetch(PDO::FETCH_ASSOC)) == true) {
         $item = new cat_clientes(
-            $row['clientes_id'],
-            $row['clientes_nombre'],
-            $row['clientes_apellido_p'],
-            $row['clientes_apellido_m'],
-            $row['clientes_telefono'],
-            $row['clientes_correo'],
-            $row['clientes_direccion'],
-            $row['clientes_sexo'],
-            $row['clientes_edad']
+            $row['Id'],
+            $row['Nombre'],
+            $row['Paterno'],
+            $row['Materno'],
+            $row['Telefono'],
+            $row['Correo'],
+            $row['Depto'],
+           
         );
         //agregamos el array interno al array de resultado
         array_push($lista_resultado, $item);

@@ -1,6 +1,6 @@
 <?php
 $serverName = "LAPTOP-GOI9E2B5\SQLEXPRESS";
-$database = "BD Empleados";
+$database = "SisRH";
 $username = "admin";
 $password = "admin123456789";
 
@@ -13,7 +13,7 @@ try {
   $clave = $_GET['clave'];
 
   // Realizar la consulta en la base de datos
-  $query = "SELECT Nombre, Paterno, Materno, Depto, Fecha_Nacimiento,Telefono, Correo FROM dbo.BD2 WHERE clave = '$clave'";
+  $query = "SELECT Nombre, Paterno, Materno, Depto, Fecha_Nacimiento,Telefono, Correo FROM dbo.catEmpleados WHERE clave = '$clave'";
   $stmt = $conn->query($query);
   $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 

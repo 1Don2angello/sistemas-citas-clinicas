@@ -744,7 +744,7 @@ function consultar_citas_mes(fecha) {
     $("#select_sala").val() == null ? "" : $("#select_sala").val();
   filtros.citas_atendidas =
     $("#chk_citas_pasadas").prop("checked") == false ? "" : "1";
-
+  console.log("Contenido de obj_filtros:", filtros);
   try {
     Calendar_Obj.removeAllEvents();
 
@@ -756,7 +756,7 @@ function consultar_citas_mes(fecha) {
       success: function (datos) {
         if (datos !== null) {
           try {
-            //console.log(datos);
+            console.log(datos);
             datos = JSON.parse(datos);
 
             for (var i = 0; i < datos.length; i++) {
@@ -779,10 +779,7 @@ function consultar_citas_mes(fecha) {
                 id: datos[i].citas_id,
                 description: i,
                 title:
-                  datos[i].clientes_nombre +
-                  " (" +
-                  datos[i].citas_hora +
-                  ")",
+                  datos[i].clientes_nombre + " (" + datos[i].citas_hora + ")",
                 classNames: JSON.stringify(datos[i]),
                 editable: true,
                 start: datos[i].citas_fecha,
@@ -1899,7 +1896,7 @@ function consultar_citas(fecha) {
   filtros.citas_proveedor_id = $("#select_proveedor_modal").val();
   filtros.citas_sala = $("#select_sala_modal").val();
   filtros.citas_atendidas = "";
-
+console.log(filtros);
   try {
     $.ajax({
       type: "POST",
@@ -1909,7 +1906,7 @@ function consultar_citas(fecha) {
       success: function (datos) {
         if (datos !== null) {
           try {
-            //console.log(datos);
+            console.log(datos);
             datos = JSON.parse(datos);
             array_resultado = datos;
           } catch (ex) {
@@ -2041,6 +2038,7 @@ function obtener_campo_validacion(nombre) {
   return result;
 }
 
+/* 
 function registrar_cliente() {
   resultado = true;
 
@@ -2098,7 +2096,7 @@ function registrar_cliente() {
   }
 
   return resultado;
-}
+} */
 /* 
 function registrar_cita() {
   try {
@@ -2287,7 +2285,7 @@ function reagendar_cita(id, fecha) {
       data: { funcion: "reagendar", id: id, fecha: fecha },
       success: function (response) {
         try {
-          //console.log(response);
+          console.log(response);
           var jsonData = JSON.parse(response);
 
           if (jsonData.mensaje == "correcto") {
@@ -2445,7 +2443,7 @@ function activar_editar(json_datos) {
         },
         async: false,
         success: function (data) {
-          //console.log(data);
+          console.log(data);
           var datos = JSON.parse(data);
 
           if (datos.length >= 1) {

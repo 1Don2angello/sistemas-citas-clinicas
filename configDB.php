@@ -5,10 +5,10 @@ class BaseDatos
     public $conexion;
     public $db;
 
-    public $serverName = "LAPTOP-GOI9E2B5\SQLEXPRESS";
+    public $serverName = "DESKTOP-NQQ25CP";//LAPTOP-GOI9E2B5\SQLEXPRESS
     public $database = "gestion_citas";
-    public $username = "admin";
-    public $password = "admin123456789";
+    public $username = "sa";
+    public $password = "12345678";
 
     function __construct()
     {
@@ -31,10 +31,10 @@ class BaseDatos2
     public $conexion;
     public $db;
 
-    public $serverName = "LAPTOP-GOI9E2B5\SQLEXPRESS";
+    public $serverName = "DESKTOP-NQQ25CP";
     public $database = "SisRH";
-    public $username = "admin";
-    public $password = "admin123456789";
+    public $username = "sa";
+    public $password = "12345678";
 
     function __construct()
     {

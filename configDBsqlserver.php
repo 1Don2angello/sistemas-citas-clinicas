@@ -1,9 +1,9 @@
 <?php
 
-$serverName2 = "LAPTOP-GOI9E2B5\SQLEXPRESS";/* LAPTOP-GOI9E2B5\SQLEXPRESS */
+$serverName2 = "DESKTOP-NQQ25CP";/* LAPTOP-GOI9E2B5\SQLEXPRESS */
 $database2 = "gestion_citas";
-$username2 = "admin";
-$password2 = "admin123456789";
+$username2 = "sa";
+$password2 = "12345678";
 try {
     $conn2 = new PDO("sqlsrv:Server=$serverName2;Database=$database2", $username2, $password2);
     $conn2->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

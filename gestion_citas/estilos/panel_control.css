@@ -1,0 +1,188 @@
+body{
+    background-color: #f0f0f0;        
+}
+ 
+  
+
+
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../img/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+}
+
+
+.navbar{    
+    z-index: 500;
+    position: fixed;
+    width: 100%;
+    background-color: #4088ed;    
+    min-height: 70px;     
+    padding: 0px 40px 0px 40px;
+}
+
+
+.boton_nav{    
+    font-size: 16px;
+    color:white;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;       
+    outline: none;
+    display: inline-block;
+    line-height: 3;
+}
+
+.activo{
+    background-color: #465187;
+    border-radius:10px;
+}
+
+.boton_nav:hover{
+    background-color: #354282;
+    color:white;
+    border-radius:10px;
+}
+
+#area_trabajo{
+    
+    padding: 120px 80px 20px 80px;
+    margin-bottom: 80px;
+}
+
+
+
+.panel_titulo{
+
+    width: 100%;
+    padding: 5px 20px;
+    background-color: #3281a8;
+    color:white;
+    border-radius: 5px 5px 0px 0px;    
+}
+
+.panel_body{
+    border-radius: 0px 0px 5px 5px;
+    width: 100%;
+    padding: 20px 30px 10px 30px;
+    background-color: white;
+}
+
+
+.panel_edit{
+    padding: 15px; 
+    border-radius: 5px;
+    background-color: #fffce6;    
+    margin-bottom: 30px;
+}
+
+
+.group-contenido{
+
+    padding: 20px;
+    border:gray 1px solid;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    background-color: #fffbdb;
+}
+
+.group-titulo{
+    font-weight: bold;
+    font-size: 19px;
+}
+
+
+
+.panel_edit_inputs{
+    pointer-events: none;    
+}
+
+
+
+
+
+
+
+input.apple-switch {
+    position: relative;
+    appearance: none; outline: none;
+    width: 50px; height: 30px;
+    background-color: #ffffff; border: 1px solid #D9DADC;
+    border-radius: 50px; box-shadow: inset -20px 0 0 0 #ffffff;
+    transition-duration: 200ms;
+}
+
+input.apple-switch:after {
+    content: "";
+    position: absolute;
+    top: 1px; left: 1px;
+    width: 26px; height: 26px;
+    background-color: transparent;
+    border-radius: 50%; box-shadow: 2px 4px 6px rgba(0,0,0,0.2);
+}
+
+input.apple-switch:checked {
+    border-color: #4ED164;
+    box-shadow: inset 20px 0 0 0 #4ED164;
+}
+
+input.apple-switch:checked:after {
+    left: 20px;
+    box-shadow: -2px 4px 3px rgba(0,0,0,0.05);
+}
+
+
+
+
+
+/*personalizacion full calendar*/
+.fc-media-screen{
+    background-color: white;
+    padding: 10px;
+}
+
+.fc-daygrid-day{
+    border: gray 2px solid;
+}
+
+.fc-header-toolbar{
+    padding: 20px 30px;    
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 768px){
+    
+    #area_trabajo{
+        
+        padding: 120px 10px 20px 10px;
+        margin-bottom: 80px;
+    }
+    
+    
+    .navbar{    
+        
+        z-index: 500;
+        position: fixed;
+        width: 100%;
+        background-color: #4088ed;    
+        min-height: 70px;     
+        padding: 0px 10px;
+    }
+    
+
+    #calendar{
+        height: 800px;
+    }
+}

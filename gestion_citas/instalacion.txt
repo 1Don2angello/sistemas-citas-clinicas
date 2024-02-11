@@ -1,0 +1,26 @@
+- Instalar XAMMP
+- configurar XAMMP para que inicie con apache y mysql
+- descomentar extension=gd en php.ini
+- crear una base de datos y configurarle un nuevo usuario
+- restaurar respaldo de base de datos y borrar los registros que tenga
+- copiar el sistema en htdocs
+- configurar para iniciar al encender (con el programador de tareas xamp-control.exe)
+	C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
+
+- configurar al servidor con una ip fija
+- configurar el modem para una DNS estatica
+
+
+- comentar estas tres lineas en el archivo: vendor/composer/platform_check.php
+if (!(PHP_VERSION_ID >= 70300)) {
+    $issues[] = 'Your Composer dependencies require a PHP version ">= 7.3.0". You are running ' . PHP_VERSION . '.';
+}
+
+
+
+- configurar gmail para que envie correos:
+	activar el acceso a aplicaciones menos seguras
+	descativar el codigo catcha https://accounts.google.com/DisplayUnlockCaptcha
+
+
+

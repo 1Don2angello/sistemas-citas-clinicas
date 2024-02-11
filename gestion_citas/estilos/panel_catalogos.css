@@ -1,0 +1,26 @@
+thead tr th { 
+    position: sticky;
+    top: 0;
+    z-index: 10;    
+    background-color: lightslategrey;
+}
+
+tbody tr:hover{
+    cursor: pointer;
+    background-color: #59a4ff;
+    color:white;
+}
+
+.table-responsive { 
+    
+    height:600px;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+
+.tab-pane{
+    border:gray 1px solid;
+    padding: 20px;
+    background-color: rgb(200, 200, 200);
+}

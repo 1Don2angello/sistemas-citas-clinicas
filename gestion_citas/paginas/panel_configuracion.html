@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Control Citas</title>
+
+    <link rel="stylesheet" href="../plugins/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../plugins/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../plugins/vendor/components/jquery/jquery.min.js"></script>
+            
+    <link rel="stylesheet" href="../plugins/node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <script src="../plugins/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="../plugins/node_modules/fullcalendar/main.css">
+    <script src="../plugins/node_modules/fullcalendar/main.js"></script>    
+    <script src="../plugins/node_modules/fullcalendar/locales/es.js"></script>
+
+    <link rel="stylesheet" href="../estilos/panel_control.css">    
+    <script src="../javascript/panel_configuracion.js"></script>
+</head>
+<body>
+    
+    <div id="menu"></div>
+    
+    
+    <section id="area_trabajo">
+                
+        <div class="row">
+
+            <div class="col-lg-8">
+                <h2 style="font-weight: bold;">Configuración General</h2>
+            </div>
+            
+            <div class="col-lg-4" style="text-align: right;">
+                <button class="btn btn-primary" id="btn_guardar"><i class="fa fa-save"></i>&nbsp;&nbsp;Guardar</button>
+                <button class="btn btn-secondary" id="btn_cancelar"><i class="fa fa-ban"></i>&nbsp;&nbsp;Cancelar</button>
+            </div>
+        </div>
+
+        <hr>
+
+
+
+
+
+        <div class="row">
+
+            <div class="col-lg-6">
+
+
+
+                <div class="group-box">
+                    <div class="group-titulo">Información de la Empresa</div>
+                    
+                    <div class="group-contenido">
+
+                        <Label style="font-weight: bold;">Nombre de la empresa:</Label>                        
+                        <input type="text" id="txt_nombre_empresa" class="form-control" style="width: 100%;">
+
+                        
+                        
+                        <hr style="margin-bottom: 15px; margin-top: 15px;">
+
+                                                    
+
+                        <Label style="font-weight: bold;">Logo de la Empresa:</Label>                                                
+                        <input type="file" id="file_logo" class="form-control" style="width: 100%;" accept="image/png,image/jpeg">
+                        
+
+                        <br>
+                        <div style="width: 40%; height: 200px; border:black 1px solid; padding: 8px; margin: 0px auto;">
+                            <img src="../img/logotipo.png" id="img_logo" style="width: 100%; height: 100%;">        
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+
+
+
+
+                <div class="group-box">
+                    <div class="group-titulo">Envio de Correos</div>
+                    
+                    <div class="group-contenido">
+
+                        <Label style="font-weight: bold;">Habilitar notificaciones por correo</Label>
+                        <label style="margin-bottom: 8px;">El sistema notificará por correo al proveedor cuando el cliente haga una cita o al cliente cuando el proveedor cambie o cancele una cita programada</label>
+                        <input class="apple-switch" type="checkbox" id="ckb_envio_correos">
+
+                        <hr style="margin-bottom: 15px; margin-top: 15px;">
+
+                        <Label style="font-weight: bold;">Cuenta de correo electronico</Label>
+                        <label style="margin-bottom: 8px;">La cuenta de correo desde la que el sistema notificará tanto a los proveedores o clientes cuando haya algún cambio en la agenda de citas (tiene que ser Gmail)</label>
+                        <input type="text" id="txt_cuenta_correo" class="form-control" style="width: 100%;">
+
+                        <br>
+                        <Label style="font-weight: bold;">Contraseña</Label>                        
+                        <input type="password" id="txt_clave_correo" class="form-control" style="width: 100%;">
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="group-box">
+                    <div class="group-titulo">Campos Obligatorios</div>
+                    
+                    <div class="group-contenido">
+                        
+                        <label style="margin-bottom: 8px;">Seleccione cuales campos serán obligatorios para el cliente al momento de registrar una nueva cita</label>
+                        
+
+                        <div class="row">
+                            
+                            <div class="col-lg-6" style="border-right: gray 1px solid; text-align: center;">
+
+                                <Label style="font-weight: bold;">Nombre:</Label><br>
+                                <input class="apple-switch" type="checkbox" id="ckb_nombre_validar">
+                                                        
+                                <br><br>
+                                <Label style="font-weight: bold;">Apellido Paterno:</Label><br>
+                                <input class="apple-switch" type="checkbox" id="ckb_apellido_p_validar">
+        
+                                <br><br>
+                                <Label style="font-weight: bold;">Apellido Materno:</Label><br>
+                                <input class="apple-switch" type="checkbox" id="ckb_apellido_m_validar">
+
+                                <br><br>
+                                <Label style="font-weight: bold;">Direccion:</Label><br>
+                                <input class="apple-switch" type="checkbox" id="ckb_direccion_validar">
+                            </div>
+
+
+                            <div class="col-lg-6" style="text-align: center;">
+                                
+                                <Label style="font-weight: bold;">Teléfono:</Label><br>
+                                <input class="apple-switch" type="checkbox" id="ckb_telefono_validar">
+        
+                                <br><br>
+                                <Label style="font-weight: bold;">Correo:</Label><br>
+                                <input class="apple-switch" type="checkbox" id="ckb_correo_validar">
+
+                                <br><br>
+                                <Label style="font-weight: bold;">Sexo:</Label><br>
+                                <input class="apple-switch" type="checkbox" id="ckb_sexo_validar">
+        
+                                <br><br>
+                                <Label style="font-weight: bold;">Edad:</Label><br>
+                                <input class="apple-switch" type="checkbox" id="ckb_edad_validar">
+                            </div>
+                        </div>
+                                            
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="col-lg-6">
+
+
+                <div class="group-box">
+                    <div class="group-titulo">Horarios</div>
+                    
+                    <div class="group-contenido">
+                        
+                        <label style="margin-bottom: 8px;">Seleccione los días laborales de su empresa y los horarios de inicio y fin de cada día (formato de 24 hrs)</label>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+
+                                <thead>
+                                    <tr>
+                                        <th style="width: 40%;">Día</th>
+                                        <th style="width: 30%;">Inicio</th>
+                                        <th style="width: 30%;">Final</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <tr>
+                                        <td>                                            
+                                            <input type="checkbox" id="cbk_lunes" style="transform: scale(1.5);">
+                                            <label for="cbk_lunes">&nbsp;&nbsp;Lunes</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_lunes_inicio" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_lunes_final" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="cbk_martes" style="transform: scale(1.5);">
+                                            <label for="cbk_martes">&nbsp;&nbsp;Martes</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_martes_inicio" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_martes_final" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="cbk_miercoles" style="transform: scale(1.5);">
+                                            <label for="cbk_miercoles">&nbsp;&nbsp;Miércoles</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_miercoles_inicio" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_miercoles_final" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="cbk_jueves" style="transform: scale(1.5);">
+                                            <label for="cbk_jueves">&nbsp;&nbsp;Jueves</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_jueves_inicio" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_jueves_final" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="cbk_viernes" style="transform: scale(1.5);">
+                                            <label for="cbk_viernes">&nbsp;&nbsp;Viernes</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_viernes_inicio" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_viernes_final" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="cbk_sabado" style="transform: scale(1.5);">
+                                            <label for="cbk_sabado">&nbsp;&nbsp;Sabado</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_sabado_inicio" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_sabado_final" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="cbk_domingo" style="transform: scale(1.5);">
+                                            <label for="cbk_domingo">&nbsp;&nbsp;Domingo</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_domingo_inicio" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                        <td>
+                                            <input type="number" id="txt_horario_domingo_final" class="form-control input_hora" style="width: 100%;">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        
+                                            
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="group-box">
+                    <div class="group-titulo">Periodos de Descanso</div>
+                    
+                    <div class="group-contenido">
+                        
+                        <label style="margin-bottom: 8px;">Ingrese los periodos del dia en el que no ofrece sus servicios, por ejemplo: horarios de comida, (formato de 24 hrs)</label>
+                        
+                        <button class="btn btn-success" id="btn_agregar_descanso"><i class="fa fa-plus"></i>&nbsp;&nbsp;Agregar</button>
+
+                        <div class="table-responsive" style="height: 500px; overflow-y: scroll;">
+                            <table class="table table-striped">
+
+                                <thead>
+                                    <tr>
+                                        <th style="width: 30%;">Día</th>
+                                        <th style="width: 20%;">Inicio</th>
+                                        <th style="width: 20%;">Final</th>
+                                        <th style="width: 30%;">Acciones</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="datos_tabla_descansos">
+
+                                    
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+
+                        
+                                            
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        
+    </section>
+
+
+
+
+
+
+    <div id="footer_nav"></div>
+
+    <div class="loader"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="modal_descanso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Agregar Horario de Descanso</h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body" style="padding: 20px 40px;">
+              
+                <input type="hidden" id="hid_descansos_id">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        
+                        <label for="select_dia_modal">Día :</label>
+                        <select id="select_dia_modal" class="form-control" style="width: 100%;">
+                            <option value="Lunes">Lunes</option>
+                            <option value="Martes">Martes</option>
+                            <option value="Miércoles">Miércoles</option>
+                            <option value="Jueves">Jueves</option>
+                            <option value="Viernes">Viernes</option>
+                            <option value="Sabado">Sabado</option>
+                            <option value="Domingo">Domingo</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="row" style="margin-top: 20px;">
+
+                    <div class="col-lg-6">
+                        <label for="txt_hora_inicio_modal">Hora de Inicio (24hrs):</label>
+                        <input type="number" id="txt_hora_inicio_modal" class="form-control" style="width: 100%;">
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="txt_final_inicio_modal">Hora final (24hrs):</label>
+                        <input type="number" id="txt_hora_final_modal" class="form-control" style="width: 100%;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" id="btn_guardar_modal">Cargar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+</body>
+</html>

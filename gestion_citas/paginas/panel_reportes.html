@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Control Citas</title>
+
+    <link rel="stylesheet" href="../plugins/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../plugins/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../plugins/vendor/components/jquery/jquery.min.js"></script>
+            
+    <link rel="stylesheet" href="../plugins/select2-4.0.13/dist/css/select2.min.css">
+    <script src="../plugins/select2-4.0.13/dist/js/select2.min.js"></script>    
+
+    <link rel="stylesheet" href="../plugins/node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <script src="../plugins/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="../plugins/node_modules/fullcalendar/main.css">
+    <script src="../plugins/node_modules/fullcalendar/main.js"></script>    
+    <script src="../plugins/node_modules/fullcalendar/locales/es.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+
+    <link rel="stylesheet" href="../estilos/panel_control.css">
+    <link rel="stylesheet" href="../estilos/panel_catalogos.css">
+    <script src="../javascript/panel_reportes.js"></script>
+</head>
+<body>
+    
+    <div id="menu"></div>
+    
+    
+    <section id="area_trabajo">
+                
+        <h2 style="font-weight: bold;">Reporte de Citas</h2>
+        <hr><br>
+
+
+        <div class="panel">
+
+            <div class="panel_titulo">
+                <h5>Filtros de búsqueda</h5>
+            </div>
+
+            <div class="panel_body">
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label for="select_servicio" style="font-weight: bold;">Servicio :</label>                        
+                        <select id="select_servicio" class="form-control" style="width: 100%;"></select>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label for="select_proveedor" style="font-weight: bold;">Proveedor :</label>                        
+                        <select id="select_proveedor" class="form-control" style="width: 100%;">
+                            <option value="-1">- seleccionar -</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label for="select_clientes" style="font-weight: bold;">Cliente :</label>                        
+                        <select id="select_clientes" class="form-control" style="width: 100%;"></select>
+                    </div>                    
+
+                    <div class="col-lg-3">
+                        <label for="select_estatus" style="font-weight: bold;">Estatus :</label>
+                        <select id="select_estatus" class="form-control" style="width: 100%;">
+                            <option value="activo">activo</option>
+                            <option value="cancelado">cancelado</option>
+                        </select>
+                    </div>   
+                </div>
+
+
+                <div class="row" style="margin-top: 15px; margin-bottom: 20px;">
+
+                    <div class="col-lg-2">
+                        <label for="date_fecha_inicio" style="font-weight: bold;">Fecha Inicio :</label>
+                        <input type="date" id="date_fecha_inicio" class="form-control" style="width: 100%;"/>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <label for="date_fecha_fin" style="font-weight: bold;">Fecha Fin :</label>
+                        <input type="date" id="date_fecha_fin" class="form-control" style="width: 100%;"/>
+                    </div>
+
+                    <div class="col-lg-2"></div>
+
+                    <div class="col-lg-2">
+                        <label for="txt_hora_inicio" style="font-weight: bold;">Hora Inicio :</label>
+                        <input type="text" id="txt_hora_inicio" maxlength="5" class="form-control" value="00:00" placeholder="HH:mm" style="width: 100%;"/>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <label for="txt_hora_fin" style="font-weight: bold;">Hora Fin :</label>
+                        <input type="text" id="txt_hora_fin" maxlength="5" class="form-control" value="24:00" placeholder="HH:mm" style="width: 100%;"/>
+                    </div>
+
+                </div>
+
+
+                <div class="row" style="margin-top: 30px;">
+
+                    <div class="col-lg-6" style="text-align: left;">
+                                                    
+                        <button class="btn btn-success" id="btn_excel"><i class="fa fa-file-excel"></i>&nbsp;&nbsp; Excel</button>
+                        <button class="btn btn-warning" id="btn_pdf"><i class="fa fa-file-pdf"></i>&nbsp;&nbsp; PDF</button>                            
+                    </div>
+
+                    <div class="col-lg-6" style="text-align: right;">
+                                                    
+                        <button class="btn btn-primary" id="btn_buscar"><i class="fa fa-search"></i>&nbsp;&nbsp; Buscar</button>
+                        <button class="btn btn-secondary" id="btn_recargar" onClick="window.location.reload();" title="Recargar página"><i class="fa fa-sync-alt"></i></button>                            
+                    </div>
+                </div>
+            </div>
+        </div>        
+  
+
+
+        <br><br>
+        <div class="row">
+                                    
+            <div class="col-lg-12">
+                
+                <div class="table-responsive">
+                    
+                    <table class="table table-striped" id="table_citas">
+                        <thead style="background-color: #424d87; color:white;">
+                            <tr>
+                                <th>Servicio</th>
+                                <th>Categoría</th>
+                                <th>Proveedor</th>
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Notas</th>
+                                <th>Agendó</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="datos_tabla_citas">
+                            
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+    <div id="footer_nav"></div>
+
+    <div class="loader"></div>
+
+</body>
+</html>

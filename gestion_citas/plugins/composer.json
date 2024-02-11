@@ -1,0 +1,8 @@
+{
+    "require": {
+        "twbs/bootstrap": "5.0.2",
+        "components/jquery": "^3.5",
+        "phpoffice/phpspreadsheet": "^1.18",
+        "phpmailer/phpmailer": "^6.5"
+    }
+}

@@ -1,14 +1,20 @@
 <?php
-$serverName = 'LAPTOP-GOI9E2B5\SQLEXPRESS';
-$connectionOptions = array(
-    "Database" => 'gestion_citas',
-    "Uid" => 'LAPTOP-GOI9E2B5\MISS',
-    "PWD" => ''
-);
+$servername = "127.0.0.1";
+$username = "root";
+$password = "";
+$database = "gestion_citas";
 
-$conn = sqlsrv_connect($serverName, $connectionOptions);
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $database);
 
-if ($conn === false) {
-    die(print_r(sqlsrv_errors(), true));
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
+echo "Conexión exitosa";
+
+// Opcional: seleccionar la base de datos
+// if (!$conn->select_db($database)) {
+//     die("No se pudo seleccionar la base de datos: " . $conn->error);
+// }
 ?>

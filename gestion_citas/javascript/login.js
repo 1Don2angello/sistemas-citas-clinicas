@@ -26,7 +26,7 @@ function consultar_nombre_empresa(){
 
             try{
                 
-                //console.log(response);
+                console.log(response);
                 var jsonData = JSON.parse(response);                     
                 
                 $("#lb_nombre_empresa").text(jsonData[0].configuracion_valor);
@@ -97,7 +97,7 @@ function consultar_usuario(){
 
             try{
                 
-                //console.log(response);
+                console.log(response);
                 var jsonData = JSON.parse(response);                     
                 if(jsonData.mensaje=="correcto"){
 
@@ -152,7 +152,7 @@ function crear_session(){
 
             try{
                 
-                //console.log(response);                
+                console.log(response);                
                 var jsonData = JSON.parse(response);                     
                 if(jsonData.mensaje!="correcto"){
 
